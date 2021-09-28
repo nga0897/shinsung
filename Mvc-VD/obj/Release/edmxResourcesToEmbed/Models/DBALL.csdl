@@ -1,0 +1,1310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Mvc_VD.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="author_action">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mn_cd" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="url_link" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="id_button" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="name_table" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="sts_action" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="author_info">
+    <Key>
+      <PropertyRef Name="atno" />
+    </Key>
+    <Property Name="atno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="at_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="at_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="re_mark" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="author_menu_info">
+    <Key>
+      <PropertyRef Name="amno" />
+    </Key>
+    <Property Name="amno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="at_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="mn_cd" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="mn_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="url_link" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="st_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="ct_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="mt_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="buyer_info">
+    <Key>
+      <PropertyRef Name="byno" />
+    </Key>
+    <Property Name="byno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="buyer_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="buyer_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ceo_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="manager_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="brd_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="logo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="phone_nb" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cell_nb" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="fax_nb" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="web_site" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="stampId" Type="Int32" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="comm_dt">
+    <Key>
+      <PropertyRef Name="cdid" />
+    </Key>
+    <Property Name="cdid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mt_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dt_cd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dt_nm" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dt_kr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dt_vn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dt_exp" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="up_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="val1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="val1_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="val2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="val2_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="val3" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="val3_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="val4" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="val4_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dt_order" Type="Int32" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="comm_mt">
+    <Key>
+      <PropertyRef Name="mt_id" />
+    </Key>
+    <Property Name="mt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="div_cd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="mt_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="mt_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mt_exp" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="memo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_bobbin_info">
+    <Key>
+      <PropertyRef Name="bno" />
+    </Key>
+    <Property Name="bno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mc_type" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="bb_no" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="mt_cd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="bb_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="purpose" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="count_number" Type="Int32" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_bobbin_lct_hist">
+    <Key>
+      <PropertyRef Name="blno" />
+    </Key>
+    <Property Name="blno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mc_type" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="bb_no" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="mt_cd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bb_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="start_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="end_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_bom_info">
+    <Key>
+      <PropertyRef Name="bid" />
+    </Key>
+    <Property Name="bid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bom_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="style_no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="need_time" Type="Double" />
+    <Property Name="cav" Type="Int32" />
+    <Property Name="need_m" Type="Double" />
+    <Property Name="buocdap" Type="Double" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="materialbom">
+    <Key>
+      <PropertyRef Name="MaterialBOMID" />
+    </Key>
+    <Property Name="MaterialBOMID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaterialID" Type="Int32" />
+    <Property Name="BOMID" Type="Int32" />
+    <Property Name="CreateOn" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="d_machine_info">
+    <Key>
+      <PropertyRef Name="mno" />
+    </Key>
+    <Property Name="mno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mc_type" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="mc_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mc_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="purpose" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="color" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_material_info">
+    <Key>
+      <PropertyRef Name="mtid" />
+    </Key>
+    <Property Name="mtid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mt_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mt_no" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mt_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mt_no_origin" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mt_nm" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="mf_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="gr_qty" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="unit_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="bundle_qty" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="bundle_unit" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="sp_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="s_lot_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="item_vcd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="qc_range_cd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="width" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="width_unit" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="spec" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="spec_unit" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="area" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="area_unit" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="thick" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="thick_unit" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="stick" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="stick_unit" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="consum_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tot_price" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="price_unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="price_least_unit" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="photo_file" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="barcode" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_model_info">
+    <Key>
+      <PropertyRef Name="mdid" />
+    </Key>
+    <Property Name="mdid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="md_cd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="md_nm" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_mold_info">
+    <Key>
+      <PropertyRef Name="mdno" />
+    </Key>
+    <Property Name="mdno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="md_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="md_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="purpose" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_pro_unit_mc">
+    <Key>
+      <PropertyRef Name="pmid" />
+    </Key>
+    <Property Name="pmid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_actual" Type="Int32" />
+    <Property Name="start_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="end_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mc_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_pro_unit_staff">
+    <Key>
+      <PropertyRef Name="psid" />
+    </Key>
+    <Property Name="psid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="staff_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="actual" Type="Double" />
+    <Property Name="defect" Type="Double" />
+    <Property Name="id_actual" Type="Int32" />
+    <Property Name="staff_tp" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="start_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="end_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_rounting_info">
+    <Key>
+      <PropertyRef Name="idr" />
+    </Key>
+    <Property Name="idr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="style_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="level" Type="Int32" />
+    <Property Name="don_vi_pr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="item_vcd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_style_info">
+    <Key>
+      <PropertyRef Name="sid" />
+    </Key>
+    <Property Name="sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="style_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="style_nm" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="md_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prj_nm" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ssver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="part_nm" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="standard" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="cust_rev" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="order_num" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pack_amt" Type="Int32" />
+    <Property Name="cav" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bom_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tds_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="item_vcd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="qc_range_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="stamp_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="expiry_month" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="expiry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="department_info">
+    <Key>
+      <PropertyRef Name="dpno" />
+    </Key>
+    <Property Name="dpno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="depart_cd" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="depart_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="up_depart_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="level_cd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="order_no" Type="Int32" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mn_full" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="generalfg">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="buyer_qr" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="md_cd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dl_no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="qty" Type="Int32" Nullable="false" />
+    <Property Name="lot_no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sts_cd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="history_container">
+    <Key>
+      <PropertyRef Name="blhis" />
+    </Key>
+    <Property Name="blhis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="blno" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mc_type" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="bb_no" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="mt_cd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bb_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="start_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="end_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date_insert" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="lct_info">
+    <Key>
+      <PropertyRef Name="lctno" />
+    </Key>
+    <Property Name="lctno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="lct_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="up_lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="level_cd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="index_cd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="shelf_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="order_no" Type="Int32" />
+    <Property Name="real_use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="lct_rfid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lct_bar_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sf_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="is_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="mt_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="mv_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="ti_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="fg_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="rt_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="ft_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="wp_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="nt_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="pk_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="manager_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mn_full" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="sap_lct_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="selected" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="m_board">
+    <Key>
+      <PropertyRef Name="mno" />
+    </Key>
+    <Property Name="mno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="content" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="viewcnt" Type="Int32" />
+    <Property Name="replycnt" Type="Int32" />
+    <Property Name="div_cd" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="start_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="end_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="widthsize" Type="Int32" />
+    <Property Name="heightsize" Type="Int32" />
+    <Property Name="back_color" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="order_no" Type="Int32" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="m_facline_qc">
+    <Key>
+      <PropertyRef Name="fqno" />
+    </Key>
+    <Property Name="fqno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fq_no" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="ml_no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ml_tims" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="product_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="shift" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="at_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="work_dt" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="item_vcd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="item_nm" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="item_exp" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="check_qty" Type="Int32" />
+    <Property Name="ok_qty" Type="Int32" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="m_facline_qc_value">
+    <Key>
+      <PropertyRef Name="fqhno" />
+    </Key>
+    <Property Name="fqhno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fq_no" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="item_vcd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="check_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="check_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="check_value" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="check_qty" Type="Int32" />
+    <Property Name="date_ymd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="manufac_info">
+    <Key>
+      <PropertyRef Name="mfno" />
+    </Key>
+    <Property Name="mfno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mf_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mf_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="brd_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="logo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="phone_nb" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="web_site" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="mb_author_info">
+    <Key>
+      <PropertyRef Name="mano" />
+    </Key>
+    <Property Name="mano" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="at_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="mb_info">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="uname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="nick_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="upw" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="depart_cd" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="position_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="tel_nb" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cel_nb" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="e_mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sms_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="join_dt" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="birth_dt" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="scr_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="mail_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="join_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="join_domain" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ltacc_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ltacc_domain" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mbout_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mbout_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="accblock_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="session_key" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="session_limit" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="memo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="check_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="rem_me" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="barcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mbjoin_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="log_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="re_mark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="mb_lct_info">
+    <Key>
+      <PropertyRef Name="dlno" />
+    </Key>
+    <Property Name="dlno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="mb_message">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="message" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="menu_info">
+    <Key>
+      <PropertyRef Name="mnno" />
+    </Key>
+    <Property Name="mnno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mn_cd" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="mn_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="up_mn_cd" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="level_cd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="url_link" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="col_css" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="sub_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="order_no" Type="Int32" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="mn_full" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mn_cd_full" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="selected" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="notice_board">
+    <Key>
+      <PropertyRef Name="bno" />
+    </Key>
+    <Property Name="bno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="content" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="mn_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="viewcnt" Type="Int32" />
+    <Property Name="replycnt" Type="Int32" />
+    <Property Name="div_cd" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="lng_cd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="start_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="end_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="widthsize" Type="Int32" />
+    <Property Name="heightsize" Type="Int32" />
+    <Property Name="back_color" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="order_no" Type="Int32" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="qc_item_mt">
+    <Key>
+      <PropertyRef Name="ino" />
+    </Key>
+    <Property Name="ino" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="item_type" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="item_vcd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="item_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ver" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="item_nm" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="item_exp" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="qc_itemcheck_dt">
+    <Key>
+      <PropertyRef Name="icdno" />
+    </Key>
+    <Property Name="icdno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="item_vcd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="check_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="check_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="defect_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="check_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="order_no" Type="Int32" />
+    <Property Name="re_mark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="qc_itemcheck_mt">
+    <Key>
+      <PropertyRef Name="icno" />
+    </Key>
+    <Property Name="icno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="item_vcd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="check_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="check_type" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="check_subject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="min_value" Type="Decimal" />
+    <Property Name="max_value" Type="Decimal" />
+    <Property Name="range_type" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="order_no" Type="Int32" />
+    <Property Name="re_mark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="stamp_detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="buyer_qr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="stamp_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="product_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="vendor_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="vendor_line" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="label_printer" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="is_sample" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="pcn" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="lot_date" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="serial_number" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="machine_line" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="shift" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="standard_qty" Type="Int32" Nullable="false" />
+    <Property Name="is_sent" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="box_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="stamp_master">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="stamp_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="stamp_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="supplier_info">
+    <Key>
+      <PropertyRef Name="spno" />
+    </Key>
+    <Property Name="spno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sp_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sp_nm" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="bsn_tp" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="changer_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="phone_nb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cell_nb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fax_nb" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="e_mail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="web_site" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="user_author">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="at_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" />
+    <Property Name="chg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="version_app">
+    <Key>
+      <PropertyRef Name="id_app" />
+    </Key>
+    <Property Name="id_app" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name_file" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="version" Type="Int32" Nullable="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_actual">
+    <Key>
+      <PropertyRef Name="id_actual" />
+    </Key>
+    <Property Name="id_actual" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="at_no" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="actual" Type="Double" />
+    <Property Name="defect" Type="Double" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="level" Type="Int32" />
+    <Property Name="date" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="don_vi_pr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="item_vcd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_actual_primary">
+    <Key>
+      <PropertyRef Name="id_actualpr" />
+    </Key>
+    <Property Name="id_actualpr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="at_no" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="target" Type="Int32" />
+    <Property Name="product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="finish_yn" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_box_mapping">
+    <Key>
+      <PropertyRef Name="bmno" />
+    </Key>
+    <Property Name="bmno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bx_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="buyer_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mt_cd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gr_qty" Type="Int32" Nullable="false" />
+    <Property Name="product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="mapping_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="sts" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_dl_info">
+    <Key>
+      <PropertyRef Name="dlid" />
+    </Key>
+    <Property Name="dlid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dl_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="dl_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dl_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="work_dt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_ex_info">
+    <Key>
+      <PropertyRef Name="exid" />
+    </Key>
+    <Property Name="exid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ex_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ex_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ex_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="work_dt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="alert" Type="Int32" />
+    <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_ext_info">
+    <Key>
+      <PropertyRef Name="extid" />
+    </Key>
+    <Property Name="extid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ext_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ext_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ext_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="work_dt" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="alert" Type="Int32" />
+    <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_material_down">
+    <Key>
+      <PropertyRef Name="wmtid" />
+    </Key>
+    <Property Name="wmtid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mt_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="gr_qty" Type="Double" />
+    <Property Name="gr_down" Type="Double" />
+    <Property Name="reason" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sts_now" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="bb_no" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_material_info">
+    <Key>
+      <PropertyRef Name="wmtid" />
+    </Key>
+    <Property Name="wmtid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_actual" Type="Int32" />
+    <Property Name="id_actual_oqc" Type="Int32" />
+    <Property Name="at_no" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="product" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="staff_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="staff_id_oqc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="machine_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mt_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mt_no" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="gr_qty" Type="Double" />
+    <Property Name="real_qty" Type="Double" />
+    <Property Name="staff_qty" Type="Int32" />
+    <Property Name="sp_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="rd_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sd_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ext_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ex_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dl_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="recevice_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="return_date" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="alert_NG" Type="Int32" />
+    <Property Name="expiry_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="dt_of_receipt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="expore_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="recevice_dt_tims" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="rece_wip_dt" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="picking_dt" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="shipping_wip_dt" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="end_production_dt" Type="DateTime" />
+    <Property Name="lot_no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_barcode" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_qrcode" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="bb_no" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="bbmp_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="lct_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lct_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="from_lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="to_lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="output_dt" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="input_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="buyer_qr" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="orgin_mt_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sts_update" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_material_info_memo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="md_cd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="style_no" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="style_nm" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="width" Type="Decimal" />
+    <Property Name="width_unit" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="spec" Type="Decimal" />
+    <Property Name="spec_unit" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="sd_no" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="lot_no" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="sts_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="memo" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="month_excel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="receiving_dt" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="TX" Type="Int32" />
+    <Property Name="total_m" Type="Decimal" />
+    <Property Name="total_m2" Type="Decimal" />
+    <Property Name="total_ea" Type="Decimal" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_material_info_tam">
+    <Key>
+      <PropertyRef Name="wmtid" />
+    </Key>
+    <Property Name="wmtid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_actual" Type="Int32" />
+    <Property Name="id_actual_oqc" Type="Int32" />
+    <Property Name="staff_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="staff_id_oqc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mt_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mt_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="mt_no" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="gr_qty" Type="Double" />
+    <Property Name="real_qty" Type="Double" />
+    <Property Name="sp_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="rd_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sd_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ext_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ex_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dl_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="picking_dt" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="recevice_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="return_date" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="alert_NG" Type="Int32" />
+    <Property Name="expiry_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="dt_of_receipt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="expore_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="recevice_dt_tims" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="lot_no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_barcode" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_qrcode" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="bb_no" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="bbmp_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="lct_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lct_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="from_lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="to_lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="output_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="input_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="buyer_qr" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="orgin_mt_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sts_update" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_material_mapping">
+    <Key>
+      <PropertyRef Name="wmmid" />
+    </Key>
+    <Property Name="wmmid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mt_lot" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="mt_cd" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="mt_no" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="mapping_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="bb_no" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sts_share" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_policy_mt">
+    <Key>
+      <PropertyRef Name="wid" />
+    </Key>
+    <Property Name="wid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="policy_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="policy_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="policy_start_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="policy_end_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="work_starttime" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="work_endtime" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="lunch_start_time" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="lunch_end_time" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="dinner_start_time" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="dinner_end_time" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="work_hour" Type="Decimal" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="last_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_product_qc">
+    <Key>
+      <PropertyRef Name="pqno" />
+    </Key>
+    <Property Name="pqno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pq_no" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="ml_no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="work_dt" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="item_vcd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="check_qty" Type="Int32" />
+    <Property Name="ok_qty" Type="Int32" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_product_qc_value">
+    <Key>
+      <PropertyRef Name="pqhno" />
+    </Key>
+    <Property Name="pqhno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pq_no" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="item_vcd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="check_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="check_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="check_value" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="check_qty" Type="Int32" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_rd_info">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rd_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="rd_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="rd_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="receiving_dt" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_sd_info">
+    <Key>
+      <PropertyRef Name="sid" />
+    </Key>
+    <Property Name="sid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sd_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="sd_nm" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sd_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="product_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="alert" Type="Int32" />
+    <Property Name="remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_vt_dt">
+    <Key>
+      <PropertyRef Name="vdno" />
+    </Key>
+    <Property Name="vdno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vn_cd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mt_cd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="wmtid" Type="Int32" />
+    <Property Name="id_actual" Type="Int32" />
+    <Property Name="id_actual_oqc" Type="Int32" />
+    <Property Name="staff_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="staff_id_oqc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="machine_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mt_no" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="gr_qty" Type="Int32" />
+    <Property Name="real_qty" Type="Int32" />
+    <Property Name="staff_qty" Type="Int32" />
+    <Property Name="sp_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="rd_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sd_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ext_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ex_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dl_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="recevice_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="return_date" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="alert_NG" Type="Int32" />
+    <Property Name="expiry_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="dt_of_receipt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="expore_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="recevice_dt_tims" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="rece_wip_dt" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="picking_dt" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="shipping_wip_dt" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="end_production_dt" Type="DateTime" />
+    <Property Name="lot_no" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_barcode" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_qrcode" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="mt_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="bb_no" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="bbmp_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="lct_cd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lct_sts_cd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="from_lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="to_lct_cd" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="output_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="input_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="buyer_qr" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="orgin_mt_cd" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_vt_mt">
+    <Key>
+      <PropertyRef Name="vno" />
+    </Key>
+    <Property Name="vno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vn_cd" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="vn_nm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="start_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="end_dt" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="re_mark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="use_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="del_yn" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="reg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="reg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="chg_dt" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="author_action" EntityType="Self.author_action" />
+    <EntitySet Name="author_info" EntityType="Self.author_info" />
+    <EntitySet Name="author_menu_info" EntityType="Self.author_menu_info" />
+    <EntitySet Name="buyer_info" EntityType="Self.buyer_info" />
+    <EntitySet Name="comm_dt" EntityType="Self.comm_dt" />
+    <EntitySet Name="comm_mt" EntityType="Self.comm_mt" />
+    <EntitySet Name="d_bobbin_info" EntityType="Self.d_bobbin_info" />
+    <EntitySet Name="d_bobbin_lct_hist" EntityType="Self.d_bobbin_lct_hist" />
+    <EntitySet Name="d_bom_info" EntityType="Self.d_bom_info" />
+    <EntitySet Name="materialbom" EntityType="Self.materialbom" />
+    <EntitySet Name="d_machine_info" EntityType="Self.d_machine_info" />
+    <EntitySet Name="d_material_info" EntityType="Self.d_material_info" />
+    <EntitySet Name="d_model_info" EntityType="Self.d_model_info" />
+    <EntitySet Name="d_mold_info" EntityType="Self.d_mold_info" />
+    <EntitySet Name="d_pro_unit_mc" EntityType="Self.d_pro_unit_mc" />
+    <EntitySet Name="d_pro_unit_staff" EntityType="Self.d_pro_unit_staff" />
+    <EntitySet Name="d_rounting_info" EntityType="Self.d_rounting_info" />
+    <EntitySet Name="d_style_info" EntityType="Self.d_style_info" />
+    <EntitySet Name="department_info" EntityType="Self.department_info" />
+    <EntitySet Name="generalfgs" EntityType="Self.generalfg" />
+    <EntitySet Name="history_container" EntityType="Self.history_container" />
+    <EntitySet Name="lct_info" EntityType="Self.lct_info" />
+    <EntitySet Name="m_board" EntityType="Self.m_board" />
+    <EntitySet Name="m_facline_qc" EntityType="Self.m_facline_qc" />
+    <EntitySet Name="m_facline_qc_value" EntityType="Self.m_facline_qc_value" />
+    <EntitySet Name="manufac_info" EntityType="Self.manufac_info" />
+    <EntitySet Name="mb_author_info" EntityType="Self.mb_author_info" />
+    <EntitySet Name="mb_info" EntityType="Self.mb_info" />
+    <EntitySet Name="mb_lct_info" EntityType="Self.mb_lct_info" />
+    <EntitySet Name="mb_message" EntityType="Self.mb_message" />
+    <EntitySet Name="menu_info" EntityType="Self.menu_info" />
+    <EntitySet Name="notice_board" EntityType="Self.notice_board" />
+    <EntitySet Name="qc_item_mt" EntityType="Self.qc_item_mt" />
+    <EntitySet Name="qc_itemcheck_dt" EntityType="Self.qc_itemcheck_dt" />
+    <EntitySet Name="qc_itemcheck_mt" EntityType="Self.qc_itemcheck_mt" />
+    <EntitySet Name="stamp_detail" EntityType="Self.stamp_detail" />
+    <EntitySet Name="stamp_master" EntityType="Self.stamp_master" />
+    <EntitySet Name="supplier_info" EntityType="Self.supplier_info" />
+    <EntitySet Name="user_author" EntityType="Self.user_author" />
+    <EntitySet Name="version_app" EntityType="Self.version_app" />
+    <EntitySet Name="w_actual" EntityType="Self.w_actual" />
+    <EntitySet Name="w_actual_primary" EntityType="Self.w_actual_primary" />
+    <EntitySet Name="w_box_mapping" EntityType="Self.w_box_mapping" />
+    <EntitySet Name="w_dl_info" EntityType="Self.w_dl_info" />
+    <EntitySet Name="w_ex_info" EntityType="Self.w_ex_info" />
+    <EntitySet Name="w_ext_info" EntityType="Self.w_ext_info" />
+    <EntitySet Name="w_material_down" EntityType="Self.w_material_down" />
+    <EntitySet Name="w_material_info" EntityType="Self.w_material_info" />
+    <EntitySet Name="w_material_info_memo" EntityType="Self.w_material_info_memo" />
+    <EntitySet Name="w_material_info_tam" EntityType="Self.w_material_info_tam" />
+    <EntitySet Name="w_material_mapping" EntityType="Self.w_material_mapping" />
+    <EntitySet Name="w_policy_mt" EntityType="Self.w_policy_mt" />
+    <EntitySet Name="w_product_qc" EntityType="Self.w_product_qc" />
+    <EntitySet Name="w_product_qc_value" EntityType="Self.w_product_qc_value" />
+    <EntitySet Name="w_rd_info" EntityType="Self.w_rd_info" />
+    <EntitySet Name="w_sd_info" EntityType="Self.w_sd_info" />
+    <EntitySet Name="w_vt_dt" EntityType="Self.w_vt_dt" />
+    <EntitySet Name="w_vt_mt" EntityType="Self.w_vt_mt" />
+  </EntityContainer>
+</Schema>

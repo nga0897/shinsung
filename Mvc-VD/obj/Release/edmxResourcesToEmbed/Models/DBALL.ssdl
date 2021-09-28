@@ -1,0 +1,1310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Mvc_VD.Models.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="author_action">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mn_cd" Type="varchar" MaxLength="12" />
+    <Property Name="url_link" Type="varchar" MaxLength="100" />
+    <Property Name="id_button" Type="varchar" MaxLength="50" />
+    <Property Name="type" Type="varchar" MaxLength="30" />
+    <Property Name="name_table" Type="varchar" MaxLength="150" />
+    <Property Name="sts_action" Type="varchar" MaxLength="3" />
+    <Property Name="re_mark" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="author_info">
+    <Key>
+      <PropertyRef Name="atno" />
+    </Key>
+    <Property Name="atno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="at_cd" Type="varchar" MaxLength="6" />
+    <Property Name="at_nm" Type="varchar" MaxLength="50" />
+    <Property Name="role" Type="varchar" MaxLength="5" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="re_mark" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="author_menu_info">
+    <Key>
+      <PropertyRef Name="amno" />
+    </Key>
+    <Property Name="amno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="at_cd" Type="varchar" MaxLength="6" />
+    <Property Name="mn_cd" Type="varchar" MaxLength="12" />
+    <Property Name="mn_nm" Type="varchar" MaxLength="50" />
+    <Property Name="url_link" Type="varchar" MaxLength="100" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="st_yn" Type="varchar" MaxLength="1" />
+    <Property Name="ct_yn" Type="varchar" MaxLength="1" />
+    <Property Name="mt_yn" Type="varchar" MaxLength="1" />
+    <Property Name="del_yn" Type="varchar" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="buyer_info">
+    <Key>
+      <PropertyRef Name="byno" />
+    </Key>
+    <Property Name="byno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="buyer_cd" Type="varchar" MaxLength="20" />
+    <Property Name="buyer_nm" Type="varchar" MaxLength="50" />
+    <Property Name="ceo_nm" Type="varchar" MaxLength="50" />
+    <Property Name="manager_nm" Type="varchar" MaxLength="50" />
+    <Property Name="brd_nm" Type="varchar" MaxLength="50" />
+    <Property Name="logo" Type="varchar" MaxLength="200" />
+    <Property Name="phone_nb" Type="varchar" MaxLength="20" />
+    <Property Name="cell_nb" Type="varchar" MaxLength="20" />
+    <Property Name="fax_nb" Type="varchar" MaxLength="20" />
+    <Property Name="e_mail" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="varchar" MaxLength="200" />
+    <Property Name="web_site" Type="varchar" MaxLength="50" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="stampId" Type="int" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="comm_dt">
+    <Key>
+      <PropertyRef Name="cdid" />
+    </Key>
+    <Property Name="cdid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="dt_cd" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="dt_nm" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="dt_kr" Type="varchar" MaxLength="50" />
+    <Property Name="dt_vn" Type="varchar" MaxLength="50" />
+    <Property Name="dt_exp" Type="varchar" MaxLength="100" />
+    <Property Name="up_cd" Type="varchar" MaxLength="20" />
+    <Property Name="val1" Type="varchar" MaxLength="20" />
+    <Property Name="val1_nm" Type="varchar" MaxLength="50" />
+    <Property Name="val2" Type="varchar" MaxLength="20" />
+    <Property Name="val2_nm" Type="varchar" MaxLength="50" />
+    <Property Name="val3" Type="varchar" MaxLength="20" />
+    <Property Name="val3_nm" Type="varchar" MaxLength="50" />
+    <Property Name="val4" Type="varchar" MaxLength="20" />
+    <Property Name="val4_nm" Type="varchar" MaxLength="50" />
+    <Property Name="dt_order" Type="int" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="unit" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="comm_mt">
+    <Key>
+      <PropertyRef Name="mt_id" />
+    </Key>
+    <Property Name="mt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="div_cd" Type="varchar" MaxLength="3" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="6" />
+    <Property Name="mt_nm" Type="varchar" MaxLength="50" />
+    <Property Name="mt_exp" Type="varchar" MaxLength="100" />
+    <Property Name="memo" Type="varchar" MaxLength="100" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_bobbin_info">
+    <Key>
+      <PropertyRef Name="bno" />
+    </Key>
+    <Property Name="bno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mc_type" Type="varchar" MaxLength="6" />
+    <Property Name="bb_no" Type="varchar" MaxLength="35" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="200" />
+    <Property Name="bb_nm" Type="varchar" MaxLength="50" />
+    <Property Name="purpose" Type="varchar" MaxLength="200" />
+    <Property Name="barcode" Type="varchar" MaxLength="50" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="count_number" Type="int" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="d_bobbin_lct_hist">
+    <Key>
+      <PropertyRef Name="blno" />
+    </Key>
+    <Property Name="blno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mc_type" Type="varchar" MaxLength="6" />
+    <Property Name="bb_no" Type="varchar" MaxLength="35" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="bb_nm" Type="varchar" MaxLength="50" />
+    <Property Name="start_dt" Type="varchar" MaxLength="14" />
+    <Property Name="end_dt" Type="varchar" MaxLength="14" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="d_bom_info">
+    <Key>
+      <PropertyRef Name="bid" />
+    </Key>
+    <Property Name="bid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bom_no" Type="varchar" MaxLength="100" />
+    <Property Name="style_no" Type="varchar" MaxLength="200" />
+    <Property Name="mt_no" Type="varchar" MaxLength="200" />
+    <Property Name="need_time" Type="double" />
+    <Property Name="cav" Type="int" />
+    <Property Name="need_m" Type="double" />
+    <Property Name="buocdap" Type="double" />
+    <Property Name="del_yn" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="materialbom">
+    <Key>
+      <PropertyRef Name="MaterialBOMID" />
+    </Key>
+    <Property Name="MaterialBOMID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaterialID" Type="int" />
+    <Property Name="BOMID" Type="int" />
+    <Property Name="CreateOn" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductCode" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="d_machine_info">
+    <Key>
+      <PropertyRef Name="mno" />
+    </Key>
+    <Property Name="mno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mc_type" Type="varchar" MaxLength="6" />
+    <Property Name="mc_no" Type="varchar" MaxLength="20" />
+    <Property Name="mc_nm" Type="varchar" MaxLength="50" />
+    <Property Name="purpose" Type="varchar" MaxLength="200" />
+    <Property Name="color" Type="varchar" MaxLength="20" />
+    <Property Name="barcode" Type="varchar" MaxLength="50" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="d_material_info">
+    <Key>
+      <PropertyRef Name="mtid" />
+    </Key>
+    <Property Name="mtid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mt_type" Type="varchar" MaxLength="20" />
+    <Property Name="mt_no" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="500" />
+    <Property Name="mt_no_origin" Type="varchar" MaxLength="500" />
+    <Property Name="mt_nm" Type="varchar" MaxLength="300" />
+    <Property Name="mf_cd" Type="varchar" MaxLength="20" />
+    <Property Name="gr_qty" Type="varchar" MaxLength="20" />
+    <Property Name="unit_cd" Type="varchar" MaxLength="6" />
+    <Property Name="bundle_qty" Type="varchar" MaxLength="6" />
+    <Property Name="bundle_unit" Type="varchar" MaxLength="6" />
+    <Property Name="sp_cd" Type="varchar" MaxLength="20" />
+    <Property Name="s_lot_no" Type="varchar" MaxLength="100" />
+    <Property Name="item_vcd" Type="varchar" MaxLength="20" />
+    <Property Name="qc_range_cd" Type="varchar" MaxLength="100" />
+    <Property Name="width" Type="varchar" MaxLength="20" />
+    <Property Name="width_unit" Type="varchar" MaxLength="3" />
+    <Property Name="spec" Type="varchar" MaxLength="20" />
+    <Property Name="spec_unit" Type="varchar" MaxLength="6" />
+    <Property Name="area" Type="varchar" MaxLength="20" />
+    <Property Name="area_unit" Type="varchar" MaxLength="3" />
+    <Property Name="thick" Type="varchar" MaxLength="20" />
+    <Property Name="thick_unit" Type="varchar" MaxLength="3" />
+    <Property Name="stick" Type="varchar" MaxLength="20" />
+    <Property Name="stick_unit" Type="varchar" MaxLength="6" />
+    <Property Name="consum_yn" Type="char" MaxLength="1" />
+    <Property Name="price" Type="varchar" MaxLength="20" />
+    <Property Name="tot_price" Type="varchar" MaxLength="20" />
+    <Property Name="price_unit" Type="varchar" MaxLength="10" />
+    <Property Name="price_least_unit" Type="varchar" MaxLength="6" />
+    <Property Name="photo_file" Type="varchar" MaxLength="100" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="barcode" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_model_info">
+    <Key>
+      <PropertyRef Name="mdid" />
+    </Key>
+    <Property Name="mdid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="md_cd" Type="varchar" MaxLength="200" />
+    <Property Name="md_nm" Type="varchar" MaxLength="200" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="d_mold_info">
+    <Key>
+      <PropertyRef Name="mdno" />
+    </Key>
+    <Property Name="mdno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="md_no" Type="varchar" MaxLength="20" />
+    <Property Name="md_nm" Type="varchar" MaxLength="50" />
+    <Property Name="purpose" Type="varchar" MaxLength="200" />
+    <Property Name="barcode" Type="varchar" MaxLength="50" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="d_pro_unit_mc">
+    <Key>
+      <PropertyRef Name="pmid" />
+    </Key>
+    <Property Name="pmid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_actual" Type="int" />
+    <Property Name="start_dt" Type="varchar" MaxLength="14" />
+    <Property Name="end_dt" Type="varchar" MaxLength="14" />
+    <Property Name="remark" Type="varchar" MaxLength="500" />
+    <Property Name="mc_no" Type="varchar" MaxLength="20" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="d_pro_unit_staff">
+    <Key>
+      <PropertyRef Name="psid" />
+    </Key>
+    <Property Name="psid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="staff_id" Type="varchar" MaxLength="20" />
+    <Property Name="actual" Type="double" />
+    <Property Name="defect" Type="double" />
+    <Property Name="id_actual" Type="int" />
+    <Property Name="staff_tp" Type="varchar" MaxLength="6" />
+    <Property Name="start_dt" Type="varchar" MaxLength="14" />
+    <Property Name="end_dt" Type="varchar" MaxLength="14" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="d_rounting_info">
+    <Key>
+      <PropertyRef Name="idr" />
+    </Key>
+    <Property Name="idr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="style_no" Type="varchar" MaxLength="100" />
+    <Property Name="name" Type="varchar" MaxLength="10" />
+    <Property Name="level" Type="int" />
+    <Property Name="don_vi_pr" Type="varchar" MaxLength="50" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="item_vcd" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="d_style_info">
+    <Key>
+      <PropertyRef Name="sid" />
+    </Key>
+    <Property Name="sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="style_no" Type="varchar" MaxLength="100" />
+    <Property Name="style_nm" Type="varchar" MaxLength="200" />
+    <Property Name="md_cd" Type="varchar" MaxLength="50" />
+    <Property Name="prj_nm" Type="varchar" MaxLength="100" />
+    <Property Name="ssver" Type="varchar" MaxLength="50" />
+    <Property Name="part_nm" Type="varchar" MaxLength="200" />
+    <Property Name="standard" Type="varchar" MaxLength="200" />
+    <Property Name="cust_rev" Type="varchar" MaxLength="50" />
+    <Property Name="order_num" Type="varchar" MaxLength="50" />
+    <Property Name="pack_amt" Type="int" />
+    <Property Name="cav" Type="varchar" MaxLength="50" />
+    <Property Name="bom_type" Type="varchar" MaxLength="50" />
+    <Property Name="tds_no" Type="varchar" MaxLength="50" />
+    <Property Name="item_vcd" Type="varchar" MaxLength="20" />
+    <Property Name="qc_range_cd" Type="varchar" MaxLength="6" />
+    <Property Name="stamp_code" Type="varchar" MaxLength="6" />
+    <Property Name="expiry_month" Type="varchar" MaxLength="6" />
+    <Property Name="expiry" Type="varchar" MaxLength="50" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="department_info">
+    <Key>
+      <PropertyRef Name="dpno" />
+    </Key>
+    <Property Name="dpno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="depart_cd" Type="varchar" MaxLength="9" />
+    <Property Name="depart_nm" Type="varchar" MaxLength="50" />
+    <Property Name="up_depart_cd" Type="varchar" MaxLength="18" />
+    <Property Name="level_cd" Type="varchar" MaxLength="3" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="order_no" Type="int" />
+    <Property Name="del_yn" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mn_full" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="generalfg">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="buyer_qr" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="product_code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="md_cd" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="dl_no" Type="varchar" MaxLength="200" />
+    <Property Name="qty" Type="int" Nullable="false" />
+    <Property Name="lot_no" Type="varchar" MaxLength="200" />
+    <Property Name="sts_cd" Type="varchar" MaxLength="10" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="history_container">
+    <Key>
+      <PropertyRef Name="blhis" />
+    </Key>
+    <Property Name="blhis" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="blno" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="100" />
+    <Property Name="mc_type" Type="varchar" MaxLength="6" />
+    <Property Name="bb_no" Type="varchar" MaxLength="35" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="bb_nm" Type="varchar" MaxLength="50" />
+    <Property Name="start_dt" Type="varchar" MaxLength="14" />
+    <Property Name="end_dt" Type="varchar" MaxLength="14" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date_insert" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="lct_info">
+    <Key>
+      <PropertyRef Name="lctno" />
+    </Key>
+    <Property Name="lctno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="lct_nm" Type="varchar" MaxLength="50" />
+    <Property Name="up_lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="level_cd" Type="varchar" MaxLength="3" />
+    <Property Name="index_cd" Type="varchar" MaxLength="3" />
+    <Property Name="shelf_cd" Type="varchar" MaxLength="20" />
+    <Property Name="order_no" Type="int" />
+    <Property Name="real_use_yn" Type="char" MaxLength="1" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="lct_rfid" Type="varchar" MaxLength="50" />
+    <Property Name="lct_bar_cd" Type="varchar" MaxLength="50" />
+    <Property Name="sf_yn" Type="char" MaxLength="1" />
+    <Property Name="is_yn" Type="char" MaxLength="1" />
+    <Property Name="mt_yn" Type="char" MaxLength="1" />
+    <Property Name="mv_yn" Type="char" MaxLength="1" />
+    <Property Name="ti_yn" Type="char" MaxLength="1" />
+    <Property Name="fg_yn" Type="char" MaxLength="1" />
+    <Property Name="rt_yn" Type="char" MaxLength="1" />
+    <Property Name="ft_yn" Type="char" MaxLength="1" />
+    <Property Name="wp_yn" Type="char" MaxLength="1" />
+    <Property Name="nt_yn" Type="char" MaxLength="1" />
+    <Property Name="pk_yn" Type="char" MaxLength="1" />
+    <Property Name="manager_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="mn_full" Type="varchar" MaxLength="500" />
+    <Property Name="sap_lct_cd" Type="varchar" MaxLength="20" />
+    <Property Name="userid" Type="varchar" MaxLength="50" />
+    <Property Name="selected" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="m_board">
+    <Key>
+      <PropertyRef Name="mno" />
+    </Key>
+    <Property Name="mno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="2000" Nullable="false" />
+    <Property Name="content" Type="mediumtext" />
+    <Property Name="viewcnt" Type="int" />
+    <Property Name="replycnt" Type="int" />
+    <Property Name="div_cd" Type="char" MaxLength="1" />
+    <Property Name="start_dt" Type="varchar" MaxLength="14" />
+    <Property Name="end_dt" Type="varchar" MaxLength="14" />
+    <Property Name="widthsize" Type="int" />
+    <Property Name="heightsize" Type="int" />
+    <Property Name="back_color" Type="varchar" MaxLength="20" />
+    <Property Name="order_no" Type="int" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="m_facline_qc">
+    <Key>
+      <PropertyRef Name="fqno" />
+    </Key>
+    <Property Name="fqno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fq_no" Type="varchar" MaxLength="11" />
+    <Property Name="ml_no" Type="varchar" MaxLength="200" />
+    <Property Name="ml_tims" Type="varchar" MaxLength="200" />
+    <Property Name="product_cd" Type="varchar" MaxLength="500" />
+    <Property Name="shift" Type="varchar" MaxLength="2" />
+    <Property Name="at_no" Type="varchar" MaxLength="20" />
+    <Property Name="work_dt" Type="varchar" MaxLength="20" />
+    <Property Name="item_vcd" Type="varchar" MaxLength="20" />
+    <Property Name="item_nm" Type="varchar" MaxLength="200" />
+    <Property Name="item_exp" Type="varchar" MaxLength="500" />
+    <Property Name="check_qty" Type="int" />
+    <Property Name="ok_qty" Type="int" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="m_facline_qc_value">
+    <Key>
+      <PropertyRef Name="fqhno" />
+    </Key>
+    <Property Name="fqhno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fq_no" Type="varchar" MaxLength="11" />
+    <Property Name="item_vcd" Type="varchar" MaxLength="20" />
+    <Property Name="check_id" Type="varchar" MaxLength="20" />
+    <Property Name="check_cd" Type="varchar" MaxLength="20" />
+    <Property Name="check_value" Type="varchar" MaxLength="500" />
+    <Property Name="check_qty" Type="int" />
+    <Property Name="date_ymd" Type="varchar" MaxLength="10" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="manufac_info">
+    <Key>
+      <PropertyRef Name="mfno" />
+    </Key>
+    <Property Name="mfno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mf_cd" Type="varchar" MaxLength="50" />
+    <Property Name="mf_nm" Type="varchar" MaxLength="50" />
+    <Property Name="brd_nm" Type="varchar" MaxLength="50" />
+    <Property Name="logo" Type="varchar" MaxLength="200" />
+    <Property Name="phone_nb" Type="varchar" MaxLength="14" />
+    <Property Name="web_site" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="varchar" MaxLength="200" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="mb_author_info">
+    <Key>
+      <PropertyRef Name="mano" />
+    </Key>
+    <Property Name="mano" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="varchar" MaxLength="20" />
+    <Property Name="at_cd" Type="varchar" MaxLength="6" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="mb_info">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="uname" Type="varchar" MaxLength="200" />
+    <Property Name="nick_name" Type="varchar" MaxLength="50" />
+    <Property Name="upw" Type="varchar" MaxLength="50" />
+    <Property Name="grade" Type="varchar" MaxLength="50" />
+    <Property Name="depart_cd" Type="varchar" MaxLength="9" />
+    <Property Name="gender" Type="char" MaxLength="1" />
+    <Property Name="position_cd" Type="varchar" MaxLength="6" />
+    <Property Name="tel_nb" Type="varchar" MaxLength="20" />
+    <Property Name="cel_nb" Type="varchar" MaxLength="20" />
+    <Property Name="e_mail" Type="varchar" MaxLength="100" />
+    <Property Name="sms_yn" Type="char" MaxLength="1" />
+    <Property Name="join_dt" Type="varchar" MaxLength="8" />
+    <Property Name="birth_dt" Type="varchar" MaxLength="8" />
+    <Property Name="scr_yn" Type="char" MaxLength="1" />
+    <Property Name="mail_yn" Type="char" MaxLength="1" />
+    <Property Name="join_ip" Type="varchar" MaxLength="50" />
+    <Property Name="join_domain" Type="varchar" MaxLength="100" />
+    <Property Name="ltacc_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="ltacc_domain" Type="varchar" MaxLength="100" />
+    <Property Name="mbout_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="mbout_yn" Type="char" MaxLength="1" />
+    <Property Name="accblock_yn" Type="char" MaxLength="1" />
+    <Property Name="session_key" Type="varchar" MaxLength="50" />
+    <Property Name="session_limit" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="memo" Type="varchar" MaxLength="500" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="check_yn" Type="char" MaxLength="1" />
+    <Property Name="rem_me" Type="char" MaxLength="1" />
+    <Property Name="barcode" Type="varchar" MaxLength="100" />
+    <Property Name="mbjoin_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="log_ip" Type="varchar" MaxLength="50" />
+    <Property Name="lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="re_mark" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="mb_lct_info">
+    <Key>
+      <PropertyRef Name="dlno" />
+    </Key>
+    <Property Name="dlno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="varchar" MaxLength="20" />
+    <Property Name="lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="mb_message">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="message" Type="varchar" MaxLength="300" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="menu_info">
+    <Key>
+      <PropertyRef Name="mnno" />
+    </Key>
+    <Property Name="mnno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mn_cd" Type="varchar" MaxLength="12" />
+    <Property Name="mn_nm" Type="varchar" MaxLength="50" />
+    <Property Name="up_mn_cd" Type="varchar" MaxLength="12" />
+    <Property Name="level_cd" Type="varchar" MaxLength="3" />
+    <Property Name="url_link" Type="varchar" MaxLength="100" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="col_css" Type="varchar" MaxLength="20" />
+    <Property Name="sub_yn" Type="char" MaxLength="1" />
+    <Property Name="order_no" Type="int" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="mn_full" Type="varchar" MaxLength="100" />
+    <Property Name="mn_cd_full" Type="varchar" MaxLength="100" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="selected" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="notice_board">
+    <Key>
+      <PropertyRef Name="bno" />
+    </Key>
+    <Property Name="bno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="2000" />
+    <Property Name="content" Type="mediumtext" />
+    <Property Name="mn_cd" Type="varchar" MaxLength="20" />
+    <Property Name="viewcnt" Type="int" />
+    <Property Name="replycnt" Type="int" />
+    <Property Name="div_cd" Type="char" MaxLength="1" />
+    <Property Name="lng_cd" Type="varchar" MaxLength="3" />
+    <Property Name="start_dt" Type="varchar" MaxLength="14" />
+    <Property Name="end_dt" Type="varchar" MaxLength="14" />
+    <Property Name="widthsize" Type="int" />
+    <Property Name="heightsize" Type="int" />
+    <Property Name="back_color" Type="varchar" MaxLength="20" />
+    <Property Name="order_no" Type="int" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="qc_item_mt">
+    <Key>
+      <PropertyRef Name="ino" />
+    </Key>
+    <Property Name="ino" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="item_type" Type="varchar" MaxLength="6" />
+    <Property Name="item_vcd" Type="varchar" MaxLength="20" />
+    <Property Name="item_cd" Type="varchar" MaxLength="20" />
+    <Property Name="ver" Type="varchar" MaxLength="3" />
+    <Property Name="item_nm" Type="varchar" MaxLength="200" />
+    <Property Name="item_exp" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="qc_itemcheck_dt">
+    <Key>
+      <PropertyRef Name="icdno" />
+    </Key>
+    <Property Name="icdno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="item_vcd" Type="varchar" MaxLength="20" />
+    <Property Name="check_id" Type="varchar" MaxLength="20" />
+    <Property Name="check_cd" Type="varchar" MaxLength="20" />
+    <Property Name="defect_yn" Type="char" MaxLength="1" />
+    <Property Name="check_name" Type="varchar" MaxLength="200" />
+    <Property Name="order_no" Type="int" />
+    <Property Name="re_mark" Type="varchar" MaxLength="100" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="qc_itemcheck_mt">
+    <Key>
+      <PropertyRef Name="icno" />
+    </Key>
+    <Property Name="icno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="item_vcd" Type="varchar" MaxLength="20" />
+    <Property Name="check_id" Type="varchar" MaxLength="20" />
+    <Property Name="check_type" Type="varchar" MaxLength="6" />
+    <Property Name="check_subject" Type="varchar" MaxLength="500" />
+    <Property Name="min_value" Type="decimal" Precision="18" Scale="7" />
+    <Property Name="max_value" Type="decimal" Precision="18" Scale="7" />
+    <Property Name="range_type" Type="varchar" MaxLength="6" />
+    <Property Name="order_no" Type="int" />
+    <Property Name="re_mark" Type="varchar" MaxLength="100" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="stamp_detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="buyer_qr" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="stamp_code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="product_code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="vendor_code" Type="varchar" MaxLength="100" />
+    <Property Name="vendor_line" Type="varchar" MaxLength="3" />
+    <Property Name="label_printer" Type="varchar" MaxLength="10" />
+    <Property Name="is_sample" Type="varchar" MaxLength="10" />
+    <Property Name="pcn" Type="varchar" MaxLength="10" />
+    <Property Name="lot_date" Type="varchar" MaxLength="30" />
+    <Property Name="serial_number" Type="varchar" MaxLength="11" />
+    <Property Name="machine_line" Type="varchar" MaxLength="3" />
+    <Property Name="shift" Type="varchar" MaxLength="1" />
+    <Property Name="standard_qty" Type="int" Nullable="false" />
+    <Property Name="is_sent" Type="char" MaxLength="1" />
+    <Property Name="box_code" Type="varchar" MaxLength="50" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="stamp_master">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="stamp_code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="stamp_name" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="supplier_info">
+    <Key>
+      <PropertyRef Name="spno" />
+    </Key>
+    <Property Name="spno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sp_cd" Type="varchar" MaxLength="50" />
+    <Property Name="sp_nm" Type="varchar" MaxLength="500" />
+    <Property Name="bsn_tp" Type="varchar" MaxLength="10" />
+    <Property Name="changer_id" Type="varchar" MaxLength="20" />
+    <Property Name="phone_nb" Type="varchar" MaxLength="50" />
+    <Property Name="cell_nb" Type="varchar" MaxLength="50" />
+    <Property Name="fax_nb" Type="varchar" MaxLength="500" />
+    <Property Name="e_mail" Type="varchar" MaxLength="500" />
+    <Property Name="web_site" Type="varchar" MaxLength="500" />
+    <Property Name="address" Type="varchar" MaxLength="500" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user_author">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="varchar" MaxLength="50" />
+    <Property Name="at_nm" Type="varchar" MaxLength="50" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="version_app">
+    <Key>
+      <PropertyRef Name="id_app" />
+    </Key>
+    <Property Name="id_app" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="name_file" Type="varchar" MaxLength="200" />
+    <Property Name="version" Type="int" Nullable="false" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_actual">
+    <Key>
+      <PropertyRef Name="id_actual" />
+    </Key>
+    <Property Name="id_actual" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="at_no" Type="varchar" MaxLength="18" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="product" Type="varchar" MaxLength="50" />
+    <Property Name="actual" Type="double" />
+    <Property Name="defect" Type="double" />
+    <Property Name="name" Type="varchar" MaxLength="10" />
+    <Property Name="level" Type="int" />
+    <Property Name="date" Type="varchar" MaxLength="10" />
+    <Property Name="don_vi_pr" Type="varchar" MaxLength="50" />
+    <Property Name="item_vcd" Type="varchar" MaxLength="20" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_actual_primary">
+    <Key>
+      <PropertyRef Name="id_actualpr" />
+    </Key>
+    <Property Name="id_actualpr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="at_no" Type="varchar" MaxLength="18" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="target" Type="int" />
+    <Property Name="product" Type="varchar" MaxLength="50" />
+    <Property Name="remark" Type="varchar" MaxLength="200" />
+    <Property Name="finish_yn" Type="char" MaxLength="4" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_box_mapping">
+    <Key>
+      <PropertyRef Name="bmno" />
+    </Key>
+    <Property Name="bmno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bx_no" Type="varchar" MaxLength="50" />
+    <Property Name="buyer_cd" Type="varchar" MaxLength="50" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="gr_qty" Type="int" Nullable="false" />
+    <Property Name="product" Type="varchar" MaxLength="50" />
+    <Property Name="type" Type="varchar" MaxLength="3" />
+    <Property Name="mapping_dt" Type="varchar" MaxLength="14" />
+    <Property Name="sts" Type="varchar" MaxLength="3" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_dl_info">
+    <Key>
+      <PropertyRef Name="dlid" />
+    </Key>
+    <Property Name="dlid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dl_no" Type="varchar" MaxLength="20" />
+    <Property Name="dl_nm" Type="varchar" MaxLength="50" />
+    <Property Name="dl_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="work_dt" Type="varchar" MaxLength="10" />
+    <Property Name="lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="remark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_ex_info">
+    <Key>
+      <PropertyRef Name="exid" />
+    </Key>
+    <Property Name="exid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ex_no" Type="varchar" MaxLength="20" />
+    <Property Name="ex_nm" Type="varchar" MaxLength="50" />
+    <Property Name="ex_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="work_dt" Type="varchar" MaxLength="10" />
+    <Property Name="lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="alert" Type="int" />
+    <Property Name="remark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_ext_info">
+    <Key>
+      <PropertyRef Name="extid" />
+    </Key>
+    <Property Name="extid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ext_no" Type="varchar" MaxLength="20" />
+    <Property Name="ext_nm" Type="varchar" MaxLength="50" />
+    <Property Name="ext_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="work_dt" Type="varchar" MaxLength="8" />
+    <Property Name="lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="alert" Type="int" />
+    <Property Name="remark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_material_down">
+    <Key>
+      <PropertyRef Name="wmtid" />
+    </Key>
+    <Property Name="wmtid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="500" />
+    <Property Name="gr_qty" Type="double" />
+    <Property Name="gr_down" Type="double" />
+    <Property Name="reason" Type="varchar" MaxLength="200" />
+    <Property Name="sts_now" Type="varchar" MaxLength="3" />
+    <Property Name="bb_no" Type="varchar" MaxLength="35" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_material_info">
+    <Key>
+      <PropertyRef Name="wmtid" />
+    </Key>
+    <Property Name="wmtid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_actual" Type="int" />
+    <Property Name="id_actual_oqc" Type="int" />
+    <Property Name="at_no" Type="varchar" MaxLength="18" />
+    <Property Name="product" Type="varchar" MaxLength="100" />
+    <Property Name="staff_id" Type="varchar" MaxLength="100" />
+    <Property Name="staff_id_oqc" Type="varchar" MaxLength="100" />
+    <Property Name="machine_id" Type="varchar" MaxLength="200" />
+    <Property Name="mt_type" Type="varchar" MaxLength="20" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="500" />
+    <Property Name="mt_no" Type="varchar" MaxLength="250" />
+    <Property Name="gr_qty" Type="double" />
+    <Property Name="real_qty" Type="double" />
+    <Property Name="staff_qty" Type="int" />
+    <Property Name="sp_cd" Type="varchar" MaxLength="500" />
+    <Property Name="rd_no" Type="varchar" MaxLength="50" />
+    <Property Name="sd_no" Type="varchar" MaxLength="50" />
+    <Property Name="ext_no" Type="varchar" MaxLength="50" />
+    <Property Name="ex_no" Type="varchar" MaxLength="50" />
+    <Property Name="dl_no" Type="varchar" MaxLength="50" />
+    <Property Name="recevice_dt" Type="varchar" MaxLength="14" />
+    <Property Name="date" Type="varchar" MaxLength="14" />
+    <Property Name="return_date" Type="varchar" MaxLength="14" />
+    <Property Name="alert_NG" Type="int" />
+    <Property Name="expiry_dt" Type="varchar" MaxLength="14" />
+    <Property Name="dt_of_receipt" Type="varchar" MaxLength="14" />
+    <Property Name="expore_dt" Type="varchar" MaxLength="14" />
+    <Property Name="recevice_dt_tims" Type="varchar" MaxLength="25" />
+    <Property Name="rece_wip_dt" Type="varchar" MaxLength="25" />
+    <Property Name="picking_dt" Type="varchar" MaxLength="25" />
+    <Property Name="shipping_wip_dt" Type="varchar" MaxLength="25" />
+    <Property Name="end_production_dt" Type="timestamp" Precision="0" />
+    <Property Name="lot_no" Type="varchar" MaxLength="200" />
+    <Property Name="mt_barcode" Type="varchar" MaxLength="200" />
+    <Property Name="mt_qrcode" Type="varchar" MaxLength="200" />
+    <Property Name="mt_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="bb_no" Type="varchar" MaxLength="35" />
+    <Property Name="bbmp_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="lct_cd" Type="varchar" MaxLength="50" />
+    <Property Name="lct_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="from_lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="to_lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="output_dt" Type="varchar" MaxLength="20" />
+    <Property Name="input_dt" Type="varchar" MaxLength="14" />
+    <Property Name="buyer_qr" Type="varchar" MaxLength="200" />
+    <Property Name="orgin_mt_cd" Type="varchar" MaxLength="500" />
+    <Property Name="remark" Type="varchar" MaxLength="200" />
+    <Property Name="sts_update" Type="varchar" MaxLength="100" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_material_info_memo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="md_cd" Type="varchar" MaxLength="200" />
+    <Property Name="style_no" Type="varchar" MaxLength="100" />
+    <Property Name="style_nm" Type="varchar" MaxLength="200" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="500" />
+    <Property Name="width" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="width_unit" Type="varchar" MaxLength="3" />
+    <Property Name="spec" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="spec_unit" Type="varchar" MaxLength="6" />
+    <Property Name="sd_no" Type="varchar" MaxLength="500" />
+    <Property Name="lot_no" Type="varchar" MaxLength="500" />
+    <Property Name="sts_cd" Type="varchar" MaxLength="50" />
+    <Property Name="memo" Type="varchar" MaxLength="2000" />
+    <Property Name="month_excel" Type="varchar" MaxLength="10" />
+    <Property Name="receiving_dt" Type="varchar" MaxLength="25" />
+    <Property Name="TX" Type="int" />
+    <Property Name="total_m" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="total_m2" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="total_ea" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_material_info_tam">
+    <Key>
+      <PropertyRef Name="wmtid" />
+    </Key>
+    <Property Name="wmtid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_actual" Type="int" />
+    <Property Name="id_actual_oqc" Type="int" />
+    <Property Name="staff_id" Type="varchar" MaxLength="100" />
+    <Property Name="staff_id_oqc" Type="varchar" MaxLength="100" />
+    <Property Name="mt_type" Type="varchar" MaxLength="20" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="500" />
+    <Property Name="mt_no" Type="varchar" MaxLength="250" />
+    <Property Name="gr_qty" Type="double" />
+    <Property Name="real_qty" Type="double" />
+    <Property Name="sp_cd" Type="varchar" MaxLength="500" />
+    <Property Name="rd_no" Type="varchar" MaxLength="50" />
+    <Property Name="sd_no" Type="varchar" MaxLength="50" />
+    <Property Name="ext_no" Type="varchar" MaxLength="50" />
+    <Property Name="ex_no" Type="varchar" MaxLength="50" />
+    <Property Name="dl_no" Type="varchar" MaxLength="50" />
+    <Property Name="picking_dt" Type="varchar" MaxLength="25" />
+    <Property Name="recevice_dt" Type="varchar" MaxLength="14" />
+    <Property Name="date" Type="varchar" MaxLength="14" />
+    <Property Name="return_date" Type="varchar" MaxLength="14" />
+    <Property Name="alert_NG" Type="int" />
+    <Property Name="expiry_dt" Type="varchar" MaxLength="14" />
+    <Property Name="dt_of_receipt" Type="varchar" MaxLength="14" />
+    <Property Name="expore_dt" Type="varchar" MaxLength="14" />
+    <Property Name="recevice_dt_tims" Type="varchar" MaxLength="14" />
+    <Property Name="lot_no" Type="varchar" MaxLength="200" />
+    <Property Name="mt_barcode" Type="varchar" MaxLength="200" />
+    <Property Name="mt_qrcode" Type="varchar" MaxLength="200" />
+    <Property Name="mt_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="bb_no" Type="varchar" MaxLength="35" />
+    <Property Name="bbmp_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="lct_cd" Type="varchar" MaxLength="50" />
+    <Property Name="lct_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="from_lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="to_lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="output_dt" Type="varchar" MaxLength="14" />
+    <Property Name="input_dt" Type="varchar" MaxLength="14" />
+    <Property Name="buyer_qr" Type="varchar" MaxLength="200" />
+    <Property Name="orgin_mt_cd" Type="varchar" MaxLength="500" />
+    <Property Name="remark" Type="varchar" MaxLength="200" />
+    <Property Name="sts_update" Type="varchar" MaxLength="100" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_material_mapping">
+    <Key>
+      <PropertyRef Name="wmmid" />
+    </Key>
+    <Property Name="wmmid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mt_lot" Type="varchar" MaxLength="300" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="300" />
+    <Property Name="mt_no" Type="varchar" MaxLength="300" />
+    <Property Name="mapping_dt" Type="varchar" MaxLength="14" />
+    <Property Name="bb_no" Type="varchar" MaxLength="35" />
+    <Property Name="remark" Type="varchar" MaxLength="200" />
+    <Property Name="sts_share" Type="char" MaxLength="1" />
+    <Property Name="use_yn" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="w_policy_mt">
+    <Key>
+      <PropertyRef Name="wid" />
+    </Key>
+    <Property Name="wid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="policy_code" Type="varchar" MaxLength="6" />
+    <Property Name="policy_name" Type="varchar" MaxLength="200" />
+    <Property Name="policy_start_dt" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="policy_end_dt" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="work_starttime" Type="varchar" MaxLength="4" />
+    <Property Name="work_endtime" Type="varchar" MaxLength="4" />
+    <Property Name="lunch_start_time" Type="varchar" MaxLength="4" />
+    <Property Name="lunch_end_time" Type="varchar" MaxLength="4" />
+    <Property Name="dinner_start_time" Type="varchar" MaxLength="4" />
+    <Property Name="dinner_end_time" Type="varchar" MaxLength="4" />
+    <Property Name="work_hour" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="last_yn" Type="char" MaxLength="1" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_product_qc">
+    <Key>
+      <PropertyRef Name="pqno" />
+    </Key>
+    <Property Name="pqno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pq_no" Type="varchar" MaxLength="11" />
+    <Property Name="ml_no" Type="varchar" MaxLength="200" />
+    <Property Name="work_dt" Type="varchar" MaxLength="20" />
+    <Property Name="item_vcd" Type="varchar" MaxLength="20" />
+    <Property Name="check_qty" Type="int" />
+    <Property Name="ok_qty" Type="int" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_product_qc_value">
+    <Key>
+      <PropertyRef Name="pqhno" />
+    </Key>
+    <Property Name="pqhno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pq_no" Type="varchar" MaxLength="11" />
+    <Property Name="item_vcd" Type="varchar" MaxLength="20" />
+    <Property Name="check_id" Type="varchar" MaxLength="20" />
+    <Property Name="check_cd" Type="varchar" MaxLength="20" />
+    <Property Name="check_value" Type="varchar" MaxLength="500" />
+    <Property Name="check_qty" Type="int" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_rd_info">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rd_no" Type="varchar" MaxLength="20" />
+    <Property Name="rd_nm" Type="varchar" MaxLength="50" />
+    <Property Name="rd_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="receiving_dt" Type="varchar" MaxLength="8" />
+    <Property Name="remark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_sd_info">
+    <Key>
+      <PropertyRef Name="sid" />
+    </Key>
+    <Property Name="sid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sd_no" Type="varchar" MaxLength="20" />
+    <Property Name="sd_nm" Type="varchar" MaxLength="100" />
+    <Property Name="sd_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="product_cd" Type="varchar" MaxLength="50" />
+    <Property Name="lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="alert" Type="int" />
+    <Property Name="remark" Type="varchar" MaxLength="1000" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_vt_dt">
+    <Key>
+      <PropertyRef Name="vdno" />
+    </Key>
+    <Property Name="vdno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vn_cd" Type="varchar" MaxLength="20" />
+    <Property Name="mt_cd" Type="varchar" MaxLength="200" />
+    <Property Name="wmtid" Type="int" />
+    <Property Name="id_actual" Type="int" />
+    <Property Name="id_actual_oqc" Type="int" />
+    <Property Name="staff_id" Type="varchar" MaxLength="100" />
+    <Property Name="staff_id_oqc" Type="varchar" MaxLength="100" />
+    <Property Name="machine_id" Type="varchar" MaxLength="200" />
+    <Property Name="mt_type" Type="varchar" MaxLength="20" />
+    <Property Name="mt_no" Type="varchar" MaxLength="250" />
+    <Property Name="gr_qty" Type="int" />
+    <Property Name="real_qty" Type="int" />
+    <Property Name="staff_qty" Type="int" />
+    <Property Name="sp_cd" Type="varchar" MaxLength="500" />
+    <Property Name="rd_no" Type="varchar" MaxLength="50" />
+    <Property Name="sd_no" Type="varchar" MaxLength="50" />
+    <Property Name="ext_no" Type="varchar" MaxLength="50" />
+    <Property Name="ex_no" Type="varchar" MaxLength="50" />
+    <Property Name="dl_no" Type="varchar" MaxLength="50" />
+    <Property Name="recevice_dt" Type="varchar" MaxLength="14" />
+    <Property Name="date" Type="varchar" MaxLength="14" />
+    <Property Name="return_date" Type="varchar" MaxLength="14" />
+    <Property Name="alert_NG" Type="int" />
+    <Property Name="expiry_dt" Type="varchar" MaxLength="14" />
+    <Property Name="dt_of_receipt" Type="varchar" MaxLength="14" />
+    <Property Name="expore_dt" Type="varchar" MaxLength="14" />
+    <Property Name="recevice_dt_tims" Type="varchar" MaxLength="25" />
+    <Property Name="rece_wip_dt" Type="varchar" MaxLength="25" />
+    <Property Name="picking_dt" Type="varchar" MaxLength="25" />
+    <Property Name="shipping_wip_dt" Type="varchar" MaxLength="25" />
+    <Property Name="end_production_dt" Type="timestamp" Precision="0" />
+    <Property Name="lot_no" Type="varchar" MaxLength="200" />
+    <Property Name="mt_barcode" Type="varchar" MaxLength="200" />
+    <Property Name="mt_qrcode" Type="varchar" MaxLength="200" />
+    <Property Name="mt_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="bb_no" Type="varchar" MaxLength="35" />
+    <Property Name="bbmp_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="lct_cd" Type="varchar" MaxLength="50" />
+    <Property Name="lct_sts_cd" Type="varchar" MaxLength="6" />
+    <Property Name="from_lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="to_lct_cd" Type="varchar" MaxLength="18" />
+    <Property Name="output_dt" Type="varchar" MaxLength="14" />
+    <Property Name="input_dt" Type="varchar" MaxLength="14" />
+    <Property Name="buyer_qr" Type="varchar" MaxLength="200" />
+    <Property Name="orgin_mt_cd" Type="varchar" MaxLength="500" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="w_vt_mt">
+    <Key>
+      <PropertyRef Name="vno" />
+    </Key>
+    <Property Name="vno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vn_cd" Type="varchar" MaxLength="11" />
+    <Property Name="vn_nm" Type="varchar" MaxLength="50" />
+    <Property Name="start_dt" Type="varchar" MaxLength="14" />
+    <Property Name="end_dt" Type="varchar" MaxLength="14" />
+    <Property Name="re_mark" Type="varchar" MaxLength="500" />
+    <Property Name="use_yn" Type="char" MaxLength="1" />
+    <Property Name="del_yn" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="reg_id" Type="varchar" MaxLength="20" />
+    <Property Name="reg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chg_id" Type="varchar" MaxLength="20" />
+    <Property Name="chg_dt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Mvc_VDModelsStoreContainer">
+    <EntitySet Name="author_action" EntityType="Self.author_action" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="author_info" EntityType="Self.author_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="author_menu_info" EntityType="Self.author_menu_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="buyer_info" EntityType="Self.buyer_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="comm_dt" EntityType="Self.comm_dt" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="comm_mt" EntityType="Self.comm_mt" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="d_bobbin_info" EntityType="Self.d_bobbin_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="d_bobbin_lct_hist" EntityType="Self.d_bobbin_lct_hist" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="d_bom_info" EntityType="Self.d_bom_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="materialbom" EntityType="Self.materialbom" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="d_machine_info" EntityType="Self.d_machine_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="d_material_info" EntityType="Self.d_material_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="d_model_info" EntityType="Self.d_model_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="d_mold_info" EntityType="Self.d_mold_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="d_pro_unit_mc" EntityType="Self.d_pro_unit_mc" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="d_pro_unit_staff" EntityType="Self.d_pro_unit_staff" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="d_rounting_info" EntityType="Self.d_rounting_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="d_style_info" EntityType="Self.d_style_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="department_info" EntityType="Self.department_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="generalfg" EntityType="Self.generalfg" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="history_container" EntityType="Self.history_container" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="lct_info" EntityType="Self.lct_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="m_board" EntityType="Self.m_board" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="m_facline_qc" EntityType="Self.m_facline_qc" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="m_facline_qc_value" EntityType="Self.m_facline_qc_value" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="manufac_info" EntityType="Self.manufac_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="mb_author_info" EntityType="Self.mb_author_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="mb_info" EntityType="Self.mb_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="mb_lct_info" EntityType="Self.mb_lct_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="mb_message" EntityType="Self.mb_message" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="menu_info" EntityType="Self.menu_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="notice_board" EntityType="Self.notice_board" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="qc_item_mt" EntityType="Self.qc_item_mt" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="qc_itemcheck_dt" EntityType="Self.qc_itemcheck_dt" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="qc_itemcheck_mt" EntityType="Self.qc_itemcheck_mt" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="stamp_detail" EntityType="Self.stamp_detail" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="stamp_master" EntityType="Self.stamp_master" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="supplier_info" EntityType="Self.supplier_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="user_author" EntityType="Self.user_author" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="version_app" EntityType="Self.version_app" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_actual" EntityType="Self.w_actual" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_actual_primary" EntityType="Self.w_actual_primary" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_box_mapping" EntityType="Self.w_box_mapping" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_dl_info" EntityType="Self.w_dl_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_ex_info" EntityType="Self.w_ex_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_ext_info" EntityType="Self.w_ext_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_material_down" EntityType="Self.w_material_down" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_material_info" EntityType="Self.w_material_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_material_info_memo" EntityType="Self.w_material_info_memo" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_material_info_tam" EntityType="Self.w_material_info_tam" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_material_mapping" EntityType="Self.w_material_mapping" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_policy_mt" EntityType="Self.w_policy_mt" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_product_qc" EntityType="Self.w_product_qc" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_product_qc_value" EntityType="Self.w_product_qc_value" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_rd_info" EntityType="Self.w_rd_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_sd_info" EntityType="Self.w_sd_info" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_vt_dt" EntityType="Self.w_vt_dt" Schema="autodb_2021_01_27" store:Type="Tables" />
+    <EntitySet Name="w_vt_mt" EntityType="Self.w_vt_mt" Schema="autodb_2021_01_27" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,206 @@
+﻿    <!-- Date Picker -->
+<link rel="stylesheet" href="/Content/themes/base/resources/plugins/datepicker/datepicker3.css">
+<div class="container-fluid p-0 m-0">
+    <div class="container-fluid">
+        <div class="box-body bg-white text-left">
+            <div class="row p-0 m-0">
+                <div class="col-md-4 p-2">
+                    <label><b>Date</b></label>
+                    <div class="input-group mt_plus">
+                        <input type="text"  data-date-format='yyyy-mm-dd'  name="" id="SeachDate" class="input-text form-control">
+                    </div>
+                </div>
+              
+                <div class="col-lg-2 mt-5">
+                    <button type="button" class="btn btn-sm btn-warning button-srh" id="searchBtnPP" style="float: right;margin-right: 14px;">Seach</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="box-body my-2 bg-white">
+        <div class=" p-0 m-0">
+            <table id="tableDatetimeProcess"></table>
+            <div id="tableDatetimeProcessPage"></div>
+        </div>
+    </div>
+</div>
+<script src="/Content/themes/base/resources/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#SeachDate").datepicker({
+            dateFormat: 'yyyy-mm-dd',
+            changeYear: true
+        });
+
+        $("#tableDatetimeProcess").jqGrid({
+            url: "/TIMS/getdetail_RecordReceing?po=" + '@ViewBag.po',
+            mtype: "GET",
+            datatype: "json",
+            async: false,
+            page: 1,
+            colModel: [
+                { key: true, label: 'wmtid', name: 'wmtid', align: 'center', hidden: true },
+                { label: 'Bobbin', name: 'bb_no', width: 240, },
+                { label: 'Material Code', name: 'mt_cd', width: 300, },
+                { label: 'Quantity Real', name: 'gr_qty', width: 80, },
+                { label: 'Quantity', name: 'real_qty', width: 80, },
+                { label: 'Receving Date', name: 'reg_date_convert', width: 90, },
+                { label: 'Receving Date Time', name: 'recevice_dt_tims', width: 130 },
+
+            ],
+            shrinkToFit: false,
+            width: null,
+            height: '500',
+            subGrid: false, // set the subGrid property to true to show expand buttons for each row
+            rownumbers: true,
+            loadonce: false,
+            multiPageSelection: true,
+            rowList: [100, 200, 500, 1000],
+            viewrecords: true,
+            rowNum: 100,
+            pager: "#tableDatetimeProcessPage",
+            jsonReader:
+            {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                Id: "0"
+            },
+            footerrow: false,
+            subGrid: false,
+            subGridRowExpanded: showChildGrid,
+
+            //gridComplete: function () {
+            //   // debugger
+            //    prevCellVal = { cellId: undefined, value: undefined };
+            //    var ids = $("#tableDatetimeProcess").jqGrid('getDataIDs');
+
+
+            //    var sum_Quantity1 = 0;
+            //    var sum_Quantity2 = 0;
+
+            //    for (var i = 0; i < ids.length; i++) {
+            //        sum_Quantity1 += parseInt($("#tableDatetimeProcess").getCell(ids[i], "actualQty"));
+            //        sum_Quantity2 += parseInt($("#tableDatetimeProcess").getCell(ids[i], "defectQty"));
+            //    }
+
+            //      $("#tableDatetimeProcess").jqGrid("footerData", "set", {
+            //          shift: "Total:",
+            //          actualQty: sum_Quantity1,
+            //          defectQty: sum_Quantity2
+            //    });
+
+            //},
+            grouping: true,
+            groupingView:
+            {
+                groupField: ["reg_date_convert"],
+                groupColumnShow: [true, true],
+                groupText: ["<b>{0}</b>", "<b>{0}</b>"],
+                groupOrder: ["asc"],
+                groupSummary: [true, true], // will use the "summaryTpl" property of the respective column
+                groupSummaryPos: ['footer', 'footer'],
+                groupCollapse: false,
+                groupDataSorted: true,
+                showSummaryOnHide: true,
+                loadonce: false,
+            }
+
+        });
+    });
+
+    function convertDate(cellValue, options, rowdata, action) {
+
+        if (cellValue != null) {
+
+            a = cellValue.substr(0, 4);
+            b = cellValue.substr(4, 2);
+            c = cellValue.substr(6, 2);
+
+            var html = a + "-" + b + "-" + c;
+            return html;
+        }
+        else {
+            var html = "";
+            return html;
+        }
+
+
+
+    };
+
+    $('#searchBtnPP').click(function () {
+        var date = $('#SeachDate').val().trim();
+      //  debugger
+        $.ajax({
+            url: "/TIMS/getdetail_RecordReceing?po=" + @ViewBag.po + "&date=" + date  ,
+            type: "get",
+            dataType: "json",
+           
+            success: function (result) {
+                $("#tableDatetimeProcess").jqGrid('clearGridData').jqGrid('setGridParam', { datatype: 'local', data: result }).trigger('reloadGrid');
+
+            }
+        });
+    });
+    function showChildGrid(parentRowID, parentRowKey) {
+        //debugger;
+        var childGridID = parentRowID + "_table";
+        var childGridPagerID = parentRowID + "_pager";
+
+        $('#' + parentRowID).append('<table id=' + childGridID + '></table><div id=' + childGridPagerID + ' class=scroll></div>');
+        //get staff_id
+
+        var rowData = $("#tableDatetimeProcess").jqGrid('getRowData', parentRowKey);
+        var id_actual = rowData.id_actual;
+        var psid = rowData.psid;
+
+        $("#" + childGridID).jqGrid({
+            url: `/TIMS/GetTIMSActualDetailpp?id_actual=${id_actual}&psid=${psid}`,
+            mtype: "GET",
+            datatype: "json",
+            page: 1,
+            colModel: [
+                { key: true, label: 'wmtid', name: 'wmtid', align: 'center', hidden: true },
+                { label: 'Date', name: 'reg_dt', width: 150, align: 'center' },
+                { label: 'Container', name: 'bb_no', width: 240, },
+                { label: 'ML No', name: 'mt_cd', width: 240, sortable: true, },
+                { label: 'Quantity', name: 'real_qty', width: 81, align: 'right', formatter: 'integer' },
+                { label: 'Quantity Real', name: 'gr_qty', width: 81, align: 'right', formatter: 'integer' },
+                { label: 'Shift', name: 'ShiftName', width: 70, hidden: true },
+            ],
+            shrinkToFit: false,
+            loadonce: false,
+            rowNum: 50,
+            rowList: [50, 100, 200, 500, 1000],
+            width: null,
+            height: '100%',
+            subGrid: false, // set the subGrid property to true to show expand buttons for each row
+            rownumbers: true,
+            loadonce: true,
+            multiPageSelection: true,
+            viewrecords: true,
+            rowNum: 50,
+            pager: "#" + childGridPagerID,
+            jsonReader:
+            {
+                root: "data",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                Id: "0"
+            },
+            onSelectRow: function (id, rowid, status, e) {
+
+            },
+        });
+    }
+
+</script>
