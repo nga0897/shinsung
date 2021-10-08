@@ -173,9 +173,9 @@ $("#list2").jqGrid
             { label: 'Process Name', name: 'name_pr', sortable: true, width: '150' },
             { label: 'Type', name: 'don_vi_pr', hidden:true },
             { label: 'Type', name: 'don_vi_prnm', index: 're_mark', width: '50', align: 'center' },
-            { label: 'Description', name: 'description', width: '100', align: 'center' },
+            { label: 'Description', name: 'description', width: '100', align: 'left' },
             { label: 'isFinish', name: 'isFinish', width: '50', align: 'center' },
-            { label: 'User', name: 'reg_id', index: 'Reg Name', width: '50', align: 'center' },
+            { label: 'Create User', name: 'reg_id', index: 'Reg Name', width: '50', align: 'center' },
             {
                 key: false, label: 'Create Date', name: 'reg_dt', editable: true, align: 'center', formatter: 'date', formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" }, width: '140'
             },
@@ -191,7 +191,7 @@ $("#list2").jqGrid
             $("#mRoll").val(row_id.don_vi_pr);
             $("#idr").val(row_id.idr);
             $("#level").val(row_id.level);
-            $("#m_description").val(row_id.description);
+            $("#m1_description").val(row_id.description);
             
             $("#tab_1").removeClass("active");
             $("#tab_2").addClass("active");
@@ -368,7 +368,7 @@ $("#c_save_but").click(function () {
                 process_code: $("#c_process_code").val().trim(),
                 name: $("#cProcess").val().trim(),
                 don_vi_pr: $("#cRoll").val().trim(),
-                description: $("#c_description").val().trim(),
+                description: $("#c1_description").val().trim(),
                 isFinish: isFinish,
             },
             success: function (response) {
@@ -387,6 +387,8 @@ $("#c_save_but").click(function () {
 
 
 $("#m_save_but").click(function () {
+    var a = $("#m1_description").val().trim();
+    alert(a);
     if ($("#m_product").val() == "") {
         alert("Please enter your Select Process on Table");
         return false;
@@ -406,7 +408,7 @@ $("#m_save_but").click(function () {
                 style_no: $("#m_product").val().trim(),
                 name: $("#mProcess").val().trim(),
                 don_vi_pr: $("#mRoll").val().trim(),
-                description: $("#m_description").val().trim(),
+                description: $("#m1_description").val().trim(),
                 process_code: $("#c_process_code").val().trim(),
                 isFinish: isFinish,
             },
@@ -747,7 +749,39 @@ $('#no').click(function () {
     $.unblockUI();
     return false;
 });
+$('#Delete_Process').click(function () {
+    var id = $("#m_id_process").val();
+    var r = confirm("Bạn có chắc muốn xóa không?");
+    if (r == true) {
 
+        var settings = {
+            "url": "/DevManagement/DeleteProductProcess",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "id": id
+
+            }),
+        };
+        $.ajax(settings).done(function (data) {
+            if (data.result) {
+                SuccessAlert(data.message);
+                $("#list3").jqGrid('delRowData', id);
+
+            }
+            else {
+                ErrorAlert(data.message);
+            }
+        });
+    }
+    else {
+        return false;
+    }
+ 
+});
 
 function AddMaterial(cellValue, options, rowdata, action) {
     return `<button  class="btn btn-sm btn-success button-srh"  data-style_no="${rowdata.style_no}"  data-id_process="${rowdata.id_process}" data-mt_no="${rowdata.mt_no}" onclick="AddMaterialOnClick(this)">+</button>`;

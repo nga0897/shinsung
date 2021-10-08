@@ -6,6 +6,7 @@ namespace Mvc_VD.Models.WOModel
         public string stt { get; set; }
         public string at_no { get; set; }
         public string ProductCode { get; set; }
+        public string process_code { get; set; }
         public string MaterialNo { get; set; }
         public string MaterialName { get; set; }
         public string shift_dt { get; set; }

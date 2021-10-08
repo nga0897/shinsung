@@ -3387,23 +3387,30 @@ namespace Mvc_VD.Controllers
                         find_lot.gr_qty = find_lot.gr_qty - soldaok;
                         find_lot.real_qty = find_lot.real_qty - soldaok;
                         find_lot.chg_id = Session["userid"] == null ? null : Session["userid"].ToString();
-                        Log.Info("TIMS=>Cancel_mapping" + "update san luong lai mt_cd=" + find_lot.mt_cd + " SL=" + find_lot.gr_qty);
+                      //  Log.Info("TIMS=>Cancel_mapping" + "update san luong lai mt_cd=" + find_lot.mt_cd + " SL=" + find_lot.gr_qty);
                         db.Entry(find_lot).State = EntityState.Modified;
                     }
                 }
                 var chg_id = Session["userid"] == null ? null : Session["userid"].ToString();
+                var checkEA = _TIMSService.CheckEA(find_lot.id_actual);
+                if (checkEA.Contains("200"))
+                {
+                    //kiểm tra nếu là EA thì bobibn đầu ra là bobin đầu vào
+                    find_mt_cd.bb_no = check_exits.bb_no;
+                  
 
 
-                // nếu đầu vào đã add đồ đựng mới thì xả bobbin
-                //update table d_bobbin_info
-                _TIMSService.UpdateBobbinInfo(chg_id, find_mt_cd.bb_no, find_mt_cd.mt_cd);
-                //xóa table DeleteBobbinHistory
-                _TIMSService.DeleteBobbinHistory(find_mt_cd.bb_no, find_mt_cd.mt_cd);
-
+                    // nếu đầu vào đã add đồ đựng mới thì xả bobbin dạng ea
+                    //update table d_bobbin_info
+                    _TIMSService.UpdateBobbinInfo(chg_id, find_mt_cd.bb_no, find_mt_cd.mt_cd);
+                    //xóa table DeleteBobbinHistory
+                    _TIMSService.DeleteBobbinHistory(find_mt_cd.bb_no, find_mt_cd.mt_cd);
+                    //kiểm tra nếu là EA thì bobibn đầu ra là bobin đầu vào
+                }
 
                 //var sts = (find_mt_cd.sts_update == "" || find_mt_cd == null ? "008" : "002");
                 //find_mt_cd.mt_sts_cd = sts;
-                find_mt_cd.bb_no = check_exits.bb_no;
+               
                 find_mt_cd.chg_id = chg_id;
                 db.Entry(find_mt_cd).State = EntityState.Modified;
                 //trả lại trạng thái cũ và xóa khỏi bảng mapping
@@ -3414,6 +3421,9 @@ namespace Mvc_VD.Controllers
 
                
                 return Json(new { result = true, message = Constant.CancelSuccess }, JsonRequestBehavior.AllowGet);
+
+
+
             }
             catch (Exception)
             {
@@ -5461,10 +5471,10 @@ namespace Mvc_VD.Controllers
                         
                         string check_product = _TIMSService.GetProductWactualPrimary(check_bobin_history.mt_cd, "010", "006000000000000000");
                         string trimmed = check_product.Replace(" ","");
-                        if (trimmed == "LP14491031(SSV4902)")
-                        {
-                                trimmed = "SSV4902";
-                        }
+                        //if (trimmed == "LP14491031(SSV4902)")
+                        //{
+                        //        trimmed = "SSV4902";
+                        //}
                     // kiểm tra xem product theo quy tắc(0) hay bất quy tắc(1). có nghĩa  là nếu bất quy tắc thì không cần khác product vẫn cho mapping với tem gói
                     var typeProduct = _TIMSService.ChecktypeProduct(check_product);
                     if (typeProduct.Equals("0"))
@@ -7388,10 +7398,13 @@ namespace Mvc_VD.Controllers
                 return Json(new { result = false, message = "Lỗi hệ thống!!" }, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult ChangStamp(string stampOld, string stampNew, string ProductCode)
+        public ActionResult ChangStamp(string stampOld, string stampNew, string ProductCode, int wmtid)
         {
             try
             {
+                stampOld = stampOld.ToUpper();
+                stampNew = stampNew.ToUpper();
+
                 if (string.IsNullOrEmpty(ProductCode))
                 {
                     return Json(new { result = false, message = "Product Rỗng" }, JsonRequestBehavior.AllowGet);
@@ -7411,11 +7424,123 @@ namespace Mvc_VD.Controllers
                 // nếu tem thay thế chưa mapping với contanier nào thì cho thay thế
                 // kiểm tra tem gói đã tồn tại trong stamp_detail. không có thì insert
                 string trimmed = ProductCode.Replace(" ", "");
+                // kiểm tra xem product theo quy tắc(0) hay bất quy tắc(1). có nghĩa  là nếu bất quy tắc thì không cần khác product vẫn cho mapping với tem gói
+                var typeProduct = _TIMSService.ChecktypeProduct(trimmed);
+                if (typeProduct.Equals("1"))
+                {
+                        //var WmaterialStampChange = _TIMSService.ViewStatusTemGoi(stampOld);
+                        var item = _TIMSService.FindOneMaterialInfoById(wmtid);
+
+                        //item.wmtid = WmaterialStampChange.wmtid;
+                        item.buyer_qr = stampNew;
+                        item.chg_id = (Session["userid"] == null) ? "" : Session["userid"].ToString();
+                        item.chg_dt = DateTime.Now;
+                        //item.reg_dt = WmaterialStampChange.reg_dt;
+
+                        stamp_detail isExisted = _TIMSService.Getstampdetail(stampNew);
+                        if (isExisted == null)
+                        {
+                            //ktra stamp_cd
+                            var stamp_cd = "";
+
+                            var ktra_stamp_cd = _TIMSService.GetStyleNo(ProductCode);
+
+                            if (ktra_stamp_cd != null)
+                            {
+                                stamp_cd = ktra_stamp_cd.stamp_code;
+                                if (String.IsNullOrEmpty(stamp_cd))
+                                {
+                                    return Json(new { result = false, message = "Vui Lòng Chọn kiểu tem cho Product(DMS)!!! " }, JsonRequestBehavior.AllowGet);
+                                }
+                            }
+
+                            //lấy ra lot_date bằng cách trừ đi product và 8 kí tự sẽ tìm được mã lot_date
+                            var prd = trimmed.Replace(" ", "");
+                            var prd1 = trimmed.Replace("-", "");
+                 
+                            var timDZIH = stampNew.IndexOf("DZIH") + 4; //product+DZIH
+
+                            //CEDMB2976DZIHA1N0L4E001010100
+                            //5210000364CSDT1DZIHB2N0L9J049011100
+
+                            //lot_date
+                            //product = 5210000364CSDT1;
+                            //vendor_code = DZIH
+                            //vendor_line = B
+                            //label_printer = 2
+                            //is_sample = N
+                            //PCN = 0
+                            // lot_date = L9J
+                            //serial_number = 049
+                            //machine_line = 01
+                            //shift = 1
+                            // quantity = 100
+
+
+                            var vendor_line = stampNew.Substring(timDZIH, 1);
+                            var label_printer = stampNew.Substring(timDZIH + 1, 1);
+                            var is_sample = stampNew.Substring(timDZIH + 2, 1);
+                            var PCN = stampNew.Substring(timDZIH + 3, 1);
+                            var date = stampNew.Substring(timDZIH + 4, 3);
+                            var lot_date = DateFormatByShinsungRule(date);
+
+                            var serial_number = stampNew.Substring(timDZIH + 7, 3); //gắn 001
+                            var machine_line = stampNew.Substring(timDZIH + 10, 2); //gắn 01
+
+                            var shift = stampNew.Substring(timDZIH + 12, 1);
+
+
+                                // kiểm tra tem gói đã qua FG chưa nếu rồi thì update luôn
+                                var isExist = _TIMSService.FindOneBuyerInfoById(stampOld);
+                                if (isExist != null)
+                                {
+                                    if (isExist.sts_cd != "001")
+                                    {
+                                        return Json(new { result = false, message = "Tem gói này có thể đã đóng thùng hoặc đã giao hàng" }, JsonRequestBehavior.AllowGet);
+                                    }
+
+                                    isExist.buyer_qr = stampNew;
+
+                                    isExist.chg_id = (Session["userid"] == null) ? "" : Session["userid"].ToString();
+
+                                    _TIMSService.UpdateBuyerQRGeneral(isExist);
+                                }
+                                //insert stamp_detail
+                        var stamp_detail = new stamp_detail()
+                            {
+                                buyer_qr = stampNew,
+                                stamp_code = stamp_cd,
+                                product_code = ProductCode,
+                                vendor_code = "DZIH",
+                                vendor_line = vendor_line,
+                                label_printer = label_printer,
+                                is_sample = is_sample,
+                                pcn = PCN,
+                                lot_date = lot_date,
+                                serial_number = serial_number,
+                                machine_line = machine_line,
+                                shift = shift,
+                                standard_qty = ktra_stamp_cd.pack_amt.HasValue ? ktra_stamp_cd.pack_amt.Value : 0,
+                                reg_id = (Session["userid"] == null) ? "" : Session["userid"].ToString(),
+                                chg_id = (Session["userid"] == null) ? "" : Session["userid"].ToString(),
+                            };
+
+
+                            _TIMSService.Insertstampdetail(stamp_detail);
+
+                        }
+
+                       
+                        _IWOService.UpdateMaterialInfo(item);
+                        return Json(new { result = true, message = Constant.Success }, JsonRequestBehavior.AllowGet);
+                  
+                }
+
                 if (stampNew.StartsWith(trimmed.Replace("-", "")))
                 {
-                    var WmaterialStampChange = _TIMSService.ViewStatusTemGoi(stampOld);
+                    //var WmaterialStampChange = _TIMSService.ViewStatusTemGoi(stampOld);
 
-                    var item = _TIMSService.FindOneMaterialInfoById(WmaterialStampChange.wmtid);
+                    var item = _TIMSService.FindOneMaterialInfoById(wmtid);
 
                   
                     //item.wmtid = WmaterialStampChange.wmtid;
@@ -7575,9 +7700,7 @@ namespace Mvc_VD.Controllers
                 {
                     return Json(new { result = false, message = "Mã tem gói này không thuộc với Product của Container" }, JsonRequestBehavior.AllowGet);
                 }
-
             }
-
             catch (Exception e)
             {
                 return Json(new { result = false, message = "Lỗi hệ thống!!" }, JsonRequestBehavior.AllowGet);

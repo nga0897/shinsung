@@ -140,7 +140,7 @@ namespace Mvc_VD.Controllers
                 StringBuilder varname1 = new StringBuilder();
                 varname1.Append("SELECT a.*,(SELECT dt_nm FROM comm_dt WHERE comm_dt.mt_cd ='WHS005' AND comm_dt.dt_cd = a.sts_cd) AS statusName ");
                 varname1.Append("FROM generalfg as a ");
-                varname1.Append(" where a.product_code LIKE CONCAT('%','" + productCode + "','%')");
+                varname1.Append(" where a.product_code = '" + productCode + "' ");
                 varname1.Append(" AND a.buyer_qr LIKE CONCAT('%','" + buyerCode + "' , '%')");
                 varname1.Append(" AND a.sts_cd in ('001','010') ");
                 varname1.Append("  AND case ");

@@ -30,7 +30,7 @@ namespace Mvc_VD.Services
         int DelMaterialBom(int Id);
         int InsertToDRoutingInfo(DRoutingInfo item);
         void UpdateDRoutingInfo(d_rounting_info item, string description, string isFinish);
-        void UpdateNVLDeTinhHieuSuat(string product);
+        void UpdateNVLDeTinhHieuSuat(string product, string process_code);
         int InsertToProductMaterial(ProductMaterailModel item);
         ProductMaterailModel GetProductMaterial(int id);
         void UpdateToProductMaterial(ProductMaterailModel item);
@@ -48,6 +48,13 @@ namespace Mvc_VD.Services
         void UpdateToProductProcess(ProductProcess item);
         void UpdateProcessToApply(string product);
         IEnumerable<DRoutingInfo> CheckLevelProcess(string style_no, string process_code);
+        int DeleteProductProcessForId(int id);
+        int CheckIsExistMaterialBom(string mt_no);
+        int CheckIsExistMaterialRouting(string mt_no);
+        int CheckIsExistMaterialRouting2(string mt_no);
+        int CheckIsExistProductBom(string style_no);
+        int CheckIsExistProductRouting(string style_no);
+        int CheckIsExistModelProduct(string model);
     }
     public class DMSService : IDMSService
     {
@@ -311,10 +318,10 @@ namespace Mvc_VD.Services
                 );
         }
 
-        public void UpdateNVLDeTinhHieuSuat(string product)
+        public void UpdateNVLDeTinhHieuSuat(string product, string process_code)
         {
-            string sqlupdate = @"Update product_material SET isActive='N' WHERE style_no=@1; ";
-            _db.Database.ExecuteSqlCommand(sqlupdate, new MySqlParameter("@1", product)
+            string sqlupdate = @"Update product_material SET isActive='N' WHERE style_no=@1 and process_code = @2; ";
+            _db.Database.ExecuteSqlCommand(sqlupdate, new MySqlParameter("@1", product), new MySqlParameter("@2", process_code)
                  );
         }
 
@@ -578,6 +585,67 @@ namespace Mvc_VD.Services
                 new MySqlParameter("1", style_no),
                 new MySqlParameter("2", process_code)
                 );
+        }
+
+        public int DeleteProductProcessForId(int id)
+        {
+            string sqlquery = @"DELETE FROM product_routing WHERE id = @1 ";
+            return _db.Database.ExecuteSqlCommand(sqlquery,
+                new MySqlParameter("1", id)
+                );
+        }
+
+        public int CheckIsExistMaterialBom(string mt_no)
+        {
+            string checkExist = @"SELECT EXISTS(SELECT bid FROM d_bom_info  WHERE mt_no=@1 );";
+            int kq = _db.Database.SqlQuery<int>(checkExist,
+                new MySqlParameter("1", mt_no)
+                ).FirstOrDefault();
+            return kq;
+        }
+
+        public int CheckIsExistMaterialRouting(string mt_no)
+        {
+            string checkExist = @"SELECT EXISTS(SELECT id FROM product_material  WHERE mt_no=@1 );";
+            int kq = _db.Database.SqlQuery<int>(checkExist,
+                new MySqlParameter("1", mt_no)
+                ).FirstOrDefault();
+            return kq;
+        }
+        public int CheckIsExistMaterialRouting2(string mt_no)
+        {
+            string checkExist = @"SELECT EXISTS(SELECT id FROM product_material_detail  WHERE MaterialNo=@1 );";
+            int kq = _db.Database.SqlQuery<int>(checkExist,
+                new MySqlParameter("1", mt_no)
+                ).FirstOrDefault();
+            return kq;
+        }
+
+        public int CheckIsExistProductBom(string style_no)
+        {
+            string checkExist = @"SELECT EXISTS(SELECT bid FROM d_bom_info  WHERE style_no=@1 );";
+            int kq = _db.Database.SqlQuery<int>(checkExist,
+                new MySqlParameter("1", style_no)
+                ).FirstOrDefault();
+            return kq;
+        }
+
+        public int CheckIsExistProductRouting(string style_no)
+        {
+            string checkExist = @"SELECT EXISTS(SELECT idr FROM d_rounting_info  WHERE style_no=@1 );";
+            int kq = _db.Database.SqlQuery<int>(checkExist,
+                new MySqlParameter("1", style_no)
+                ).FirstOrDefault();
+            return kq;
+        }
+
+        public int CheckIsExistModelProduct(string model)
+        {
+            string checkExist = @"SELECT EXISTS(SELECT sid FROM d_style_info  WHERE md_cd=@1 );";
+            int kq = _db.Database.SqlQuery<int>(checkExist,
+                new MySqlParameter("1", model)
+                ).FirstOrDefault();
+            return kq;
         }
     }
 

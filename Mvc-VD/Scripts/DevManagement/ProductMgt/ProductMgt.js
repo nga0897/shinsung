@@ -1013,7 +1013,7 @@ function GetAllStamp() {
     $.get(`/CreateBuyerQR/GetAllStamp`, function (response) {
         if (response) {
             var html = undefined;
-            var html = `<option value="">* Chọn loại tem *</option>`
+            var html = `<option value=" ">* Chọn loại tem *</option>`
             $.each(response, function (key, item) {
                 html += `<option value="${item.stamp_code}">${item.stamp_name}</option>`
             });

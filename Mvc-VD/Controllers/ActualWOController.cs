@@ -94,6 +94,90 @@ namespace Mvc_VD.Controllers
                 }).ToList();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+        //public ActionResult Add_w_actual_primary(w_actual_primary w_actual_primary)
+        //{
+        //    try
+        //    {
+        //        //kiem tra product co ton tai khong
+        //        if (!db.d_style_info.Any(x => x.style_no == w_actual_primary.product))
+        //        {
+        //            return Json(new { result = false, kq = "Product Code Dont Exits" }, JsonRequestBehavior.AllowGet);
+        //        }
+        //        var check = db.w_actual_primary.ToList();
+        //        String dateChString = DateTime.Now.ToString("yyyyMMdd");
+
+        //        var bien_1 = "PO" + dateChString;
+        //        var check_con = check.Where(x => x.at_no.StartsWith(bien_1)).ToList();
+        //        if (check_con.Count == 0)
+        //        {
+        //            w_actual_primary.at_no = "PO" + dateChString + "-001";
+        //        }
+        //        else
+        //        {
+        //            var menuCd = string.Empty;
+        //            var subMenuIdConvert = 0;
+        //            var list1 = check_con.OrderBy(x => x.at_no).LastOrDefault();
+        //            var bien1 = list1.at_no;
+        //            var subMenuId = bien1.Substring(bien1.Length - 3, 3);
+        //            int.TryParse(subMenuId, out subMenuIdConvert);
+        //            menuCd = bien_1 + "-" + string.Format("{0}{1}", menuCd, CreatePO((subMenuIdConvert + 1)));
+        //            w_actual_primary.at_no = menuCd;
+        //        }
+        //        w_actual_primary.finish_yn = "N";
+        //        w_actual_primary.reg_dt = DateTime.Now;
+        //        w_actual_primary.chg_dt = DateTime.Now;
+        //        w_actual_primary.reg_id = Session["userid"] == null ? null : Session["userid"].ToString();
+        //        w_actual_primary.chg_id = Session["userid"] == null ? null : Session["userid"].ToString();
+
+        //        if (ModelState.IsValid)
+        //        {
+        //            db.Entry(w_actual_primary).State = EntityState.Added;
+        //            db.SaveChanges();
+        //            //add công đoạn
+        //            //var danhsach = db.d_rounting_info.Where(x => x.style_no == w_actual_primary.product).ToList();
+        //            var danhsach = _iWOService.Getrouting(w_actual_primary.product, w_actual_primary.process_code).ToList();
+        //            foreach (var item in danhsach)
+        //            {
+        //                var w_actual = new w_actual();
+        //                w_actual.description = item.description;
+        //                w_actual.at_no = w_actual_primary.at_no;
+        //                w_actual.actual = 0;
+        //                w_actual.type = item.type;
+        //                w_actual.product = w_actual_primary.product;
+        //                w_actual.name = item.name;
+        //                w_actual.don_vi_pr = item.don_vi_pr;
+        //                w_actual.level = item.level;
+        //                w_actual.item_vcd = item.item_vcd;
+        //                w_actual.date = DateTime.Now.ToString("yyyy-MM-dd");
+        //                w_actual.defect = 0;
+        //                bool isF = false;
+        //                if (item.isFinish == "Y")
+        //                {
+        //                    isF = true;
+        //                }
+
+        //                w_actual.IsFinished = isF;
+        //                w_actual.reg_dt = DateTime.Now;
+        //                w_actual.chg_dt = DateTime.Now;
+        //                w_actual.reg_id = Session["userid"] == null ? null : Session["userid"].ToString();
+        //                w_actual.chg_id = Session["userid"] == null ? null : Session["userid"].ToString();
+
+        //                //db.Entry(w_actual).State = EntityState.Added;
+        //                //db.SaveChanges();
+        //                _iWOService.InsertWActualInfo(w_actual);
+        //            }
+
+        //            IEnumerable<DatawActualPrimary> aaa = _iWOService.GetProcessingActual(w_actual_primary.at_no);
+
+        //            return Json(new { result = true, kq = aaa.FirstOrDefault() }, JsonRequestBehavior.AllowGet);
+        //        }
+        //        return Json(new { result = false, kq = "Can not Create   " }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return Json(new { result = false, kq = e }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
         public ActionResult Add_w_actual_primary(w_actual_primary w_actual_primary)
         {
             try
@@ -131,8 +215,9 @@ namespace Mvc_VD.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    db.Entry(w_actual_primary).State = EntityState.Added;
-                    db.SaveChanges();
+                    //db.Entry(w_actual_primary).State = EntityState.Added;
+                    //db.SaveChanges();
+                    _iWOService.InsertWActualPrimary(w_actual_primary);
                     //add công đoạn
                     //var danhsach = db.d_rounting_info.Where(x => x.style_no == w_actual_primary.product).ToList();
                     var danhsach = _iWOService.Getrouting(w_actual_primary.product, w_actual_primary.process_code).ToList();
@@ -155,7 +240,7 @@ namespace Mvc_VD.Controllers
                         {
                             isF = true;
                         }
-                       
+
                         w_actual.IsFinished = isF;
                         w_actual.reg_dt = DateTime.Now;
                         w_actual.chg_dt = DateTime.Now;
@@ -365,6 +450,7 @@ namespace Mvc_VD.Controllers
 
                         if (find.process_code != w_actual_primary.process_code)
                         {
+                           
                             //delete các công đoạn 
                             _iWOService.DeleteMachine(find.at_no);
                             _iWOService.DeleteStaff(find.at_no);
@@ -2605,7 +2691,12 @@ namespace Mvc_VD.Controllers
 
                     //lấy ra danh sách đã scan NVL không tồn tại trong NVL đã đăng kí thì return false
                     var DsProcess = _iWOService.GetWActual((int)data.id_actual);
-                    var dsDaMapping = _iWOService.GetWMaterialMappingNVL(DsProcess.product, mt_cd, "PMT", DsProcess.name).ToList();
+
+                    //lấy process_code
+                    string process_code = _iWOService.GetProcessNameWActualPrimary(DsProcess.at_no);
+
+
+                    var dsDaMapping = _iWOService.GetWMaterialMappingNVL(DsProcess.product, mt_cd, "PMT", DsProcess.name, process_code).ToList();
                     if (dsDaMapping.Count > 0)
                     {
                         return Json(new { result = false, message = "Bạn scan thiếu NVL" }, JsonRequestBehavior.AllowGet);
@@ -2806,11 +2897,11 @@ namespace Mvc_VD.Controllers
                         //}
                         //version kiểm tra NVL theo product của từng công đoạn(Routing)
 
-                        var isMaterialExistInProcess = _iWOService.IsMaterialInfoExistByProcess(Dsproduct.product, Dsproduct.name, mt.mt_no);
+                        var isMaterialExistInProcess = _iWOService.IsMaterialInfoExistByProcess(Dsproduct.product, Dsproduct.name, mt.mt_no, checkYorN.process_code);
 
                         if (!isMaterialExistInProcess)
                         {
-                            return Json(new { result = false, message = "NVL này chưa được đăng kí ở tại Product: " + Dsproduct.product +" Công đoạn:  "+ Dsproduct.name}, JsonRequestBehavior.AllowGet);
+                            return Json(new { result = false, message = "NVL này chưa được đăng kí ở tại Product: " + Dsproduct.product +" Công đoạn:  "+checkYorN.process_code + "- "+Dsproduct.name}, JsonRequestBehavior.AllowGet);
                         }
                     }
 
@@ -2947,11 +3038,11 @@ namespace Mvc_VD.Controllers
                 return Json(new { result = false, message = "Lỗi hệ thống!!!" }, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult getBomdsMaterial(string style_no, string at_no)
+        public ActionResult getBomdsMaterial(string style_no, string at_no, string process_code)
         {
             try
             {
-                IEnumerable<WActualBom> value = _iWOService.GetListmaterialbom(style_no, at_no);
+                IEnumerable<WActualBom> value = _iWOService.GetListmaterialbom(style_no, at_no, process_code);
 
                 return Json(value, JsonRequestBehavior.AllowGet);
 
@@ -2989,11 +3080,11 @@ namespace Mvc_VD.Controllers
                 return Json(new { result = false, message = "Lỗi hệ thống!!" }, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult LayDanhsachLieuThaythe(string ProductCode, string at_no, string mt_no)
+        public ActionResult LayDanhsachLieuThaythe(string ProductCode, string at_no, string mt_no, string process_code)
         {
             try
             {
-                IEnumerable<WActualBom> value = _iWOService.GetListLieuThaythe(ProductCode, at_no, mt_no);
+                IEnumerable<WActualBom> value = _iWOService.GetListLieuThaythe(ProductCode, at_no, mt_no, process_code);
 
                 return Json(value, JsonRequestBehavior.AllowGet);
 

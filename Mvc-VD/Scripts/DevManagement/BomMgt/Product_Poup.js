@@ -65,7 +65,7 @@
                         $('#c_style_no').val(row_id.style_no);
                         $('#m_style_no').val(row_id.style_no);
                         $('#productCode').val(row_id.style_no);
-                        GetProductProcesses(ProductCode);
+                     
                         $('.dialog_PRODUCT').dialog('close');
                     });
                 }

@@ -1,4 +1,5 @@
 ﻿<input type="hidden" name="" id="ProductCode" class="input-text form-control">
+<input type="hidden" name="" id="wmtid" class="input-text form-control">
 <div class="container-fluid">
     <div class="box-body my-2 bg-white">
         <div class="row p-0 m-0" style="display: flex; flex-wrap: nowrap;">
@@ -42,9 +43,10 @@
                     { key: false, label: 'Mã Tem Gói', name: 'buyer_qr', width: 240, align: 'center' },
                     { key: false, label: 'Container', name: 'mt_cd', width: 240, align: 'center' },
                     { key: false, label: 'Product', name: 'product', width: 150, align: 'center' },
-                    { key: false, label: 'Location', name: 'locationName', width: 150, align: 'center' },
-                    { key: false, label: 'Status', name: 'NameStatus', width: 150, align: 'center' },
                     { key: false, label: 'Quantity', name: 'gr_qty', width: 100, align: 'right', formatter: 'integer' },
+                    { key: false, label: 'Location', name: 'locationName', width: 100, align: 'center' },
+                    { key: false, label: 'Status', name: 'NameStatus', width: 100, align: 'center' },
+                   
                     //{ name: '', label: 'Đổi Tem gói', width: 50, align: 'center', formatter: AddBuyerCode, exportcol: false },
                 ],
                 onSelectRow: function (rowid, selected, status, e) {
@@ -101,6 +103,7 @@
                         document.getElementById("ChangeStamp").focus();
                         $("#ChangeStamp").val("");
                         $("#ProductCode").val(response.data.product);
+                        $("#wmtid").val(response.data.wmtid);
                         SuccessAlert(response.message);
                     
 
@@ -150,6 +153,7 @@
             var stampOld = $("#BuyerCode").val().trim();
             var stampNew = $("#ChangeStamp").val().trim();
             var ProductCode = $("#ProductCode").val().trim();
+            var wmtid = $("#wmtid").val().trim();
             if (stampOld == "" || stampOld == undefined) {
                 ErrorAlert("Vui lòng Scan tem gói");
                 $("#BuyerCode").val("");
@@ -168,7 +172,12 @@
                 $('#stampOld').focus();
                 return;
             }
-
+            if (wmtid == "" || wmtid == undefined) {
+                ErrorAlert("Không tìm thấy id của mã bobbin");
+                $("#stampOld").val("");
+                $('#stampOld').focus();
+                return;
+            }
             $.ajax({
                 url: "/TIMS/ChangStamp",
                 type: "get",
@@ -176,7 +185,9 @@
                 data: {
                     stampOld: stampOld,
                     stampNew: stampNew,
-                    ProductCode: ProductCode
+                    ProductCode: ProductCode,
+                    wmtid: wmtid,
+
                 },
                 success: function (response) {
                     if (response.result) {

@@ -32,7 +32,7 @@ function ProductOnChangeEvent() {
 function SetDatePicker() {
     $(`#printedDate`).datepicker({
         showButtonPanel: true,
-        minDate: new Date(),
+        //minDate: new Date(),
         dateFormat: 'yy-mm-dd'
     }).datepicker("setDate", new Date());
 };
@@ -72,8 +72,8 @@ $(`#createBtn`).on(`click`, function () {
         ErrorAlert(`Vui lòng nhập số lượng cần in.`);
         return;
     }
-    if (parseInt(quantity)> 100) {
-        ErrorAlert(`Số lượng cho phép in tem tối đa là 100 tem`);
+    if (parseInt(quantity)> 200) {
+        ErrorAlert(`Số lượng cho phép in tem tối đa là 200 tem`);
         return;
     }
     if (!productCode) {
@@ -133,6 +133,7 @@ $(`#createBtn`).on(`click`, function () {
             }
         })
         .fail(function (response) {
+            $(`#loading`).hide();
             ErrorAlert(`Lỗi hệ thống.`);
             return;
         });

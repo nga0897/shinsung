@@ -34,12 +34,13 @@
                 mdid: mdid,
             },
             success: function (response) {
-                if (response.result == true) {
-                    var id = response.mdid;
-                    $("#ModelMgtGrid").jqGrid('delRowData', id);
+                if (response.result) {
+                   
+                    $("#ModelMgtGrid").jqGrid('delRowData', mdid);
+                    SuccessAlert(response.message);
                 }
                 else {
-                    alert('Model was not existing. Please check again');
+                    ErrorAlert(response.message);
                 }
 
             },

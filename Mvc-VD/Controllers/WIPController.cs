@@ -95,9 +95,25 @@ namespace Mvc_VD.Controllers
             {
                 recevice_dt_start = dateConvert.ToString("yyyy/MM/dd");
             }
-
+            if (!string.IsNullOrEmpty(lct_cd))
+            {
+                var isExistLocation = _IWIPService.CheckIsExistLocation(lct_cd);
+                if (isExistLocation == null)
+                {
+                    return Json(new { result = false, message = "Kệ này không tồn tại" }, JsonRequestBehavior.AllowGet);
+                }
+                //nếu level = 000 thì search like 002 
+                if (isExistLocation.level_cd.Equals("000"))
+                {
+                    lct_cd = lct_cd.Substring(0, 6);
+                }
+                //kiểm tra location có rỗng ko và nếu level = 002 thì search bằng chính nó, ngược lại search like
+                if (!string.IsNullOrEmpty(lct_cd) && isExistLocation.level_cd.Equals("001"))
+                {
+                    lct_cd = lct_cd.Substring(0, 9);
+                }
+            }
           
-
             Dictionary<string, string> list = PagingAndOrderBy(pageing, " ORDER BY MyDerivedTable.mt_no DESC ");
              
             
@@ -151,6 +167,28 @@ namespace Mvc_VD.Controllers
             {
                 recevice_dt_start = dateConvert.ToString("yyyy/MM/dd");
             }
+
+            if (!string.IsNullOrEmpty(lct_cd))
+            {
+                var isExistLocation = _IWIPService.CheckIsExistLocation(lct_cd);
+                if (isExistLocation == null)
+                {
+                    return Json(new { result = false, message = "Kệ này không tồn tại" }, JsonRequestBehavior.AllowGet);
+                }
+                //nếu level = 000 thì search like 002 
+                if (isExistLocation.level_cd.Equals("000"))
+                {
+                    lct_cd = lct_cd.Substring(0, 6);
+                }
+                //kiểm tra location có rỗng ko và nếu level = 002 thì search bằng chính nó, ngược lại search like
+                if (!string.IsNullOrEmpty(lct_cd) && isExistLocation.level_cd.Equals("001"))
+                {
+                    lct_cd = lct_cd.Substring(0, 9);
+                }
+            }
+
+
+
             StringBuilder varname1 = new StringBuilder();
             varname1.Append("SELECT * FROM ( SELECT a.wmtid,a.mt_cd,b.mt_nm, lct.lct_nm, CONCAT(ifnull(a.gr_qty,''),' ',ifnull(b.unit_cd,'')) lenght,CONCAT(ifnull(b.width,0),'*',ifnull(a.gr_qty,0)) AS size,ifnull(b.spec,0) spec,a.mt_no, ");
             varname1.Append(" (case when b.bundle_unit ='Roll' then  ROUND((a.gr_qty/b.spec),2) ELSE ROUND(a.gr_qty,2) END) qty, b.bundle_unit, ");
@@ -414,6 +452,27 @@ namespace Mvc_VD.Controllers
             {
                 recevice_dt_start = dateConvert.ToString("yyyy/MM/dd");
             }
+
+            if (!string.IsNullOrEmpty(lct_cd))
+            {
+                var isExistLocation = _IWIPService.CheckIsExistLocation(lct_cd);
+                if (isExistLocation == null)
+                {
+                    return Json(new { result = false, message = "Kệ này không tồn tại" }, JsonRequestBehavior.AllowGet);
+                }
+                //nếu level = 000 thì search like 002 
+                if (isExistLocation.level_cd.Equals("000"))
+                {
+                    lct_cd = lct_cd.Substring(0, 6);
+                }
+                //kiểm tra location có rỗng ko và nếu level = 002 thì search bằng chính nó, ngược lại search like
+                if (!string.IsNullOrEmpty(lct_cd) && isExistLocation.level_cd.Equals("001"))
+                {
+                    lct_cd = lct_cd.Substring(0, 9);
+                }
+            }
+
+
             StringBuilder varname1 = new StringBuilder();
             varname1.Append("SELECT TABLE1.mt_cd, TABLE1.mt_no, TABLE1.mt_nm,   \n");
             varname1.Append("CONCAT((CASE WHEN (MAX(TABLE1.bundle_unit) = 'Roll')  THEN ROUND((SUM(TABLE1.gr_qty) / MAX(TABLE1.spec)),2)     \n");

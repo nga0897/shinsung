@@ -1,4 +1,30 @@
-﻿function PercentagePrimary(cellValue, options, rowdata, action) {
+﻿function GetProductProcesses(e) {
+    async: false,
+        $.ajax({
+            url: `/ActualWO/GetProductProcesses?productCode=` + e
+        })
+            .done(function (response) {
+
+                var html = '';
+                html += '<option value=' + response[0].process_code + '>' + response[0].process_name + '</option>';
+                for (var i = 1; i < response.length; i++) {
+                    html += '<option value=' + response[i].process_code + '>' + response[i].process_name + '</option>';
+                }
+                $("#c_Process").html(html);
+                // $("#m_Process").html(html);
+                return;
+
+
+
+            })
+            .fail(function () {
+                return;
+            });
+
+
+
+}
+function PercentagePrimary(cellValue, options, rowdata, action) {
 
     if (rowdata.target == 0 || rowdata.totalTarget == undefined || rowdata.actual == undefined) {
         return 0.00 + ` %`;
@@ -121,7 +147,7 @@ $("#list_primary").jqGrid({
         { label: 'Product', name: 'product', width: 100 },
         { label: 'Product Name', name: 'style_nm', width: 130 },
         { label: 'Model', name: 'md_cd', width: 100 },
-
+        { label: 'process_code', name: 'process_code', width: 50 },
         { label: 'Description', name: 'remark', width: 180 },
         { label: 'Target', name: 'target', width: 90, align: 'right', formatter: 'integer' },
         { label: 'Complete (%)', name: '', width: 90, align: 'center', formatter: PercentagePrimary },
@@ -144,11 +170,35 @@ $("#list_primary").jqGrid({
         $("#mp_style_no").val(row_id.product);
         $("#qc_name").val(row_id.product);
         $("#id_actualpr").val(row_id.id_actualpr);
+        $.ajax({
+            url: `/ActualWO/GetProductProcesses?productCode=` + row_id.product
+        })
+            .done(function (response) {
 
+                var html = '';
+                html += '<option value=' + response[0].process_code + '>' + response[0].process_name + '</option>';
+                for (var i = 1; i < response.length; i++) {
+                    html += '<option value=' + response[i].process_code + '>' + response[i].process_name + '</option>';
+                }
+                $("#c_Process").html(html);
+                $("#m_Process").html(html);
+                $("#m_Process").val(row_id.process_code);
+                return;
+
+
+
+            })
+            .fail(function () {
+                return;
+            });
         $('#list').clearGridData();
         $('#list').jqGrid('setGridParam', { search: true });
         var pdata = $('#list').jqGrid('getGridParam', 'postData');
+
         getData(pdata);
+
+
+   
 
         $("#tab_1").removeClass("active");
         $("#tab_2").addClass("active");
@@ -283,7 +333,7 @@ function showChildGridMaterial(parentRowID, parentRowKey) {
 
 
     $("#" + childGridID).jqGrid({
-        url: "/ActualWO/getBomdsMaterial?style_no=" + rowData.product + "&at_no=" + rowData.at_no,
+        url: "/ActualWO/getBomdsMaterial?style_no=" + encodeURIComponent(rowData.product) + "&at_no=" + rowData.at_no + "&process_code=" + rowData.process_code,
         mtype: "GET",
         datatype: "json",
         async: false,
@@ -292,6 +342,7 @@ function showChildGridMaterial(parentRowID, parentRowKey) {
             { key: true, label: 'bid', name: 'bid', width: 100, align: 'center', hidden: true },
             { key: false, label: 'Code', name: 'at_no', width: 150, align: 'center', hidden: true },
             { key: false, label: 'Code', name: 'ProductCode', width: 150, align: 'center', hidden: true },
+            { key: false, label: 'Code', name: 'process_code', width: 150, align: 'center', hidden: true },
             { label: 'MT Code', name: 'MaterialNo', width: 130 },
 
             { label: 'MT Name', name: 'MaterialName', sortable: true, width: 400 },
@@ -457,20 +508,28 @@ $("#c_save_but").click(function () {
                 dataType: "json",
                 data: {
                     product: $('#c_style_no').val(),
+                    process_code: $('#c_Process').val(),
                     target: $('#c_target').val().toString().replace(",", "").replace(",", "").replace(",", ""),
                     remark: $('#c_remark').val(),
                 },
                 success: function (data) {
-                    console.log(data);
+                  //  console.log(data);
                     if (data.result == true) {
                         var id = data.kq.id_actualpr;
                         $("#list_primary").jqGrid('addRowData', id, data.kq, 'first');
                         $("#list_primary").setRowData(id, false, { background: "#d0e9c6" });
+
+                        $("#id" + id).prop("checked", true);
+                     
                         SuccessAlert("Tạo PO Thành Công");
-                        $("#list").setGridParam({ url: "/ActualWO/Getdataw_actual?at_no" + data.kq.at_no, datatype: "json" }).trigger("reloadGrid");
+                       /* $("#list").setGridParam({ url: "/ActualWO/Getdataw_actual?at_no" + data.kq.at_no, datatype: "json" }).trigger("reloadGrid");*/
 
                         $('#list').clearGridData();
                         $('#list').jqGrid('setGridParam', { search: true });
+
+
+
+
                         var pdata = $('#list').jqGrid('getGridParam', 'postData');
 
 
@@ -508,7 +567,7 @@ $("#c_save_but").click(function () {
                                 return;
                             }
                         });
-
+                      
                     } else {
                         //alert(data.kq);
                         ErrorAlert(data.kq);
@@ -537,12 +596,18 @@ $("#m_save_but").click(function () {
                 product: $('#m_style_no').val(),
                 target: TargerNumber,
                 remark: $('#m_remark').val(),
+                process_code: $('#m_Process').val(),
             },
             success: function (data) {
                 if (data.result == true) {
                     var id = data.kq.id_actualpr;
                     $("#list_primary").setRowData(id, data.kq, { background: "#d0e9c6" });
                     SuccessAlert("");
+
+                    $('#list').clearGridData();
+                    $('#list').jqGrid('setGridParam', { search: true });
+                    var pdata = $('#list').jqGrid('getGridParam', 'postData');
+                    getData(pdata);
                 } else {
                     ErrorAlert(data.kq);
                 }
@@ -981,6 +1046,9 @@ $("#tab_1").on("click", "a", function (event) {
     $("#tab_c1").removeClass("hidden");
     $("#tab_c2").addClass("hidden");
     $("#tab_c1").addClass("active");
+    document.getElementById("c_Process").value = "";
+    document.getElementById("m_Process").value = "";
+  
 });
 
 $("#tab_2").on("click", "a", function (event) {
@@ -997,6 +1065,8 @@ $("#tab_2").on("click", "a", function (event) {
     $("#m_save_but").attr("disabled", true);
     $("#del_save_but").attr("disabled", true);
     $("#ver_vf").attr("disabled", true);
+    document.getElementById("c_Process").value = "";
+    document.getElementById("m_Process").value = "";
 });
 
 $("#form1").validate({
@@ -1731,7 +1801,7 @@ $grid = $("#tb_mt_lot").jqGrid
         onSelectRow: function (id, rowid, status, e) {
             var selectedRowId = $("#tb_mt_lot").jqGrid("getGridParam", 'selrow');
             row_id = $("#tb_mt_lot").getRowData(selectedRowId);
-            $("#tb_mt_cd").setGridParam({ url: "/ActualWO/ds_mapping_w?" + "mt_cd=" + row_id.mt_cd, datatype: "json" }).trigger("reloadGrid");
+            $("#tb_mt_cd").setGridParam({ url: "/ActualWO/ds_mapping_w?" + "mt_cd=" + encodeURIComponent(row_id.mt_cd), datatype: "json" }).trigger("reloadGrid");
             $('#id_mt_cm').val(row_id.wmtid);
             $('#cp_lot').val(row_id.mt_cd);
 
@@ -1832,7 +1902,7 @@ function check_update_grty(mt_cd, value, id) {
 }
 
 $("#save_bb").click(function () {
-    debugger;
+  //  debugger;
     if ($("#cp_bb_no2").val() == "") {
         alert("Please enter your container");
         return false;
@@ -1866,7 +1936,7 @@ $("#save_bb").click(function () {
     }
 });
 $("#save_composite").click(function () {
-    debugger
+   // debugger
     //if (idCurrentSelected != idFirstCheckToSaveMTCD) {
     //    alert("Đồ đựng này đã cũ rồi vui lòng chọn đồ đựng mới hơn!");
     //      idCurrentSelected = "";
@@ -2886,6 +2956,7 @@ $("#tableNVLProcess").jqGrid
             { key: true, label: 'id', name: 'id', width: 100, align: 'center', hidden: true },
             { label: 'style_no', name: 'style_no', width: 150, align: 'left', hidden: true },
             { label: 'level', name: 'level', width: 150, align: 'left', hidden: true },
+            { label: 'process_code', name: 'process_code', width: 150, align: 'left', hidden: true },
             { label: 'name', name: 'name', width: 150, align: 'left', hidden: true },
             { label: 'Material No', name: 'mt_no', width: 150, align: 'left' },
             { label: 'MT Name', name: 'mt_nm', sortable: true, width: 150 },
@@ -2933,6 +3004,7 @@ function getData_ProductCode(pdata) {
     //params.level = $("#level").val().trim();
     params.name = $("#c_name").val().trim();
     params.product = $("#product").val().trim();
+    params.process_code = $("#m_Process").val().trim();
     $('#tableNVLProcess').jqGrid('setGridParam', { search: true, postData: { searchString: $("#auto_complete_search").val() } });
 
     $.ajax({
@@ -2965,7 +3037,7 @@ function showChildGridMaterialdetail(parentRowID, parentRowKey) {
 
 
     $("#" + childGridID2).jqGrid({
-        url: "/DevManagement/getMaterialChild?ProductCode=" + rowData.style_no + "&name=" + rowData.name + "&MaterialPrarent=" + rowData.mt_no,
+        url: "/DevManagement/getMaterialChild?ProductCode=" + rowData.style_no + "&name=" + rowData.name + "&MaterialPrarent=" + encodeURIComponent(rowData.mt_no) + "&process_code=" + rowData.process_code,
         mtype: "GET",
         datatype: "json",
         async: false,
@@ -3047,7 +3119,7 @@ function ClickViewDetailDatetime(e) {
 var parentRowKey3 = 0;
 var childGridID3 = "";
 function showChildGridMaterialReplace(parentRowID, parentRowKey) {
-    debugger
+   
     parentRowKey3 = parentRowKey;
     childGridID3 = parentRowID + "_table";
     var childGridPagerID = parentRowID + "_pager";
@@ -3056,7 +3128,7 @@ function showChildGridMaterialReplace(parentRowID, parentRowKey) {
 
 
     $("#" + childGridID3).jqGrid({
-        url: "/ActualWO/LayDanhsachLieuThaythe?at_no=" + rowData.at_no + "&mt_no=" + rowData.MaterialNo + "&ProductCode=" + rowData.ProductCode,
+        url: "/ActualWO/LayDanhsachLieuThaythe?at_no=" + rowData.at_no + "&mt_no=" + rowData.MaterialNo + "&ProductCode=" + rowData.ProductCode + "&process_code=" + rowData.process_code,
         mtype: "GET",
         datatype: "json",
         async: false,
