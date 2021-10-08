@@ -88,7 +88,7 @@ namespace Mvc_VD.Services
             //                max(`b`.`bundle_unit`) = 'Roll')  THEN concat(round((sum(`a`.`gr_qty`) / max(`b`.`spec`)),2), ' Roll') 
             //                 ELSE concat(round(SUM(`a`.`gr_qty`),2) ,' EA')
             //                END)) AS `qty`, 
- 	          //              b.bundle_unit,
+            //              b.bundle_unit,
             //                SUM( CASE  WHEN a.mt_sts_cd='002' THEN a.gr_qty ELSE 0  END)AS 'DSD',
             //                SUM( CASE WHEN (a.mt_sts_cd='001' or a.mt_sts_cd='004') THEN a.gr_qty ELSE 0  END)  AS 'CSD' 
             //                FROM w_material_info AS a 
@@ -108,8 +108,7 @@ namespace Mvc_VD.Services
             //                AND a.mt_type!='CMT' 
             //                GROUP BY a.mt_no
             //    ) MyDerivedTable";
-
-
+          
 
             string viewSql = @" SET sql_mode = '';SET @@sql_mode = '';
                             SELECT  max(table1.mt_no)mt_no,max(table1.mt_nm)mt_nm,      

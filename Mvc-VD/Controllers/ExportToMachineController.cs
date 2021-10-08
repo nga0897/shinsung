@@ -455,7 +455,7 @@ namespace Mvc_VD.Controllers
                 //nếu level = 000 thì search like 002 
                 if (isExistLocation.level_cd.Equals("000"))
                 {
-                    lct_cd = "002";
+                    lct_cd = lct_cd.Substring(0, 6);
                 }
                //kiểm tra location có rỗng ko và nếu level = 002 thì search bằng chính nó, ngược lại search like
                 if (!string.IsNullOrEmpty(lct_cd) && isExistLocation.level_cd.Equals("001"))

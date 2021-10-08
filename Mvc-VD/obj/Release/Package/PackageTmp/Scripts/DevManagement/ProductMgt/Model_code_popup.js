@@ -133,19 +133,21 @@ $('#del_save_but').click(function () {
 
 
 $("#deletestyle").click(function () {
+    var id = $('#m_sid').val();
     $.ajax({
         url: "/DevManagement/deleteStyle",
         type: "post",
         dataType: "json",
         data: {
-            sid: $('#m_sid').val(),
+            sid: id ,
         },
-        success: function (data) {
-            if (data.result != 0) {
-                jQuery("#list").setGridParam({ datatype: "json" }).trigger('reloadGrid');
+        success: function (resposive) {
+            if (resposive.result) {
+                $("#list").jqGrid('delRowData', id);
+                SuccessAlert(resposive.message);
             }
             else {
-                alert('Product was not existing. Please check again');
+                ErrorAlert(resposive.message);
             }
 
         },

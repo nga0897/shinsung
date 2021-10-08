@@ -106,6 +106,10 @@
                                 </div>
                             </div>
                             <div class="col-md-2 py-1">
+                                <label>Process Name</label>
+                                <select name="process" id="c_Process" class="form-control"></select>
+                            </div>
+                            <div class="col-md-2 py-1">
                                 <label>Target</label>
                                 <input type="text" name="target" id="c_target" class="input-text form-control" placeholder="Target" value="0" style="text-align: right" pattern="[0-9]*">
                             </div>
@@ -135,7 +139,10 @@
                                     <span class="input-group-addon psbom"><a href="#" class="poupdialogStyle"><i class="fa fa-search text-navy"></i></a></span>
                                 </div>
                             </div>
-
+                            <div class="col-md-2 py-1">
+                                <label>Process Name</label>
+                                <select name="process" id="m_Process" class="form-control"></select>
+                            </div>
                             <div class="col-md-2 py-1">
                                 <label>Target</label>
                                 <input type="text" name="target" id="m_target" class="input-text form-control" placeholder="Target" value="0" style="text-align: right" pattern="[0-9]*">
@@ -1245,7 +1252,7 @@
 @section scripts{
     <script src="~/Content/jquery.validate_V1.9/jquery.validate.min.js"></script>
     <script src="~/Scripts/ActualWO/Web/Web.js"></script>
-    <script src="~/Scripts/DevManagement/BomMgt/Product_Poup.js"></script>
+    @*<script src="~/Scripts/DevManagement/BomMgt/Product_Poup.js"></script>*@
     <script src="~/Scripts/ActualWO/Web/Add_Worker.js"></script>
     <script src="~/Scripts/ActualWO/Web/staff_popup.js"></script>
     <script src="~/Scripts/ActualWO/Web/Add_machine.js"></script>
@@ -1256,5 +1263,7 @@
     <script src="~/Scripts/ActualWO/Web/Composite_Poup.js"></script>
     <script src="/Scripts/ActualWO/Web/popupbobin.js"></script>
     <script src="~/Scripts/ActualWO/Web/popupbobin_dv.js"></script>
+
     <script src="~/Scripts/ActualWO/Web/popupbobin_2.js"></script>
+    <script src="~/Scripts/ActualWO/Web/Product_Poup.js"></script>
 }

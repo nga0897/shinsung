@@ -112,9 +112,9 @@
                                                         <label>IsApply</label>
                                                         <input type="checkbox" id="m_IsApply" name="IsApply" /> <label></label>
                                                     </div>
-                                                    <div class="col-md-3 mt-5 text-center">
-                                                        <button type="button" id="Update_Process" class="btn btn-success button-srh2 " style=" margin-right: 10px;"><i class="fa fa-save">&nbsp;Modify</i></button>
-                                                        @*<button type="button" id="Delete_Process" class="btn btn-danger button-srh2 " style=" margin-right: 10px;"><i class="fa fa-save">&nbsp;Delete</i></button>*@
+                                                    <div class="col-md-3 mt-5">
+                                                        <button type="button" id="Update_Process" class="btn btn-success button-srh2 "><i class="fa fa-save">&nbsp;Modify</i></button>
+                                                        <button type="button" id="Delete_Process" class="btn btn-danger button-srh2 "><i class="fa fa-save">&nbsp;Delete</i></button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -162,7 +162,7 @@
                                         </div>
                                         <div class="col-md-3 py-1">
                                             <label>Description</label>
-                                            <input type="text" id="c_description" class="input-text form-control" placeholder="Description">
+                                            <input type="text" id="c1_description" class="input-text form-control" placeholder="Description">
                                         </div>
                                         <div class="col-md-1 py-4">
                                             <label>IsFinish</label>
@@ -198,7 +198,7 @@
                                         </div>
                                         <div class="col-md-2 py-1">
                                             <label>Description</label>
-                                            <input type="text" id="m_description" class="input-text form-control" placeholder="Description">
+                                            <input type="text" id="m1_description" class="input-text form-control" placeholder="Description">
                                         </div>
                                         <div class="col-md-1 py-4">
                                             <label>IsFinish</label>
@@ -331,11 +331,9 @@
 <div id="question" style="display:none; cursor: default">
     <div class="noidung">
         <h3>Bạn có chắc muốn xóa không</h3>
-
         <input type="button" id="no" value="No" />
         <input type="button" id="yes" value="Yes" />
     </div>
-
 </div>
 <!--DIALOG CONFIRM DELETE-->
 <div id="dialogDangerous" title="Are you make sure DELETE ?">

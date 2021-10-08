@@ -127,16 +127,16 @@ namespace Mvc_VD.Services
         bool IsMaterialInfoExistByBom(string productCode, string MaterialNo);
         void UpdateProductDeApply(int id_actualpr, string IsApply);
         DatawActualPrimary IsCheckApply(string at_no);
-        IEnumerable<WActualBom> GetListmaterialbom(string style_no, string at_no);
+        IEnumerable<WActualBom> GetListmaterialbom(string style_no, string at_no, string process_code);
         IEnumerable<BuyerQRModel> GetdataTemGoi(string product, string printedDate, string shift);
         WMaterialInfoNew CheckWMaterialInfo(string materialCode);
         IEnumerable<DRoutingInfo> Getrouting(string productCode, string process_code);
-        bool IsMaterialInfoExistByProcess(string productCode, string name, string MaterialNo);
+        bool IsMaterialInfoExistByProcess(string productCode, string name, string MaterialNo, string process_code);
         IEnumerable<ProductMaterailModel> ListNVLForProcess(string ProductCode, int level);
-        IEnumerable<ProductMaterailModel> GetWMaterialMappingNVL(string style_no, string mt_cd, string mt_type, string name);
+        IEnumerable<ProductMaterailModel> GetWMaterialMappingNVL(string style_no, string mt_cd, string mt_type, string name, string process_code);
         WActualMaxLevel NameBTP(string at_no, int? level);
         bool IsBTPExistByMapping(string mtLot, string mt_no);
-        IEnumerable<WActualBom> GetListLieuThaythe(string ProductCode, string at_no, string mt_no);
+        IEnumerable<WActualBom> GetListLieuThaythe(string ProductCode, string at_no, string mt_no, string process_code);
         string CheckExistProcessUnitStaff(string staff_id, int id_actual, string start, string end);
         void DeleteProcess(string id_actual);
         void DeleteStaff(string id_actual);
@@ -150,6 +150,7 @@ namespace Mvc_VD.Services
         IEnumerable<WActualBom> GetListmaterialbomdetail(string product, string at_no, string mt_no, string shift_dt, string shift_name);
         IEnumerable<WActualBom> GetListmaterialbomdetailReplace(string product, string at_no, string mt_no, string shift_dt, string shift_name);
         IEnumerable<BobbinPoup> GetListSearchGetListBoBinPopup(int? id_actual, string bb_no, string bb_nm, string mt_cd);
+        int InsertWActualPrimary(w_actual_primary item);
         void UpdateWPrimaryPO(ActualPrimaryModel item);
         ActualPrimaryModel GetPoInfo(int id_actualpr);
         string GetProcessNameWActualPrimary(string at_no);
@@ -1531,7 +1532,7 @@ namespace Mvc_VD.Services
                         a.product,
                         a.remark,
                         0 process_count,
-                      
+                      a.process_code,
                       
                         b.md_cd AS md_cd,
                         b.style_nm AS style_nm 
@@ -1707,18 +1708,18 @@ namespace Mvc_VD.Services
                 new MySqlParameter("1", at_no)).FirstOrDefault();
         }
 
-        public IEnumerable<WActualBom> GetListmaterialbom(string style_no, string at_no)
+        public IEnumerable<WActualBom> GetListmaterialbom(string style_no, string at_no, string process_code)
         {
 
             //string getvalue = @" CALL GetListMaterialForBom(@1,@2);  ";
-            string getvalue = @" CALL GetListMaterialPO(@1,@2);  ";
+            string getvalue = @" CALL GetListMaterialPO(@1,@2,@3);  ";
             return _db.Database.SqlQuery<WActualBom>(getvalue,
 
                 new MySqlParameter("1", style_no),
-                new MySqlParameter("2", at_no)
+                new MySqlParameter("2", at_no),
+                new MySqlParameter("3", process_code)
                 );
         }
-
         public IEnumerable<BuyerQRModel> GetdataTemGoi(string product, string printedDate, string shift)
         {
             string sqlquery = @"SELECT a.id, a.buyer_qr , a.product_code ,  b.style_nm  product_name, b.md_cd AS model, c.stamp_name , a.reg_dt,
@@ -1753,7 +1754,7 @@ namespace Mvc_VD.Services
         }
 
 
-        public bool IsMaterialInfoExistByProcess(string productCode, string name, string MaterialNo)
+        public bool IsMaterialInfoExistByProcess(string productCode, string name, string MaterialNo, string process_code)
         {
             string QuerySQL = @"SELECT CASE 
             WHEN EXISTS(
@@ -1761,7 +1762,7 @@ namespace Mvc_VD.Services
                  FROM product_material a 
 					  LEFT JOIN product_material_detail b ON a.style_no = b.ProductCode AND a.level = b.level
 
-                 WHERE a.style_no =@1 AND a.name = @2 AND (a.mt_no = @3 OR b.MaterialNo = @3)
+                 WHERE a.style_no =@1 and a.process_code = @4 AND a.name = @2  AND (a.mt_no = @3 OR b.MaterialNo = @3)
 					) THEN true
              ELSE false
             END ";
@@ -1769,7 +1770,8 @@ namespace Mvc_VD.Services
             var result = _db.Database.SqlQuery<bool>(QuerySQL,
                 new MySqlParameter("1", productCode),
                 new MySqlParameter("2", name),
-                new MySqlParameter("3", MaterialNo)
+                new MySqlParameter("3", MaterialNo),
+                new MySqlParameter("4", process_code)
                 ).FirstOrDefault();
 
             return result;
@@ -1791,7 +1793,7 @@ namespace Mvc_VD.Services
                 );
         }
 
-        public IEnumerable<ProductMaterailModel> GetWMaterialMappingNVL(string style_no, string mt_cd, string mt_type, string name)
+        public IEnumerable<ProductMaterailModel> GetWMaterialMappingNVL(string style_no, string mt_cd, string mt_type, string name, string process_code)
         {
             //string sqlquery = @"SELECT a.style_no, a.mt_no, b.MaterialNo
             //                        FROM product_material a 
@@ -1849,9 +1851,9 @@ namespace Mvc_VD.Services
                                 FROM tmpa
                                 INNER JOIN (SELECT  b.MaterialNo AS mt_no,b.MaterialPrarent  MaterialPrarents
                                 FROM  product_material_detail b 
-                                WHERE  b.ProductCode = @1 AND b.name = @4 )  tmpb on tmpb.mt_no=tmpa.mt_no);
+                                WHERE  b.ProductCode = @1 AND b.name = @4 AND b.process_code = @5)  tmpb on tmpb.mt_no=tmpa.mt_no);
 
-                                SELECT id FROM product_material WHERE style_no =@1 AND name =  @4 AND mt_no NOT IN(select MaterialPrarents from tmpe
+                                SELECT id FROM product_material WHERE style_no =@1 AND name =  @4 AND process_code = @5 AND mt_no NOT IN(select MaterialPrarents from tmpe
                                 ) AND mt_no NOT IN (select mt_no FROM tmpa );
                                 DROP TEMPORARY TABLE tmpa;
                                 DROP TEMPORARY TABLE tmpe;";
@@ -1860,7 +1862,8 @@ namespace Mvc_VD.Services
                 new MySqlParameter("1", style_no),
                 new MySqlParameter("2", mt_cd),
                 new MySqlParameter("3", mt_type),
-                new MySqlParameter("4", name)
+                new MySqlParameter("4", name),
+                new MySqlParameter("5", process_code)
                 ); ;
         }
 
@@ -1898,14 +1901,15 @@ namespace Mvc_VD.Services
             return result;
         }
 
-        public IEnumerable<WActualBom> GetListLieuThaythe(string ProductCode, string at_no, string mt_no)
+        public IEnumerable<WActualBom> GetListLieuThaythe(string ProductCode, string at_no, string mt_no, string process_code)
         {
-            string getvalue = @" CALL GetListMaterialPOReplace(@1,@2,@3);  ";
+            string getvalue = @" CALL GetListMaterialPOReplace(@1,@2,@3, @4);  ";
             return _db.Database.SqlQuery<WActualBom>(getvalue,
 
                 new MySqlParameter("1", ProductCode),
                 new MySqlParameter("2", at_no),
-                new MySqlParameter("3", mt_no)
+                new MySqlParameter("3", mt_no),
+                new MySqlParameter("4", process_code)
                 );
         }
 
@@ -2100,6 +2104,28 @@ namespace Mvc_VD.Services
                                                              new MySqlParameter("7", "%" + mt_cd + "%")
                                                             );
         }
+        public int InsertWActualPrimary(w_actual_primary item)
+        {
+            string sqlinsert = @"INSERT INTO w_actual_primary(at_no,type,target,product,process_code,remark,finish_yn,IsApply,IsMove,reg_id,reg_dt,chg_id,chg_dt) 
+            VALUES(@1,@2,@3,@4,@5,@6,@7,@8,@9,@10,@11,@12,@13);
+            SELECT LAST_INSERT_ID();";
+            return _db.Database.SqlQuery<int>(sqlinsert,
+                new MySqlParameter("1", item.at_no),
+                new MySqlParameter("2", item.type),
+                new MySqlParameter("3", item.target),
+                new MySqlParameter("4", item.product),
+                new MySqlParameter("5", item.process_code),
+                new MySqlParameter("6", item.remark),
+                new MySqlParameter("7", "N"),
+                new MySqlParameter("8", "Y"),
+                new MySqlParameter("9", false),
+                new MySqlParameter("10", item.reg_id),
+                new MySqlParameter("11", item.reg_dt),
+                new MySqlParameter("12", item.chg_id),
+                new MySqlParameter("13", item.chg_dt)
+                ).FirstOrDefault();
+        }
+
         public void UpdateWPrimaryPO(ActualPrimaryModel item)
         {
             string sqlquery = @"UPDATE w_actual_primary SET target=@2 , remark = @3, process_code = @4, chg_id = @5 WHERE id_actualpr=@1 ";

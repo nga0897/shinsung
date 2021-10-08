@@ -242,21 +242,22 @@ $('#del_save_but').click(function () {
 
 
 $("#deletestyle").click(function () {
+    var id = $('#m_mtid').val();
     $.ajax({
         url: "/DevManagement/deleteMaterial",
         type: "post",
         dataType: "json",
         data: {
-            id: $('#m_mtid').val(),
+            id: id,
         },
-        success: function (data) {
-            if (data.result != 0) {
-                $("#list").jqGrid('delRowData', data);
+        success: function (resposive) {
+            if (resposive.result) {
+                $("#list").jqGrid('delRowData', id);
+                SuccessAlert(resposive.message);
             }
             else {
-                alert('Material was not existing. Please check again');
+                ErrorAlert(resposive.message);
             }
-
         },
         error: function (result) { }
     });

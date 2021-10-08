@@ -447,24 +447,49 @@ namespace Mvc_VD.Controllers
         {
             try
             {
-                int count = db.d_material_info.Where(x => x.mtid == id).ToList().Count();
-                var result = new { result = true };
-                if (count > 0)
+                var userAcount = Session["userid"] == null ? null : Session["userid"].ToString();
+             
+                if (string.IsNullOrEmpty(userAcount))
                 {
+                    return Json(new { result = false, message = "Vui lòng đăng nhập để sửa số lượng" }, JsonRequestBehavior.AllowGet);
+                }
+                var dataLieu = db.d_material_info.Where(x => x.mtid == id).FirstOrDefault();
+              
+                if (dataLieu != null)
+                {
+                    //kiểm tra liệu đã đăng kí ở BOM && ROUTING chưa...
+                    int isCheckBom = _IDomMS.CheckIsExistMaterialBom(dataLieu.mt_no);
+                    if (isCheckBom > 0)
+                    {
+                        return Json(new { result = false, message = "Liệu này đã được thêm vào BOM" }, JsonRequestBehavior.AllowGet);
+                    }
+                    //liệu chính
+                    int isCheckRouting = _IDomMS.CheckIsExistMaterialRouting(dataLieu.mt_no);
+                    if (isCheckRouting > 0)
+                    {
+                        return Json(new { result = false, message = "Liệu này đã được thêm vào Routing" }, JsonRequestBehavior.AllowGet);
+                    }
+                    //liệu thay thế 
+                    int isCheckRouting2 = _IDomMS.CheckIsExistMaterialRouting2(dataLieu.mt_no);
+                    if (isCheckRouting2 > 0)
+                    {
+                        return Json(new { result = false, message = "Liệu này đã được thêm vào Routing" }, JsonRequestBehavior.AllowGet);
+                    }
                     d_material_info d_material_info = db.d_material_info.Find(id);
 
-                    var ds_w_material_info = db.w_material_info.Where(x => x.mt_no == d_material_info.mt_no).ToList();
-                    db.Entry(d_material_info).State = EntityState.Deleted;
+                    d_material_info.chg_id = userAcount;
+                    d_material_info.del_yn = "Y";
+                    db.Entry(d_material_info).State = EntityState.Modified;
                     db.SaveChanges();
-                    return Json(id, JsonRequestBehavior.AllowGet);
+                    return Json(new { result = true, message ="Xóa thành công"}, JsonRequestBehavior.AllowGet);
                 }
-                result = new { result = false };
-                return Json(result, JsonRequestBehavior.AllowGet);
+
+                return Json(new { result = false, message = "Không xóa được" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
-                return Json(new { result = false }, JsonRequestBehavior.AllowGet);
-            }
+                return Json(new { result = false, message = "Lỗi hệ thống" }, JsonRequestBehavior.AllowGet);
+                }
         }
 
         public ActionResult insertmaterial(d_material_info d_material_info, string sts_create)
@@ -2492,17 +2517,34 @@ namespace Mvc_VD.Controllers
             return new InitMethods().ConvertDataTableToJsonAndstring(sql.ToString());
         }
 
-        public ActionResult deleteStyle(d_style_info d_style_info, int sid)
+        public ActionResult deleteStyle(int sid)
         {
-            var countdb = db.d_style_info.Count(x => x.sid == sid);
-            if (countdb != 0)
+            try
             {
-                var product_data = db.d_style_info.FirstOrDefault(x => x.sid == sid);
-                db.d_style_info.Remove(product_data);
-                db.SaveChanges();
-                return Json(new { result = countdb }, JsonRequestBehavior.AllowGet);
+                var dataProduct = db.d_style_info.Where(x => x.sid == sid).FirstOrDefault();
+                if (dataProduct != null)
+                {
+                    //kiểm tra product này đã đăng kí ở BOM && ROUTING chưa...
+                    int isCheckBom = _IDomMS.CheckIsExistProductBom(dataProduct.style_no);
+                    if (isCheckBom > 0)
+                    {
+                        return Json(new { result = false, message = "PRODUCT CODE này đã được đăng kí ở BOM" }, JsonRequestBehavior.AllowGet);
+                    }
+                    int isCheckRouting = _IDomMS.CheckIsExistProductRouting(dataProduct.style_no);
+                    if (isCheckRouting > 0)
+                    {
+                        return Json(new { result = false, message = "PRODUCT CODE này đã được đăng kí ở ROUTING" }, JsonRequestBehavior.AllowGet);
+                    }
+                    db.d_style_info.Remove(dataProduct);
+                    db.SaveChanges();
+                    return Json(new { result = true, message = "Xóa thành công" }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { result = false, message = "Product này không tồn tại, không xóa được" }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { result = countdb }, JsonRequestBehavior.AllowGet);
+            catch (Exception)
+            {
+                return Json(new { result = false, message = "Lỗi hệ thống" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult GetModelcode()
@@ -2970,20 +3012,30 @@ namespace Mvc_VD.Controllers
 
         public ActionResult deleteModel(int mdid)
         {
-            var count_data = db.d_model_info.Count(x => x.mdid == mdid);
-            d_model_info dminfo = db.d_model_info.Find(mdid);
-
-            if (count_data != 0)
+            try
             {
-                db.d_model_info.Remove(dminfo);
-                db.SaveChanges();
-                return Json(new { result = true, mdid = mdid }, JsonRequestBehavior.AllowGet);
+                var dataModel = db.d_model_info.Where(x => x.mdid == mdid).FirstOrDefault();
+                if (dataModel != null)
+                {
+                    //kiểm tra model này đã đăng kí ở Product chưa
+                    int isCheckBom = _IDomMS.CheckIsExistModelProduct(dataModel.md_cd);
+                    if (isCheckBom > 0)
+                    {
+                        return Json(new { result = false, message = "Model này đã được đăng kí ở Product" }, JsonRequestBehavior.AllowGet);
+                    }
+                    db.d_model_info.Remove(dataModel);
+                    db.SaveChanges();
+                    return Json(new { result = true, message = "Xóa thành công" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { result = false, message = "MÃ model không tồn tại" }, JsonRequestBehavior.AllowGet);
+                }
             }
-            else
+            catch (Exception)
             {
-                return Json(new { result = false }, JsonRequestBehavior.AllowGet);
+                return Json(new { result = false, message = "Lỗi hệ thống" }, JsonRequestBehavior.AllowGet);
             }
-            //return View();
         }
 
         public ActionResult ExportToExcelModel()
@@ -3961,7 +4013,7 @@ namespace Mvc_VD.Controllers
             var result = dt.AsEnumerable().OrderByDescending(x => x.Field<string>("mt_no"));
             return new InitMethods().ReturnJsonResultWithPaging(pageing, total, result);
         }
-        public JsonResult Deleteprocess(int idr)
+        public JsonResult Deleteprocess(int idr, string process_code)
         {
             try
             {
@@ -3971,10 +4023,11 @@ namespace Mvc_VD.Controllers
                     return Json(new { result = false, message = "Không tìm thấy công đoạn này" }, JsonRequestBehavior.AllowGet);
                 }
 
-                string checkExist = @"SELECT EXISTS(SELECT id FROM product_material  WHERE style_no=@1 and name = @2);";
+                string checkExist = @"SELECT EXISTS(SELECT id FROM product_material  WHERE style_no=@1 and name = @2 and process_code = @3);";
                 int kq = db.Database.SqlQuery<int>(checkExist,
                     new MySqlParameter("@1", find_id.style_no),
-                     new MySqlParameter("@2", find_id.name)
+                     new MySqlParameter("@2", find_id.name),
+                     new MySqlParameter("@3", process_code)
                     ).FirstOrDefault();
                 if (kq > 0)
                 {
@@ -4028,7 +4081,7 @@ namespace Mvc_VD.Controllers
 
                 if (model.isActive == "Y")
                 {
-                    _IDomMS.UpdateNVLDeTinhHieuSuat(model.style_no);
+                    _IDomMS.UpdateNVLDeTinhHieuSuat(model.style_no, model.process_code);
                 }
            
                 int idbominfo = _IDomMS.InsertToProductMaterial(item);
@@ -4054,13 +4107,14 @@ namespace Mvc_VD.Controllers
                     return Json(new { result = false, message = exits }, JsonRequestBehavior.AllowGet);
                 }
                 string checkExist = @"SELECT EXISTS(SELECT id FROM product_material  
-                        WHERE style_no=@1 AND level = @2  AND mt_no = @3 AND  id != @4
+                        WHERE style_no=@1 and process_code = @5 AND level = @2  AND mt_no = @3 AND  id != @4
                                 );";
                 int kq = db.Database.SqlQuery<int>(checkExist,
                     new MySqlParameter("1", ProductMaterial.style_no),
                      new MySqlParameter("2", ProductMaterial.level),
                       new MySqlParameter("3", table.mt_no),
-                      new MySqlParameter("4", table.id)
+                      new MySqlParameter("4", table.id),
+                      new MySqlParameter("5", table.process_code)
                     ).FirstOrDefault();
                 if (kq > 0)
                 {
@@ -4077,7 +4131,7 @@ namespace Mvc_VD.Controllers
                
                 if (table.isActive == "Y")
                 {
-                    _IDomMS.UpdateNVLDeTinhHieuSuat(ProductMaterial.style_no);
+                    _IDomMS.UpdateNVLDeTinhHieuSuat(ProductMaterial.style_no, ProductMaterial.process_code);
                 }
                 _IDomMS.UpdateToProductMaterial(ProductMaterial);
                 ProductMaterial.mt_nm = db.d_material_info.Where(x => x.mt_no == table.mt_no).FirstOrDefault().mt_nm;
@@ -4281,6 +4335,31 @@ namespace Mvc_VD.Controllers
                 return Json(new { result = false, message = exs }, JsonRequestBehavior.AllowGet);
             }
 
+        }
+        public JsonResult DeleteProductProcess(int id)
+        {
+            try
+            {
+               
+                //kiểm tra có tồn tại không
+                var ProductProcess = _IDomMS.GetProductProcess(id);
+                if (ProductProcess == null)
+                {
+                    return Json(new { result = false, message = exits }, JsonRequestBehavior.AllowGet);
+                }
+                //kiểm tra công đoạn này có detail chưa trong bảng d_routing_info
+                var checkMAkeProcess = _IDomMS.CheckLevelProcess(ProductProcess.style_no, ProductProcess.process_code.ToString()).ToList();
+                if (checkMAkeProcess.Count > 0 )
+                {
+                    return Json(new { result = false, message = "Có công đoạn rồi không xóa được" }, JsonRequestBehavior.AllowGet);
+                }
+                _IDomMS.DeleteProductProcessForId(id);
+                return Json(new { result = true, message = "Xóa thành công"}, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { result = false, message = exs }, JsonRequestBehavior.AllowGet);
+            }
         }
         #endregion Routing
         #region Resource

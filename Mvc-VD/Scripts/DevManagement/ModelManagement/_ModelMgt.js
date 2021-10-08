@@ -6,9 +6,9 @@ $grid = $('#ModelMgtGrid').jqGrid({
     datatype: 'json',
     mtype: 'Get',
     colModel: [
-        { key: true, label: 'id', name: 'mdid', width: 10, hidden: true },
-        { label: 'Model Code', name: 'md_cd', width: 350, align: 'left' },
-        { label: 'Name', name: 'md_nm', width: 500, align: 'left' },
+        { key: true, label: 'id', name: 'mdid', width: 10, hidden:true},
+        { label: 'Model Code', name: 'md_cd', width: 200, align: 'left' },
+        { label: 'Name', name: 'md_nm', width: 200, align: 'left' },
         { label: 'Use Y/N', name: 'use_yn', width: 100, align: 'center' },
         { label: 'Create User', name: 'reg_id', width: 90, align: 'center' },
         { label: 'Create Date', name: 'reg_dt', align: 'center', width: 150, formatter: 'date', formatoptions: { srcformat: "ISO8601Long", newformat: "Y-m-d H:i:s" } },

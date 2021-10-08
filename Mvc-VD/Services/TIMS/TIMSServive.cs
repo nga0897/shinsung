@@ -254,6 +254,7 @@ namespace Mvc_VD.Services
         int UpdateBuyerQRGeneral(generalfg item);
         int UpdateDestroy(int id, string sts_update, string mt_cd, string bb_no, string chg_id);
         int CallSPUpdateRedo(int id, string sts_update, string mt_cd, string bb_no, string chg_id);
+        string CheckEA(int? id_actual); 
     }
     public class TIMSService : ITIMSService
     {
@@ -3662,6 +3663,12 @@ WHERE
                                                    new MySqlParameter("5", chg_id)
                    );
             return result;
+        }
+
+        public string CheckEA(int? id_actual)
+        {
+            string sqlquery = @"SELECT don_vi_pr FROM w_actual WHERE  id_actual = @1 ";
+            return db.Database.SqlQuery<string>(sqlquery, new MySqlParameter("@1", id_actual)).FirstOrDefault();
         }
     }
 }

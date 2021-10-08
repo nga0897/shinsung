@@ -48,6 +48,20 @@ $("#tab_3").on("click", "a", function (event) {
     $("#tab_c3").addClass("active");
     GridMemo();
 });
+function getCheck(e) {
+
+    //var checkbox = document.getElementById("myCheck");
+    //if (checkbox.checked === true) {
+      
+    //}
+    //else {
+    //    return;
+    //}
+    $("#s_locationCode").val("");
+    $("#s_locationNAme").val("");
+    return;
+
+}
 
 $(document).ready(function () {
     $('#return_date').datepicker({

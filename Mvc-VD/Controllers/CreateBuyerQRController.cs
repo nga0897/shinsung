@@ -80,6 +80,27 @@ namespace Mvc_VD.Controllers
             }
 
         }
+        public JsonResult GetProductForBuyer()
+        {
+            // Get Data from ajax function
+            var code = Request["style_no"];
+            var code_nm = Request["style_nm"];
+            var modecode = Request["md_cd"];
+         
+            var sql = new StringBuilder();
+
+            sql.Append(" SELECT a.* ")
+            .Append("FROM  d_style_info as a ")
+            .Append("Where ('" + code + "'='' OR  a.style_no like '%" + code + "%' )")
+            .Append(" AND ( a.stamp_code IS NOT NULL  and a.stamp_code <> '' ) ")
+            .Append("AND ('" + code_nm + "'='' OR  a.style_nm like '%" + code_nm + "%' )")
+            .Append("AND ('" + modecode + "'='' OR  a.md_cd like '%" + modecode + "%' )")
+            
+            .Append("ORDER BY a.chg_dt desc ");
+
+            return new InitMethods().ConvertDataTableToJsonAndstring(sql.ToString());
+
+        }
         public JsonResult Create(string printedDate)
         {
             string productCode = Request["productCode"] == null ? "" : Request["productCode"].Trim();
@@ -95,6 +116,19 @@ namespace Mvc_VD.Controllers
             string stampCode = Request["stampCode"] == null ? "0" : Request["stampCode"].Trim();
             string ssver = Request["ssver"] == null ? "" : Request["ssver"].Trim().ToUpper();
 
+            //kiểm tra ngày có phải dạng date không, tránh trường hợp 31-09-2021 không tồn tại nhưng vẫn tạo
+          
+            DateTime date;
+            bool chValidity = DateTime.TryParseExact(
+                    printedDate,
+                     "yyyy-MM-dd",
+                     CultureInfo.InvariantCulture,
+                     DateTimeStyles.None,
+                     out date);
+            if (chValidity == false)
+            {
+                return Json(new { result = false, message = "Chọn ngày không có thực, vui lòng chọn lại" }, JsonRequestBehavior.AllowGet);
+            }
             using (Entities db = new Entities())
             {
                 StringBuilder tempBuyerQR = new StringBuilder();

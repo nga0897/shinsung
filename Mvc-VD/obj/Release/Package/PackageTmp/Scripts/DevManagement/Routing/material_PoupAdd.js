@@ -129,6 +129,7 @@ $("#savestyle_material1").click(function () {
                 "ProductCode": $("#m_product").val(),
                 "level": $("#level").val(),
                 "name": $("#mProcess").val().trim(),
+                "process_code": $("#c_process_code").val().trim(),
               
                 "MaterialPrarent": $("#m_mt_no").val(),
                
@@ -176,11 +177,11 @@ function getDataOutBox(pdata) {
     params.start = start1;
     params.end = end1;
     params.MaterialPrarent = MaterialPrarent;
-    //params.end1Data = type;
     $("#popupMaterial1").jqGrid('setGridParam', { search: true, postData: { searchString: $("#auto_complete_search").val() } });
     params._search = pdata._search;
 
     $.ajax({
+        //url: '/DevManagement/searchmaterial_2',
         url: '/DevManagement/searchmaterial_replace',
         type: "Get",
         contentType: "application/json; charset=utf-8",
