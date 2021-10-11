@@ -483,7 +483,7 @@ namespace Mvc_VD.Controllers
                     db.SaveChanges();
                     return Json(new { result = true, message ="Xóa thành công"}, JsonRequestBehavior.AllowGet);
                 }
-
+                 
                 return Json(new { result = false, message = "Không xóa được" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
