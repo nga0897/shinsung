@@ -1,4 +1,9 @@
-﻿$(document).ready(function () {
+﻿
+
+
+
+
+$(document).ready(function () {
    
     $("#s_input_dt").datepicker({
         dateFormat: 'yy-mm-dd',
