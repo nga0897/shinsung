@@ -13,6 +13,7 @@ namespace Mvc_VD.Services
     public interface IWIPService
     {
         IEnumerable<GeneralWIP> GetListGeneralMaterialWIP(string mt_no, string product_cd, string mt_nm, string recevice_dt_start,string recevice_dt_end, string sts, string lct_cd,string mt_cd);
+        IEnumerable<GeneralWIP> GetListGeneralExportToMachine(string mt_no, string product_cd, string mt_nm, string recevice_dt_start,string recevice_dt_end, string sts, string lct_cd,string mt_cd);
         int TotalRecordsSearchGeneralMaterialWIP(string mt_no, string product_cd, string mt_nm, string recevice_dt_start, string recevice_dt_end, string sts, string lct_cd, string mt_cd);
         w_material_info_tam GetWMaterialInfoTamwithmtcd(string mt_cd);
         w_material_info_tam GetWMaterialInfoTamwithSTS(string mt_cd);
@@ -77,7 +78,7 @@ namespace Mvc_VD.Services
             _db = dbFactory.Init();
         }
 
-        public IEnumerable<GeneralWIP> GetListGeneralMaterialWIP(string mt_no, string product_cd, string mt_nm, string recevice_dt_start,string recevice_dt_end, string sts, string lct_cd, string mt_cd)
+        public IEnumerable<GeneralWIP> GetListGeneralExportToMachine(string mt_no, string product_cd, string mt_nm, string recevice_dt_start,string recevice_dt_end, string sts, string lct_cd, string mt_cd)
         {
             //string viewSql = @" SET sql_mode = '';SET @@sql_mode = '';
             //                SELECT * 
@@ -147,6 +148,104 @@ namespace Mvc_VD.Services
                            
                             AND a.lct_cd  LIKE '002%'
                             AND a.mt_type!='CMT' 
+                           
+                ) table1
+                where  (@5='' OR DATE_FORMAT(table1.recevice_dt,'%Y/%m/%d') >= DATE_FORMAT(@5,'%Y/%m/%d'))  
+                    AND (@13='' OR DATE_FORMAT(table1.recevice_dt,'%Y/%m/%d') <= DATE_FORMAT(@13,'%Y/%m/%d'))
+  GROUP BY table1.mt_no
+";
+
+
+
+            return _db.Database.SqlQuery<GeneralWIP>(viewSql,
+                new MySqlParameter("1", sts),
+                new MySqlParameter("2", mt_no),
+                new MySqlParameter("3", mt_nm),
+                new MySqlParameter("4", product_cd),
+                new MySqlParameter("9", lct_cd),
+                new MySqlParameter("11", mt_cd),
+                new MySqlParameter("5", recevice_dt_start),
+                new MySqlParameter("13", recevice_dt_end),
+                new MySqlParameter("6", "%" + mt_no + "%"),
+                new MySqlParameter("7", "%" + mt_nm + "%"),
+                new MySqlParameter("8", "%" + product_cd + "%"),
+                new MySqlParameter("10", "%" + lct_cd + "%"),
+                new MySqlParameter("12", "%" + mt_cd + "%")
+                );
+        }
+
+        public IEnumerable<GeneralWIP> GetListGeneralMaterialWIP(string mt_no, string product_cd, string mt_nm, string recevice_dt_start, string recevice_dt_end, string sts, string lct_cd, string mt_cd)
+        {
+            //string viewSql = @" SET sql_mode = '';SET @@sql_mode = '';
+            //                SELECT * 
+            //        FROM (  
+            //                SELECT max(a.mt_no)mt_no,max(b.mt_nm)mt_nm,      
+            //                concat( ROW_NUMBER() OVER (ORDER BY a.wmtid ), 'a') AS wmtid, concat(( Case 
+            //                WHEN ( 
+            //                max(`b`.`bundle_unit`) = 'Roll')  THEN concat(round((sum(`a`.`gr_qty`) / max(`b`.`spec`)),2), ' Roll') 
+            //                 ELSE concat(round(SUM(`a`.`gr_qty`),2) ,' EA')
+            //                END)) AS `qty`, 
+            //              b.bundle_unit,
+            //                SUM( CASE  WHEN a.mt_sts_cd='002' THEN a.gr_qty ELSE 0  END)AS 'DSD',
+            //                SUM( CASE WHEN (a.mt_sts_cd='001' or a.mt_sts_cd='004') THEN a.gr_qty ELSE 0  END)  AS 'CSD' 
+            //                FROM w_material_info AS a 
+            //                LEFT JOIN d_material_info AS b ON a.mt_no=b.mt_no 
+            //                LEFT JOIN  w_sd_info info ON info.sd_no = a.sd_no 
+
+            //                WHERE  FIND_IN_SET(a.mt_sts_cd, @1) != 0
+            //                AND (@2='' OR  a.mt_no like @6 )
+            //                AND (@11='' OR  a.mt_cd like @12 )
+            //                AND (@3='' OR b.mt_nm like @7 )  
+            //                AND (@4='' OR info.product_cd like @8 ) 
+            //                AND (@9='' OR a.lct_cd like @10 ) 
+            //                 AND (a.ExportCode IS NULL OR a.ExportCode ='')
+            //                AND (@5='' OR DATE_FORMAT(a.rece_wip_dt,'%Y/%m/%d') >= DATE_FORMAT(@5,'%Y/%m/%d'))  
+            //                AND (@13='' OR DATE_FORMAT(a.recevice_dt,'%Y/%m/%d') <= DATE_FORMAT(@13,'%Y/%m/%d')) 
+            //                AND a.lct_cd  LIKE '002%'
+            //                AND a.mt_type!='CMT' 
+            //                GROUP BY a.mt_no
+            //    ) MyDerivedTable";
+
+
+            string viewSql = @" SET sql_mode = '';SET @@sql_mode = '';
+                            SELECT  max(table1.mt_no)mt_no,max(table1.mt_nm)mt_nm,      
+                            concat( ROW_NUMBER() OVER (ORDER BY table1.wmtid ), 'a') AS wmtid, concat(( Case 
+                            WHEN ( 
+                            max(`table1`.`bundle_unit`) = 'Roll')  THEN concat(round((sum(`table1`.`gr_qty`) / max(`table1`.`spec`)),2), ' Roll') 
+                             ELSE concat(round(SUM(`table1`.`gr_qty`),2) ,' EA')
+                            END)) AS `qty`, 
+ 	                       table1.bundle_unit,
+                            SUM( CASE  WHEN table1.mt_sts_cd='002' THEN table1.gr_qty ELSE 0  END)AS 'DSD',
+                            SUM( CASE WHEN (table1.mt_sts_cd='001' or table1.mt_sts_cd='004') THEN table1.gr_qty ELSE 0  END)  AS 'CSD' , 
+
+                    table1.recevice_dt
+                    FROM (  
+                            SELECT a.mt_no,b.mt_nm,    a.wmtid,`b`.`bundle_unit`,`a`.`gr_qty`,`b`.`spec`, a.mt_sts_cd,
+
+                              (
+                               CASE 
+                               WHEN ('08:00:00' <= DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s') AND  DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  <  '23:59:59') THEN
+                               DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ),'%Y-%m-%d')
+
+                               when (DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  < '08:00:00') THEN  DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ) - interval 1 DAY ,'%Y-%m-%d')
+                                 ELSE ''
+                               END )  as recevice_dt
+                            FROM w_material_info AS a 
+                            LEFT JOIN d_material_info AS b ON a.mt_no=b.mt_no 
+                            LEFT JOIN  w_sd_info info ON info.sd_no = a.sd_no 
+
+                            WHERE  FIND_IN_SET(a.mt_sts_cd, @1) != 0
+                            AND (@2='' OR  a.mt_no like @6 )
+                            AND (@11='' OR  a.mt_cd like @12 )
+                            AND (@3='' OR b.mt_nm like @7 )  
+                            AND (@4='' OR info.product_cd like @8 ) 
+                            AND (@9='' OR a.lct_cd like @10 ) 
+                             AND (a.ExportCode IS NULL OR a.ExportCode ='')
+                           
+                            AND a.lct_cd  LIKE '002%'
+                            AND a.mt_type!='PMT' 
+                            AND a.ExportCode  IS NOT null
+                            AND a.mt_sts_cd ='001'
                            
                 ) table1
                 where  (@5='' OR DATE_FORMAT(table1.recevice_dt,'%Y/%m/%d') >= DATE_FORMAT(@5,'%Y/%m/%d'))  
