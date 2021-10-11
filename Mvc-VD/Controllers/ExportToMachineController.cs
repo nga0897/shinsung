@@ -727,6 +727,7 @@ namespace Mvc_VD.Controllers
             base.Dispose(disposing);
         }
 
+        #       region general
         public ActionResult GenaralExportMaterial()
         {
             return View("~/Views/wipwms/ExportToMachine/GenaralExportMaterial.cshtml");
@@ -1012,5 +1013,6 @@ namespace Mvc_VD.Controllers
             }
             return View("~/Views/wipwms/ExportToMachine/GenaralExportMaterial.cshtml");
         }
+        #endregion
     }
 }
