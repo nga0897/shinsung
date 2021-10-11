@@ -145,9 +145,10 @@ namespace Mvc_VD.Services
                             AND (@4='' OR info.product_cd like @8 ) 
                             AND (@9='' OR a.lct_cd like @10 ) 
                              AND (a.ExportCode IS NULL OR a.ExportCode ='')
-                           
-                            AND a.lct_cd  LIKE '002%'
-                            AND a.mt_type!='CMT' 
+                    
+                             AND a.mt_type ='PMT' 
+                            AND a.ExportCode  IS NOT null
+                            AND a.mt_sts_cd ='001'
                            
                 ) table1
                 where  (@5='' OR DATE_FORMAT(table1.recevice_dt,'%Y/%m/%d') >= DATE_FORMAT(@5,'%Y/%m/%d'))  
@@ -243,9 +244,7 @@ namespace Mvc_VD.Services
                              AND (a.ExportCode IS NULL OR a.ExportCode ='')
                            
                             AND a.lct_cd  LIKE '002%'
-                            AND a.mt_type!='PMT' 
-                            AND a.ExportCode  IS NOT null
-                            AND a.mt_sts_cd ='001'
+                           
                            
                 ) table1
                 where  (@5='' OR DATE_FORMAT(table1.recevice_dt,'%Y/%m/%d') >= DATE_FORMAT(@5,'%Y/%m/%d'))  
