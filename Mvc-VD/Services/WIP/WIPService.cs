@@ -144,7 +144,7 @@ namespace Mvc_VD.Services
                             AND (@3='' OR b.mt_nm like @7 )  
                             AND (@4='' OR info.product_cd like @8 ) 
                             AND (@9='' OR a.lct_cd like @10 ) 
-                             AND (a.ExportCode IS NULL OR a.ExportCode ='')
+                            
                     
                              AND a.mt_type ='PMT' 
                             AND a.ExportCode  IS NOT null

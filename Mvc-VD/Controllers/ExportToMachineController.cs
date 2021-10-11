@@ -846,7 +846,7 @@ namespace Mvc_VD.Controllers
             varname1.Append(" LEFT JOIN  w_sd_info info ON info.sd_no = a.sd_no  ");
             varname1.Append("LEFT JOIN lct_info AS lct ON a.lct_cd = lct.lct_cd  ");
             varname1.Append(" LEFT JOIN comm_dt as com ON a.mt_sts_cd  = com.dt_cd AND com.mt_cd='WHS005'  ");
-            varname1.Append("WHERE a.lct_cd LIKE '002%' AND (a.ExportCode IS NULL OR a.ExportCode = '')  AND a.mt_no='" + mt_no + "' and a.mt_type ='PMT' AND a.mt_sts_cd='001' and a.ExportCode IS NOT null  ");
+            varname1.Append("WHERE a.lct_cd LIKE '002%'  AND a.mt_no='" + mt_no + "' and a.mt_type ='PMT' AND a.mt_sts_cd='001' and a.ExportCode IS NOT null  ");
             varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
             varname1.Append(" AND ('" + lct_cd + "'='' OR  a.lct_cd like '%" + lct_cd + "%' ) ");
             varname1.Append(" AND ('" + mt_cd + "'='' OR  a.mt_cd like '%" + mt_cd + "%' ) ");
@@ -947,7 +947,7 @@ namespace Mvc_VD.Controllers
             varname1.Append("  LEFT JOIN comm_dt as com ON a.mt_sts_cd  = com.dt_cd AND com.mt_cd='WHS005'   \n");
             varname1.Append(" LEFT JOIN  w_sd_info info ON info.sd_no = a.sd_no   \n");
             varname1.Append("WHERE a.lct_cd LIKE '002%'  and a.mt_type = 'PMT' AND a.mt_sts_cd='001' and a.ExportCode IS NOT null ");
-            varname1.Append("  AND (a.ExportCode IS NULL OR a.ExportCode = '') ");
+            varname1.Append("  ");
             varname1.Append(" AND ('" + mt_no + "'='' OR  a.mt_no like '%" + mt_no + "%' ) ");
             varname1.Append(" AND ('" + product_cd + "'='' OR  info.product_cd like '%" + product_cd + "%' ) ");
             varname1.Append(" AND ('" + mt_cd + "'='' OR  a.mt_cd like '%" + mt_cd + "%' ) ");
