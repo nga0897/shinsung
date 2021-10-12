@@ -831,33 +831,33 @@ namespace Mvc_VD.Controllers
                 }
             }
 
+            var result = _IWIPService.GetgeneralDetail_List( mt_no,  mt_nm,  lct_cd,  mt_cd,  product_cd,  sts,  recevice_dt_start,  recevice_dt_end);
 
+            //StringBuilder varname1 = new StringBuilder();
+            //varname1.Append("SELECT * FROM ( SELECT a.wmtid,a.mt_cd,b.mt_nm, lct.lct_nm, CONCAT(ifnull(a.gr_qty,''),' ',ifnull(b.unit_cd,'')) lenght,CONCAT(ifnull(b.width,0),'*',ifnull(a.gr_qty,0)) AS size,ifnull(b.spec,0) spec,a.mt_no, ");
+            //varname1.Append(" (case when b.bundle_unit ='Roll' then  ROUND((a.gr_qty/b.spec),2) ELSE ROUND(a.gr_qty,2) END) qty, b.bundle_unit, ");
+            ////varname1.Append("a.recevice_dt, a.sd_no,");
+            //varname1.Append(" a.sd_no,");
+            //varname1.Append("com.dt_nm sts_nm, ");
+            //varname1.Append("a.rece_wip_dt recevice_dt, ");
+            //varname1.Append("(CASE WHEN('08:00:00' <= DATE_FORMAT(CAST(a.rece_wip_dt AS datetime), '%H:%i:%s') AND  DATE_FORMAT(CAST(a.rece_wip_dt AS datetime), '%H:%i:%s') < '23:59:59') THEN DATE_FORMAT(CAST(a.rece_wip_dt AS DATETIME), '%Y-%m-%d')    when(DATE_FORMAT(CAST(a.rece_wip_dt AS datetime), '%H:%i:%s') < '08:00:00') THEN  DATE_FORMAT(CAST(a.rece_wip_dt AS DATETIME) - interval 1 DAY, '%Y-%m-%d') ELSE ''  END) as recevice_dt1 ");
+            //varname1.Append("FROM w_material_info a ");
+            //varname1.Append("LEFT JOIN d_material_info  b ON a.mt_no=b.mt_no ");
+            //varname1.Append(" LEFT JOIN  w_sd_info info ON info.sd_no = a.sd_no  ");
+            //varname1.Append("LEFT JOIN lct_info AS lct ON a.lct_cd = lct.lct_cd  ");
+            //varname1.Append(" LEFT JOIN comm_dt as com ON a.mt_sts_cd  = com.dt_cd AND com.mt_cd='WHS005'  ");
+            //varname1.Append("WHERE a.lct_cd LIKE '002%'  AND a.mt_no='" + mt_no + "' and a.mt_type ='PMT' AND a.mt_sts_cd='001' and a.ExportCode IS NOT null  ");
+            //varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
+            //varname1.Append(" AND ('" + lct_cd + "'='' OR  a.lct_cd like '%" + lct_cd + "%' ) ");
+            //varname1.Append(" AND ('" + mt_cd + "'='' OR  a.mt_cd like '%" + mt_cd + "%' ) ");
+            //varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
+            //varname1.Append(" AND ('" + product_cd + "'='' OR  info.product_cd like '%" + product_cd + "%' ) ");
+            //varname1.Append(" AND ('" + sts + "'='' OR  a.mt_sts_cd in (" + sts + ") ) )AS TABLE1 ");
+            //varname1.Append(" WHERE ('" + recevice_dt_start + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') >= DATE_FORMAT('" + recevice_dt_start + "','%Y/%m/%d')) ");
+            //varname1.Append(" AND ('" + recevice_dt_end + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') <= DATE_FORMAT('" + recevice_dt_end + "','%Y/%m/%d')) order by TABLE1.sd_no asc");
 
-            StringBuilder varname1 = new StringBuilder();
-            varname1.Append("SELECT * FROM ( SELECT a.wmtid,a.mt_cd,b.mt_nm, lct.lct_nm, CONCAT(ifnull(a.gr_qty,''),' ',ifnull(b.unit_cd,'')) lenght,CONCAT(ifnull(b.width,0),'*',ifnull(a.gr_qty,0)) AS size,ifnull(b.spec,0) spec,a.mt_no, ");
-            varname1.Append(" (case when b.bundle_unit ='Roll' then  ROUND((a.gr_qty/b.spec),2) ELSE ROUND(a.gr_qty,2) END) qty, b.bundle_unit, ");
-            //varname1.Append("a.recevice_dt, a.sd_no,");
-            varname1.Append(" a.sd_no,");
-            varname1.Append("com.dt_nm sts_nm, ");
-            varname1.Append("a.rece_wip_dt recevice_dt, ");
-            varname1.Append("(CASE WHEN('08:00:00' <= DATE_FORMAT(CAST(a.rece_wip_dt AS datetime), '%H:%i:%s') AND  DATE_FORMAT(CAST(a.rece_wip_dt AS datetime), '%H:%i:%s') < '23:59:59') THEN DATE_FORMAT(CAST(a.rece_wip_dt AS DATETIME), '%Y-%m-%d')    when(DATE_FORMAT(CAST(a.rece_wip_dt AS datetime), '%H:%i:%s') < '08:00:00') THEN  DATE_FORMAT(CAST(a.rece_wip_dt AS DATETIME) - interval 1 DAY, '%Y-%m-%d') ELSE ''  END) as recevice_dt1 ");
-            varname1.Append("FROM w_material_info a ");
-            varname1.Append("LEFT JOIN d_material_info  b ON a.mt_no=b.mt_no ");
-            varname1.Append(" LEFT JOIN  w_sd_info info ON info.sd_no = a.sd_no  ");
-            varname1.Append("LEFT JOIN lct_info AS lct ON a.lct_cd = lct.lct_cd  ");
-            varname1.Append(" LEFT JOIN comm_dt as com ON a.mt_sts_cd  = com.dt_cd AND com.mt_cd='WHS005'  ");
-            varname1.Append("WHERE a.lct_cd LIKE '002%'  AND a.mt_no='" + mt_no + "' and a.mt_type ='PMT' AND a.mt_sts_cd='001' and a.ExportCode IS NOT null  ");
-            varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
-            varname1.Append(" AND ('" + lct_cd + "'='' OR  a.lct_cd like '%" + lct_cd + "%' ) ");
-            varname1.Append(" AND ('" + mt_cd + "'='' OR  a.mt_cd like '%" + mt_cd + "%' ) ");
-            varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
-            varname1.Append(" AND ('" + product_cd + "'='' OR  info.product_cd like '%" + product_cd + "%' ) ");
-            varname1.Append(" AND ('" + sts + "'='' OR  a.mt_sts_cd in (" + sts + ") ) )AS TABLE1 ");
-            varname1.Append(" WHERE ('" + recevice_dt_start + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') >= DATE_FORMAT('" + recevice_dt_start + "','%Y/%m/%d')) ");
-            varname1.Append(" AND ('" + recevice_dt_end + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') <= DATE_FORMAT('" + recevice_dt_end + "','%Y/%m/%d')) order by TABLE1.sd_no asc");
-
-            var data = new InitMethods().ConvertDataTableToJsonAndReturn(varname1);
-            return Json(data.Data, JsonRequestBehavior.AllowGet);
+            //var data = new InitMethods().ConvertDataTableToJsonAndReturn(varname1);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult PrintExcelFile()
@@ -901,67 +901,68 @@ namespace Mvc_VD.Controllers
                 }
             }
 
+            var listTotal = _IWIPService.PrintExcelFile(mt_no, mt_nm, lct_cd, mt_cd, product_cd, sts, recevice_dt_start, recevice_dt_end);
 
-            StringBuilder varname1 = new StringBuilder();
-            varname1.Append("SELECT TABLE1.mt_cd, TABLE1.mt_no, TABLE1.mt_nm,   \n");
-            varname1.Append("CONCAT((CASE WHEN (MAX(TABLE1.bundle_unit) = 'Roll')  THEN ROUND((SUM(TABLE1.gr_qty) / MAX(TABLE1.spec)),2)     \n");
-            varname1.Append("ELSE ROUND(SUM(TABLE1.gr_qty),2) END),' ', MAX(TABLE1.bundle_unit)) AS qty ,    \n");
-            varname1.Append(" SUM( CASE  WHEN TABLE1.mt_sts_cd='002' THEN TABLE1.gr_qty ELSE 0  END)AS 'DSD',  \n");
-            varname1.Append(" SUM( CASE WHEN (TABLE1.mt_sts_cd='001' or TABLE1.mt_sts_cd='004') THEN TABLE1.gr_qty ELSE 0  END)  AS 'CSD' ,    \n");
-            varname1.Append(" SUM(TABLE1.gr_qty) TK,  \n");
-            varname1.Append("'' AS lenght,''size,''recevice_dt,''sts_nm, '' lct_nm , '' sd_no , TABLE1.recevice_dt1   \n");
-            varname1.Append("  FROM ( SELECT '' mt_cd, a.mt_no, b.mt_nm,  b.bundle_unit,a.gr_qty,b.spec,a.mt_sts_cd,'' AS lenght,   \n");
-            varname1.Append("  (CASE WHEN ('08:00:00' <= DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s') AND  DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  <  '23:59:59') THEN     DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ),'%Y-%m-%d')   \n");
-            varname1.Append("   WHEN (DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  < '08:00:00') THEN  DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ) - interval 1 DAY ,'%Y-%m-%d')  \n");
-            varname1.Append("    ELSE ''     END )  as recevice_dt1    \n");
-            varname1.Append("  FROM w_material_info AS a    \n");
-            varname1.Append("  JOIN d_material_info AS b ON a.mt_no = b.mt_no  \n");
-            varname1.Append("   LEFT JOIN  w_sd_info info ON info.sd_no = a.sd_no  \n");
-            varname1.Append("WHERE a.lct_cd LIKE '002%'  and a.mt_type <> 'CMT' AND a.mt_sts_cd!='005'  ");
-            varname1.Append("  AND (a.ExportCode IS NULL OR a.ExportCode = '') ");
-            varname1.Append(" AND ('" + mt_no + "'='' OR  a.mt_no like '%" + mt_no + "%' ) ");
-            varname1.Append(" AND ('" + product_cd + "'='' OR  info.product_cd like '%" + product_cd + "%' ) ");
-            varname1.Append(" AND ('" + mt_cd + "'='' OR  a.mt_cd like '%" + mt_cd + "%' ) ");
-            varname1.Append(" AND ('" + lct_cd + "'='' OR  a.lct_cd like '%" + lct_cd + "%' ) ");
-            varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
-            varname1.Append(" AND FIND_IN_SET(a.mt_sts_cd, '" + sts + "') != 0 ");
-            varname1.Append(" ) TABLE1 ");
-            varname1.Append(" WHERE ('" + recevice_dt_start + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') >= DATE_FORMAT('" + recevice_dt_start + "','%Y/%m/%d')) ");
-            varname1.Append(" AND ('" + recevice_dt_end + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') <= DATE_FORMAT('" + recevice_dt_end + "','%Y/%m/%d')) ");
+            //StringBuilder varname1 = new StringBuilder();
+            //varname1.Append("SELECT TABLE1.mt_cd, TABLE1.mt_no, TABLE1.mt_nm,   \n");
+            //varname1.Append("CONCAT((CASE WHEN (MAX(TABLE1.bundle_unit) = 'Roll')  THEN ROUND((SUM(TABLE1.gr_qty) / MAX(TABLE1.spec)),2)     \n");
+            //varname1.Append("ELSE ROUND(SUM(TABLE1.gr_qty),2) END),' ', MAX(TABLE1.bundle_unit)) AS qty ,    \n");
+            //varname1.Append(" SUM( CASE  WHEN TABLE1.mt_sts_cd='002' THEN TABLE1.gr_qty ELSE 0  END)AS 'DSD',  \n");
+            //varname1.Append(" SUM( CASE WHEN (TABLE1.mt_sts_cd='001' or TABLE1.mt_sts_cd='004') THEN TABLE1.gr_qty ELSE 0  END)  AS 'CSD' ,    \n");
+            //varname1.Append(" SUM(TABLE1.gr_qty) TK,  \n");
+            //varname1.Append("'' AS lenght,''size,''recevice_dt,''sts_nm, '' lct_nm , '' sd_no , TABLE1.recevice_dt1   \n");
+            //varname1.Append("  FROM ( SELECT '' mt_cd, a.mt_no, b.mt_nm,  b.bundle_unit,a.gr_qty,b.spec,a.mt_sts_cd,'' AS lenght,   \n");
+            //varname1.Append("  (CASE WHEN ('08:00:00' <= DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s') AND  DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  <  '23:59:59') THEN     DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ),'%Y-%m-%d')   \n");
+            //varname1.Append("   WHEN (DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  < '08:00:00') THEN  DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ) - interval 1 DAY ,'%Y-%m-%d')  \n");
+            //varname1.Append("    ELSE ''     END )  as recevice_dt1    \n");
+            //varname1.Append("  FROM w_material_info AS a    \n");
+            //varname1.Append("  JOIN d_material_info AS b ON a.mt_no = b.mt_no  \n");
+            //varname1.Append("   LEFT JOIN  w_sd_info info ON info.sd_no = a.sd_no  \n");
+            //varname1.Append("WHERE a.lct_cd LIKE '002%'  and a.mt_type <> 'CMT' AND a.mt_sts_cd!='005'  ");
+            //varname1.Append("  AND (a.ExportCode IS NULL OR a.ExportCode = '') ");
+            //varname1.Append(" AND ('" + mt_no + "'='' OR  a.mt_no like '%" + mt_no + "%' ) ");
+            //varname1.Append(" AND ('" + product_cd + "'='' OR  info.product_cd like '%" + product_cd + "%' ) ");
+            //varname1.Append(" AND ('" + mt_cd + "'='' OR  a.mt_cd like '%" + mt_cd + "%' ) ");
+            //varname1.Append(" AND ('" + lct_cd + "'='' OR  a.lct_cd like '%" + lct_cd + "%' ) ");
+            //varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
+            //varname1.Append(" AND FIND_IN_SET(a.mt_sts_cd, '" + sts + "') != 0 ");
+            //varname1.Append(" ) TABLE1 ");
+            //varname1.Append(" WHERE ('" + recevice_dt_start + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') >= DATE_FORMAT('" + recevice_dt_start + "','%Y/%m/%d')) ");
+            //varname1.Append(" AND ('" + recevice_dt_end + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') <= DATE_FORMAT('" + recevice_dt_end + "','%Y/%m/%d')) ");
 
-            varname1.Append(" GROUP BY TABLE1.mt_no \n");
-            varname1.Append("UNION \n");
-            varname1.Append(" \n");
-            varname1.Append("SELECT * FROM( SELECT  a.mt_cd,a.mt_no,''mt_nm,CONCAT((CASE WHEN b.bundle_unit ='Roll' THEN ROUND((a.gr_qty/b.spec),2) ELSE ROUND(a.gr_qty,2) END),b.bundle_unit)qty, \n");
-            varname1.Append("'' DSD,''CSD,''TK, \n");
-            varname1.Append("CONCAT(IFNULL(a.gr_qty,''), IFNULL(b.unit_cd,'')) lenght, CONCAT(IFNULL(b.width,0),'*', IFNULL(a.gr_qty,0)) AS size,a.rece_wip_dt, ( \n");
-            varname1.Append("SELECT dt_nm \n");
-            varname1.Append("FROM comm_dt \n");
-            varname1.Append("WHERE comm_dt.dt_cd=a.mt_sts_cd AND comm_dt.mt_cd='WHS005') sts_nm  , location.lct_nm, a.sd_no , \n");
-            varname1.Append("  (CASE WHEN ('08:00:00' <= DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s') AND  DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  <  '23:59:59') THEN     DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ),'%Y-%m-%d')   \n");
-            varname1.Append("   WHEN (DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  < '08:00:00') THEN  DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ) - interval 1 DAY ,'%Y-%m-%d')  \n");
-            varname1.Append("    ELSE ''     END )  as recevice_dt1    \n");
-            varname1.Append("FROM w_material_info a \n");
-            varname1.Append("LEFT JOIN d_material_info b ON a.mt_no=b.mt_no \n");
-            varname1.Append(" LEFT JOIN lct_info location ON a.lct_cd=location.lct_cd  \n");
-            varname1.Append("  LEFT JOIN comm_dt as com ON a.mt_sts_cd  = com.dt_cd AND com.mt_cd='WHS005'   \n");
-            varname1.Append(" LEFT JOIN  w_sd_info info ON info.sd_no = a.sd_no   \n");
-            varname1.Append("WHERE a.lct_cd LIKE '002%'  and a.mt_type = 'PMT' AND a.mt_sts_cd='001' and a.ExportCode IS NOT null ");
-            varname1.Append("  ");
-            varname1.Append(" AND ('" + mt_no + "'='' OR  a.mt_no like '%" + mt_no + "%' ) ");
-            varname1.Append(" AND ('" + product_cd + "'='' OR  info.product_cd like '%" + product_cd + "%' ) ");
-            varname1.Append(" AND ('" + mt_cd + "'='' OR  a.mt_cd like '%" + mt_cd + "%' ) ");
-            varname1.Append(" AND ('" + lct_cd + "'='' OR  a.lct_cd like '%" + lct_cd + "%' ) ");
-            varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
-            varname1.Append(" AND FIND_IN_SET(a.mt_sts_cd, '" + sts + "') != 0 ");
-            varname1.Append(") TABLE1 ");
-            varname1.Append(" WHERE ('" + recevice_dt_start + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') >= DATE_FORMAT('" + recevice_dt_start + "','%Y/%m/%d')) ");
-            varname1.Append(" AND ('" + recevice_dt_end + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') <= DATE_FORMAT('" + recevice_dt_end + "','%Y/%m/%d')) ");
+            //varname1.Append(" GROUP BY TABLE1.mt_no \n");
+            //varname1.Append("UNION \n");
+            //varname1.Append(" \n");
+            //varname1.Append("SELECT * FROM( SELECT  a.mt_cd,a.mt_no,''mt_nm,CONCAT((CASE WHEN b.bundle_unit ='Roll' THEN ROUND((a.gr_qty/b.spec),2) ELSE ROUND(a.gr_qty,2) END),b.bundle_unit)qty, \n");
+            //varname1.Append("'' DSD,''CSD,''TK, \n");
+            //varname1.Append("CONCAT(IFNULL(a.gr_qty,''), IFNULL(b.unit_cd,'')) lenght, CONCAT(IFNULL(b.width,0),'*', IFNULL(a.gr_qty,0)) AS size,a.rece_wip_dt, ( \n");
+            //varname1.Append("SELECT dt_nm \n");
+            //varname1.Append("FROM comm_dt \n");
+            //varname1.Append("WHERE comm_dt.dt_cd=a.mt_sts_cd AND comm_dt.mt_cd='WHS005') sts_nm  , location.lct_nm, a.sd_no , \n");
+            //varname1.Append("  (CASE WHEN ('08:00:00' <= DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s') AND  DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  <  '23:59:59') THEN     DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ),'%Y-%m-%d')   \n");
+            //varname1.Append("   WHEN (DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  < '08:00:00') THEN  DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ) - interval 1 DAY ,'%Y-%m-%d')  \n");
+            //varname1.Append("    ELSE ''     END )  as recevice_dt1    \n");
+            //varname1.Append("FROM w_material_info a \n");
+            //varname1.Append("LEFT JOIN d_material_info b ON a.mt_no=b.mt_no \n");
+            //varname1.Append(" LEFT JOIN lct_info location ON a.lct_cd=location.lct_cd  \n");
+            //varname1.Append("  LEFT JOIN comm_dt as com ON a.mt_sts_cd  = com.dt_cd AND com.mt_cd='WHS005'   \n");
+            //varname1.Append(" LEFT JOIN  w_sd_info info ON info.sd_no = a.sd_no   \n");
+            //varname1.Append("WHERE a.lct_cd LIKE '002%'  and a.mt_type = 'PMT' AND a.mt_sts_cd='001' and a.ExportCode IS NOT null ");
+            //varname1.Append("  ");
+            //varname1.Append(" AND ('" + mt_no + "'='' OR  a.mt_no like '%" + mt_no + "%' ) ");
+            //varname1.Append(" AND ('" + product_cd + "'='' OR  info.product_cd like '%" + product_cd + "%' ) ");
+            //varname1.Append(" AND ('" + mt_cd + "'='' OR  a.mt_cd like '%" + mt_cd + "%' ) ");
+            //varname1.Append(" AND ('" + lct_cd + "'='' OR  a.lct_cd like '%" + lct_cd + "%' ) ");
+            //varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
+            //varname1.Append(" AND FIND_IN_SET(a.mt_sts_cd, '" + sts + "') != 0 ");
+            //varname1.Append(") TABLE1 ");
+            //varname1.Append(" WHERE ('" + recevice_dt_start + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') >= DATE_FORMAT('" + recevice_dt_start + "','%Y/%m/%d')) ");
+            //varname1.Append(" AND ('" + recevice_dt_end + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') <= DATE_FORMAT('" + recevice_dt_end + "','%Y/%m/%d')) ");
 
 
-            DataTable dt = new InitMethods().ReturnDataTableNonConstraints(varname1);
+           // DataTable dt = new InitMethods().ReturnDataTableNonConstraints(varname1);
 
-            List<WIP_ParentInventoryModel> listTotal = new InitMethods().ConvertDataTable<WIP_ParentInventoryModel>(varname1);
+          //  List<WIP_ParentInventoryModel> listTotal = new InitMethods().ConvertDataTable<WIP_ParentInventoryModel>(varname1);
 
             listTotal = listTotal.OrderBy(x => x.mt_no).ThenBy(x => x.mt_cd).ToList();
 
