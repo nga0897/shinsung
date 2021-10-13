@@ -14,6 +14,9 @@ namespace Mvc_VD.Models.WIP
         public string qty { get; set; }
         public  int? DSD { get; set; }
         public  int? CSD { get; set; }
+        public  int returnMachine { get; set; }
+
+
       
     }
 }

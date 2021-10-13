@@ -146,9 +146,11 @@ $(function () {
                 { label: 'QTy (Roll/EA)', name: 'qty', width: 100, align: 'right' },
                 { name: 'DSD', hidden: true },
                 { name: 'CSD', hidden: true },
+                { name: 'ReturnMachine', hidden: true },
                 { name: 'bundle_unit', hidden: true },
                 { label: 'Đang sử dụng Qty Length(M)', name: '', width: 150, align: 'right', formatter: dvi_dsd },
                 { label: 'Chưa sử dụng Qty Length(M)', name: '', width: 150, align: 'right', formatter: dvi_csd },
+                { label: 'Hàng trả về Length(M)', name: '', width: 150, align: 'right', formatter: dvi_rtk },
                 { label: 'Tồn Kho Qty Length(M)', name: 'total', width: 150, align: 'right', formatter: total },
             ],
             formatter: {
@@ -206,6 +208,12 @@ function dvi_csd(cellValue, options, rowdata, action) {
         return rowdata.CSD + "EA";
     }
     return rowdata.CSD + "m";
+}
+function dvi_rtk(cellValue, options, rowdata, action) {
+    if (rowdata.bundle_unit == "EA") {
+        return rowdata.returnMachine + "EA";
+    }
+    return rowdata.returnMachine + "m";
 }
 function getDataList(pdata) {
     var params = new Object();
@@ -270,7 +278,7 @@ function showChildGrid_List(parentRowID, parentRowKey) {
         url: `/ExportToMachine/GetgeneralDetail_List?mt_no=${encodeURIComponent(mt_no_list)}&mt_nm=${mt_nm}&product_cd=${product_cd}&recevice_dt_start=${recevice_dt_start}&recevice_dt_end=${recevice_dt_end}&sts=${sts}&lct_cd=${lct_cd}&mt_cd=${encodeURIComponent(mt_cd)}`,
         colModel: [
             { key: true, label: 'wmtid', name: 'wmtid', width: 50, align: 'right', hidden: true },
-            { label: 'SD NO', name: 'sd_no', width: 50, align: 'left' },
+            { label: 'Export Code', name: 'ExportCode', width: 50, align: 'left' },
             { label: 'MT Code', name: 'mt_cd', width: 350, align: 'left' },
             {
                 label: 'Material', name: 'mt_nm', width: 350, align: 'left', hidden: true
@@ -279,7 +287,7 @@ function showChildGrid_List(parentRowID, parentRowKey) {
             { label: 'QTy (Roll/EA)', name: 'qty', width: 100, align: 'right' },
             { label: '', name: 'bundle_unit', width: 100, align: 'right', hidden: true },
             { label: 'Lenght', name: 'lenght', width: 100, align: 'right' },
-            { label: 'Size ', name: 'size', width: 100, align: 'right' },
+            { label: 'Size', name: 'size', width: 100, align: 'right' },
             { label: 'Location', name: 'lct_nm', width: 80, align: 'left' },
             { label: 'Status', name: 'sts_nm', width: 100, align: 'right' },
             { label: 'Recevied Date', name: 'recevice_dt', width: 200, align: 'center', formatter: _Date },

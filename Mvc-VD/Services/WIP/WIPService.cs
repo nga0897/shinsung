@@ -122,11 +122,13 @@ namespace Mvc_VD.Services
                             concat( ROW_NUMBER() OVER (ORDER BY table1.wmtid ), 'a') AS wmtid, concat(( Case 
                             WHEN ( 
                             max(`table1`.`bundle_unit`) = 'Roll')  THEN concat(round((sum(`table1`.`gr_qty`) / max(`table1`.`spec`)),2), ' Roll') 
-                             ELSE concat(round(SUM(`table1`.`gr_qty`),2) ,' EA')
+                            ELSE concat(round(SUM(`table1`.`gr_qty`),2) ,' EA')
                             END)) AS `qty`, 
- 	                       table1.bundle_unit,
-                            SUM( CASE  WHEN table1.mt_sts_cd='002' THEN table1.gr_qty ELSE 0  END)AS 'DSD',
-                            SUM( CASE WHEN (table1.mt_sts_cd='001' or table1.mt_sts_cd='004') THEN table1.gr_qty ELSE 0  END)  AS 'CSD' , 
+ 	                        table1.bundle_unit,
+                            SUM( CASE WHEN table1.mt_sts_cd='005' THEN table1.gr_qty ELSE 0  END)  AS 'returnMachine' , 
+                            SUM( CASE WHEN table1.mt_sts_cd='002' THEN table1.gr_qty ELSE 0  END)AS 'DSD',
+                            SUM( CASE WHEN (table1.mt_sts_cd='001' or table1.mt_sts_cd='004') THEN table1.gr_qty ELSE 0  END)  AS 'CSD' ,
+                           
 
                     table1.recevice_dt
                     FROM (  
@@ -145,21 +147,21 @@ namespace Mvc_VD.Services
                             LEFT JOIN  w_sd_info info ON info.sd_no = a.sd_no 
 
                             WHERE  FIND_IN_SET(a.mt_sts_cd, @1) != 0
-                            AND (@2='' OR  a.mt_no like @6 )
-                            AND (@11='' OR  a.mt_cd like @12 )
-                            AND (@3='' OR b.mt_nm like @7 )  
-                            AND (@4='' OR info.product_cd like @8 ) 
-                            AND (@9='' OR a.lct_cd like @10 ) 
+                            AND (@2='' OR  a.mt_no like @2 )
+                            AND (@11='' OR  a.mt_cd like @11 )
+                            AND (@3='' OR b.mt_nm like @3 )  
+                            AND (@4='' OR info.product_cd like @4 ) 
+                           
                             
                     
                              AND a.mt_type ='PMT' 
                             AND a.ExportCode  IS NOT null
-                            AND a.mt_sts_cd ='001'
+                            AND (a.mt_sts_cd='001' or a.mt_sts_cd='002' or a.mt_sts_cd='005' )
                            
                 ) table1
                 where  (@5='' OR DATE_FORMAT(table1.recevice_dt,'%Y/%m/%d') >= DATE_FORMAT(@5,'%Y/%m/%d'))  
                     AND (@13='' OR DATE_FORMAT(table1.recevice_dt,'%Y/%m/%d') <= DATE_FORMAT(@13,'%Y/%m/%d'))
-  GROUP BY table1.mt_no
+  GROUP BY table1.mt_no ORDER BY table1.mt_no
 ";
 
 
@@ -169,7 +171,7 @@ namespace Mvc_VD.Services
                 new MySqlParameter("2", mt_no),
                 new MySqlParameter("3", mt_nm),
                 new MySqlParameter("4", product_cd),
-                new MySqlParameter("9", lct_cd),
+            //    new MySqlParameter("9", lct_cd),
                 new MySqlParameter("11", mt_cd),
                 new MySqlParameter("5", recevice_dt_start),
                 new MySqlParameter("13", recevice_dt_end),
@@ -1093,7 +1095,7 @@ namespace Mvc_VD.Services
       public  Object GetgeneralDetail_List(string mt_no, string mt_nm, string lct_cd, string mt_cd, string product_cd, string sts, string recevice_dt_start, string recevice_dt_end)
       {
             StringBuilder varname1 = new StringBuilder();
-            varname1.Append("SELECT * FROM ( SELECT a.wmtid,a.mt_cd,b.mt_nm, lct.lct_nm, CONCAT(ifnull(a.gr_qty,''),' ',ifnull(b.unit_cd,'')) lenght,CONCAT(ifnull(b.width,0),'*',ifnull(a.gr_qty,0)) AS size,ifnull(b.spec,0) spec,a.mt_no, ");
+            varname1.Append("SELECT * FROM ( SELECT a.wmtid,a.mt_cd,a.ExportCode ,b.mt_nm, lct.lct_nm, CONCAT(ifnull(a.gr_qty,''),' ',ifnull(b.unit_cd,'')) lenght,CONCAT(ifnull(b.width,0),'*',ifnull(a.gr_qty,0)) AS size,ifnull(b.spec,0) spec,a.mt_no, ");
             varname1.Append(" (case when b.bundle_unit ='Roll' then  ROUND((a.gr_qty/b.spec),2) ELSE ROUND(a.gr_qty,2) END) qty, b.bundle_unit, ");
             //varname1.Append("a.recevice_dt, a.sd_no,");
             varname1.Append(" a.sd_no,");
@@ -1107,13 +1109,13 @@ namespace Mvc_VD.Services
             varname1.Append(" LEFT JOIN comm_dt as com ON a.mt_sts_cd  = com.dt_cd AND com.mt_cd='WHS005'  ");
             varname1.Append("WHERE a.lct_cd LIKE '002%'  AND a.mt_no='" + mt_no + "' and a.mt_type ='PMT' AND (a.mt_sts_cd='001' or a.mt_sts_cd='002' or a.mt_sts_cd='005' ) and a.ExportCode IS NOT null  ");
             varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
-            varname1.Append(" AND ('" + lct_cd + "'='' OR  a.lct_cd like '%" + lct_cd + "%' ) ");
+           // varname1.Append(" AND ('" + lct_cd + "'='' OR  a.lct_cd like '%" + lct_cd + "%' ) ");
             varname1.Append(" AND ('" + mt_cd + "'='' OR  a.mt_cd like '%" + mt_cd + "%' ) ");
             varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
             varname1.Append(" AND ('" + product_cd + "'='' OR  info.product_cd like '%" + product_cd + "%' ) ");
             varname1.Append(" AND ('" + sts + "'='' OR  a.mt_sts_cd in (" + sts + ") ) )AS TABLE1 ");
             varname1.Append(" WHERE ('" + recevice_dt_start + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') >= DATE_FORMAT('" + recevice_dt_start + "','%Y/%m/%d')) ");
-            varname1.Append(" AND ('" + recevice_dt_end + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') <= DATE_FORMAT('" + recevice_dt_end + "','%Y/%m/%d')) order by TABLE1.sd_no asc");
+            varname1.Append(" AND ('" + recevice_dt_end + "'='' OR DATE_FORMAT(TABLE1.recevice_dt1,'%Y/%m/%d') <= DATE_FORMAT('" + recevice_dt_end + "','%Y/%m/%d')) order by TABLE1.ExportCode asc");
 
             var data = new InitMethods().ConvertDataTableToJsonAndReturn(varname1);
             return data.Data;
@@ -1131,7 +1133,7 @@ namespace Mvc_VD.Services
             varname1.Append(" SUM(TABLE1.gr_qty) TK,  \n");
             varname1.Append("'' AS lenght,''size,''recevice_dt,''sts_nm, '' lct_nm , '' sd_no , TABLE1.recevice_dt1   \n");
             varname1.Append("  FROM ( SELECT '' mt_cd, a.mt_no, b.mt_nm,  b.bundle_unit,a.gr_qty,b.spec,a.mt_sts_cd,'' AS lenght,   \n");
-            varname1.Append("  (CASE WHEN ('08:00:00' <= DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s') AND  DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  <  '23:59:59') THEN     DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ),'%Y-%m-%d')   \n");
+            varname1.Append("  (CASE WHEN ('08:00:00' <= DATE_FORMAT( CAST( a.   AS datetime ),'%H:%i:%s') AND  DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  <  '23:59:59') THEN     DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ),'%Y-%m-%d')   \n");
             varname1.Append("   WHEN (DATE_FORMAT( CAST( a.rece_wip_dt AS datetime ),'%H:%i:%s')  < '08:00:00') THEN  DATE_FORMAT( CAST( a.rece_wip_dt AS DATETIME ) - interval 1 DAY ,'%Y-%m-%d')  \n");
             varname1.Append("    ELSE ''     END )  as recevice_dt1    \n");
             varname1.Append("  FROM w_material_info AS a    \n");
@@ -1142,7 +1144,7 @@ namespace Mvc_VD.Services
             varname1.Append(" AND ('" + mt_no + "'='' OR  a.mt_no like '%" + mt_no + "%' ) ");
             varname1.Append(" AND ('" + product_cd + "'='' OR  info.product_cd like '%" + product_cd + "%' ) ");
             varname1.Append(" AND ('" + mt_cd + "'='' OR  a.mt_cd like '%" + mt_cd + "%' ) ");
-            varname1.Append(" AND ('" + lct_cd + "'='' OR  a.lct_cd like '%" + lct_cd + "%' ) ");
+      //      varname1.Append(" AND ('" + lct_cd + "'='' OR  a.lct_cd like '%" + lct_cd + "%' ) ");
             varname1.Append(" AND ('" + mt_nm + "'='' OR  b.mt_nm like '%" + mt_nm + "%' ) ");
             varname1.Append(" AND FIND_IN_SET(a.mt_sts_cd, '" + sts + "') != 0 ");
             varname1.Append(" ) TABLE1 ");
